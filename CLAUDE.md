@@ -181,6 +181,13 @@ cp -r /tmp/bl-book/column raw/broad-listening-book/
 
 ローカルでの確認: `python3 scripts/resolve-links.py && npx quartz build --serve`
 
+## 補助ドキュメント (docs/)
+
+繰り返し参照する可能性のある運用知識は `docs/` に置く:
+
+- [docs/quartz-github-pages-setup.md](docs/quartz-github-pages-setup.md) — Quartz + GitHub Pages の構成を他リポジトリに移植するためのガイド
+- [docs/outline-mcp-evaluation.md](docs/outline-mcp-evaluation.md) — Outline (dd2030-docs.kbn.one) への MCP 経由 import 検証メモ。ハマりどころと移行方針
+
 ## dd2030プロジェクト固有の注意
 
 - プロジェクトに初めて来た人が対象読者。専門用語は必ず説明する。
