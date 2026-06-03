@@ -1,6 +1,8 @@
 # Quartz + GitHub Pages で Wiki を公開する手順（移植ガイド）
 
-「Markdown を書いて push すれば GitHub Pages に自動公開される」構成を作るためのガイド。dd2030-wiki で実際に動いているセットアップを、他のリポジトリにそのまま移植できる形でまとめた。**このファイル 1 つを読めば再現できる**ようにスクリプトと設定の中身も全て記載してある。
+> 注: この文書は `wiki/ -> content/ -> public/` の旧方式を説明する移植メモとして残している。現在の dd2030-wiki は `kouchou-ai-developer-wiki` と同様に `pnpm build` で `wiki/` をQuartzへ直接渡し、`pnpm check:pages-links` で生成HTMLのリンクを検査する方式を正としている。
+
+「Markdown を書いて push すれば GitHub Pages に自動公開される」構成を作るための旧方式ガイド。`content/` を生成物として挟む構成を、他のリポジトリに移植できる形でまとめた。**このファイル 1 つを読めば再現できる**ようにスクリプトと設定の中身も全て記載してある。
 
 ## 何ができるようになるか
 

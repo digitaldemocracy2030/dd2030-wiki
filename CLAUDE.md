@@ -21,7 +21,7 @@ dd2030-wiki/
 │   ├── topics/             # テーマ・論点ごとの整理
 │   ├── timeline/           # 時系列の活動まとめ
 │   └── sources/            # 各ソースの要約ページ
-├── content/                # Quartz公開用（wiki/からコピーまたはシンボリックリンク）
+├── content/                # 旧生成先（現在のビルドでは使わない）
 ├── scripts/                # ユーティリティスクリプト
 ├── CLAUDE.md               # このファイル（スキーマ）
 ├── LOG.md                  # 作業ログ
@@ -57,9 +57,9 @@ updated: YYYY-MM-DD
 ### 内部リンク
 
 - `wiki/` ではシンプルな `[[ページ名]]` 記法を使う（例: `[[広聴AI]]`, `[[overview]]`）。
-- パスの指定は不要。`scripts/resolve-links.py` がビルド時に自動でパスに解決する。
+- パスの指定は不要。Quartz が `wiki/` を直接読み、フロントマターの `title` / `aliases` を使って解決する。
 - リンク先がまだ存在しない場合でもリンクを張ってよい（プレーンテキストに変換される）。
-- **content/ は直接編集しない。** wiki/ を編集し、スクリプトで content/ を生成する。
+- **content/ は直接編集しない。** 現在の公開ビルドは `wiki/` を入力にする。
 
 ### カテゴリ別の書き方
 
@@ -194,14 +194,14 @@ gh repo clone nishio/oss_weekly_reporter /tmp/oss_weekly_reporter -- \
 
 ## ビルドパイプライン
 
-`wiki/` → (resolve-links.py) → `content/` → (Quartz) → `public/` → GitHub Pages
+`wiki/` → (Quartz) → `public/` → GitHub Pages
 
 1. `wiki/` のMarkdownを編集する（シンプルな `[[ページ名]]` でリンク）
-2. `python3 scripts/resolve-links.py` が `wiki/` を読み、リンクをファイルパスに解決して `content/` に出力
-3. `npx quartz build` が `content/` からHTMLを生成
+2. `pnpm build` が `wiki/` を直接読み、HTMLを `public/` に生成
+3. `pnpm check:pages-links` が GitHub Pages 上での内部リンク・asset参照を検査
 4. GitHub Actions が自動でこの全ステップを実行してデプロイ
 
-ローカルでの確認: `python3 scripts/resolve-links.py && npx quartz build --serve`
+ローカルでの確認: `pnpm build && pnpm check:pages-links`。プレビューは `pnpm serve`。
 
 ## 補助ドキュメント (docs/)
 

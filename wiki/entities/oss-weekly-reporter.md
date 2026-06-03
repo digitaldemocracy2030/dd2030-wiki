@@ -17,7 +17,7 @@ updated: 2026-05-11
 
 リポジトリ: [`nishio/oss_weekly_reporter`](https://github.com/nishio/oss_weekly_reporter)
 
-dd2030 においては、これが**[[初年度まとめ|過去1年間のSlackログとGitHub活動データの一次アーカイブ]]**になっており、[[overview|dd2030 wiki]] 自体の基盤データ源として機能している。詳細な参照手順は [archive_index.md](/archive_index.md) を参照。
+dd2030 においては、これが**[[初年度まとめ|過去1年間のSlackログとGitHub活動データの一次アーカイブ]]**になっており、[[overview|dd2030 wiki]] 自体の基盤データ源として機能している。詳細な参照手順は [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) を参照。
 
 ## 由来 — `2_新しいプロジェクトの種` から生まれた
 
@@ -74,11 +74,11 @@ dd2030 Slack ──→ oss_weekly_reporter ──→ aiレポート/Markdown/生
 ```
 
 - アーカイブ自体は dd2030-wiki リポジトリには取り込まない（プライバシー・サイズ）
-- 検索ベースで参照する（[scripts/search-archive.py](/scripts/search-archive.py)）
+- 検索ベースで参照する（[scripts/search-archive.py](https://github.com/nishio/dd2030-wiki/blob/main/scripts/search-archive.py)）
 - このアーカイブを生んだプロジェクト自体が dd2030 の中で `2_新しいプロジェクトの種` から立ち上がったもの
 
 ## 関連ページ
 
-- [archive_index.md](/archive_index.md) — アーカイブの参照ガイド
+- [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) — アーカイブの参照ガイド
 - [[初年度まとめ]] — このアーカイブから構築した時系列まとめ
 - [[overview]] — プロジェクト全体の概要

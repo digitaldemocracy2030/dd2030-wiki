@@ -24,33 +24,28 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.2
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-
-      - name: Install pnpm
-        run: corepack enable && corepack prepare pnpm@latest --activate
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install Python dependencies
-        run: pip install pyyaml
-
-      - name: Resolve wikilinks (wiki/ → content/)
-        run: python3 scripts/resolve-links.py
+          node-version: "22"
+          cache: "pnpm"
 
       - name: Install Node dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: npx quartz build
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Build
+        run: pnpm build
+
+      - name: Check generated links
+        run: pnpm check:pages-links
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

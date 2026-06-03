@@ -10,9 +10,7 @@
 
 ```
 wiki/（シンプルな [[ページ名]] で記述）
-  ↓ scripts/resolve-links.py（リンクをファイルパスに自動解決）
-content/（Quartz が読むディレクトリ）
-  ↓ npx quartz build
+  ↓ pnpm build（Quartz が wiki/ を直接読む）
 public/（HTML）
   ↓ GitHub Actions
 GitHub Pages
@@ -34,14 +32,12 @@ cd dd2030-wiki
 # Node.js (22+) と Python (3.10+) が必要
 corepack enable
 pnpm install
-pip install pyyaml
 ```
 
 ### 3. ローカルで確認
 
 ```bash
-python3 scripts/resolve-links.py   # wiki/ → content/ のリンク解決
-npx quartz build --serve            # http://localhost:8080 で確認
+pnpm serve  # http://localhost:8080 で確認
 ```
 
 ### 4. GitHub Pagesの設定
@@ -59,7 +55,8 @@ npx quartz build --serve            # http://localhost:8080 で確認
 vim wiki/concepts/new-concept.md
 
 # ローカル確認
-python3 scripts/resolve-links.py && npx quartz build --serve
+pnpm build && pnpm check:pages-links
+pnpm serve
 
 # pushすれば自動デプロイ
 git add wiki/
@@ -67,7 +64,7 @@ git commit -m "Add new concept page"
 git push
 ```
 
-リンクは `[[ページタイトル]]` とシンプルに書けます。ビルド時にスクリプトがファイルパスに自動解決します。
+リンクは `[[ページタイトル]]` とシンプルに書けます。Quartz が `wiki/` を直接読み、`title` / `aliases` を使って解決します。
 
 ## ディレクトリ構成
 
@@ -85,9 +82,9 @@ dd2030-wiki/
 ├── raw/                     # 元資料（不変）
 │   ├── history/             # websiteリポジトリの週次レポート（50週分）
 │   └── minutes/             # Google Docsからエクスポートした議事録
-├── content/                 # 自動生成（直接編集しない）
 ├── scripts/
-│   └── resolve-links.py     # wikilink解決スクリプト
+│   ├── check_pages_links.py # GitHub Pages上のリンク検査
+│   └── lint-wiki.py         # Wiki整合性チェック
 ├── quartz/                  # Quartzフレームワーク
 ├── quartz.config.ts         # Quartz設定
 ├── CLAUDE.md                # LLM向けスキーマ（ページ規約・操作フロー）

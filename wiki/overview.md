@@ -1,6 +1,6 @@
 ---
 title: dd2030 プロジェクト概要
-aliases: [overview]
+aliases: [overview, dd2030, デジタル民主主義2030, デジタル民主主義2030（dd2030）]
 tags: [dd2030, overview]
 sources: [raw/history/week1_20250319/slack.md, raw/history/week50_20260415/slack.md, raw/broad-listening-book/10_00_DD2030による広聴AIの開発活動.md]
 created: 2026-04-18

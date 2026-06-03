@@ -1,5 +1,8 @@
 node_modules/
 public/
+content/
+scripts/__pycache__/
+*.tsbuildinfo
 .quartz-cache/
 .obsidian/
 .DS_Store

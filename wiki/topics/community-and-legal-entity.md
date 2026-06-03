@@ -1,6 +1,6 @@
 ---
 title: コミュニティと法人の関係
-aliases: [コミュニティと法人, community-and-legal-entity]
+aliases: [コミュニティと法人の関係, コミュニティと法人, community-and-legal-entity]
 tags: [dd2030, organization, explainer]
 sources:
   - raw/a.txt
