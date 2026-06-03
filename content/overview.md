@@ -51,6 +51,7 @@ updated: 2026-04-18
 - **2025年冬**: Code for Japan Summit登壇。Polimoneyテレビ紹介
 - **2026年1月**: DD2030が2期目に移行。[[entities/coreloop|コアループ]]プロジェクト始動
 - **2026年3月19日**: 「ストップ詐欺広告」記者会見（15社参加）。クラウドファンディング開始
+- **2026年6月1日**: 法人名称「[[entities/legal-entity|デジタル民主主義推進機構]]（Digital Democracy Builders）」が決定（一般社団法人）
 - **2026年6月14日**: DP（討論型世論調査）実施予定
 
 詳細は [[timeline/quarterly-summary|時系列まとめ]] を参照。
@@ -65,8 +66,9 @@ updated: 2026-04-18
 
 ## 組織・コミュニティ
 
+- **法人**: [[entities/legal-entity|デジタル民主主義推進機構]]（英文: Digital Democracy Builders、一般社団法人、2026年6月1日に名称決定）。「デジタル民主主義2030（dd2030）」は法人化後もフラッグシップ・プログラム名として継続
 - Slack上のオープンコミュニティ。誰でも参加可能
-- ボードメンバー制（Code for Japan等の団体が参加）
+- ボードメンバー制（鈴木健・中室・関、Code for Japan等の団体が参加）
 - 各プロダクトにPO（プロダクトオーナー）を配置
 - 毎週の全体定例、定期的なオフラインミートアップ
 - GitHub上でのオープンソース開発（`good first issue` で初心者歓迎）

@@ -2,7 +2,7 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-04-19
+updated: 2026-06-03
 ---
 
 # Wiki 作業ログ
@@ -90,3 +90,27 @@ updated: 2026-04-19
 
 - 全Wikiページに一次ソースへのリンクを追加:
   - Google Docs議事録、GitHubリポジトリ、公開サイト、発表スライド、書籍原稿の該当章
+
+## [2026-06-03] ingest | 法人名称決定アナウンス（2026-06-01）の取り込み
+
+- 取り込み元: 鈴木健による6/1 Slackアナウンス「法人名称が決定しました」
+- raw/documents/2026-06-01_legal-entity-name-announcement.md として保存
+- 新規ページ: entities/legal-entity.md（デジタル民主主義推進機構 / Digital Democracy Builders）
+  - ボード（鈴木・中室・関）の協議で決定
+  - ドメイン: digitaldemocracy.jp
+  - 候補比較（ジャパン／実装ハブ／2030）と見送り理由を整理
+  - 「2030」はフラッグシップ・プログラム名として継続
+- 更新:
+  - overview.md — プロジェクトの歩みに 2026-06-01 を追加、組織・コミュニティ節に法人情報を追記
+  - index.md — 「組織」セクションを新設し、法人ページへリンク
+
+## [2026-06-03] explainer | コミュニティと法人の関係 解説ページ作成
+
+- 元情報: raw/a.txt（OSS財団事例のリサーチと、コミュニティ／法人の並走関係についての対話）
+- 方針: 設計提案ではなく、「コミュニティと法人が並走する」状況の解説に絞る（元の対話で明示された要望）
+- 新規ページ: topics/community-and-legal-entity.md
+  - 役割の違い（コミュニティ vs 法人）
+  - OSS事例（Apache / Linux Foundation / Mozilla / Ethereum / OpenStreetMap / Decidim）の役割分担パターン
+  - 「法人は代表者ではなく責任の受け皿」「コミュニティは法人の部門ではない」の整理
+  - 政治的中立性の三層（党派中立／手続き中立／個人の自由）
+- index.md — 「組織」「テーマ」セクションに新ページへのリンクを追加
