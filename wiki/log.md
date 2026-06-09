@@ -2,7 +2,7 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-06-03
+updated: 2026-06-09
 ---
 
 # Wiki 作業ログ
@@ -104,9 +104,37 @@ updated: 2026-06-03
   - overview.md — プロジェクトの歩みに 2026-06-01 を追加、組織・コミュニティ節に法人情報を追記
   - index.md — 「組織」セクションを新設し、法人ページへリンク
 
+## [2026-06-09] filing-back | OSS Weekly Reporter 保全状況の再確認（変化なし）
+
+- 問い: 「6/4 の調査から5日経った今、何か動いたか」
+- 確認対象: `nishio/oss_weekly_reporter` data ブランチ最新コミット、PR digitaldemocracy2030/website#211、Issue #170/#173/#177、`digitaldemocracy2030/slack-logs` リポ
+- 結論: **実質的な動きなし**。
+  - data ブランチは cron 稼働中（最新 `2ee810e` 2026-06-03、次回 6/10 水）
+  - PR #211 は OPEN のまま CI 上書き push のみ
+  - Issue #170 は依然コメントゼロ（9ヶ月＋）、#173/#177 も未着手
+  - `slack-logs` リポは 0 コミットのまま
+  - 2026-05-13 nishio 提案の CC-BY化＋公式サイトリンクも形跡なし
+- 副次的な発見: **Issue [digitaldemocracy2030/website#216](https://github.com/digitaldemocracy2030/website/issues/216)**（2026-05-29、shingo-ohki）「Slackに投稿された事例をもとにウェブサイト更新PRを作成する」が新規起票されている。`#1_事例紹介_全体` 投稿を AI で website PR 化する提案で、週次サマリパイプラインの代替ではないが「Slack→AI→PR」パターンの隣接フロー
+- 更新: entities/oss-weekly-reporter.md に「## 状況確認 — 2026-06-09時点」サブセクションを追加し、5日間の差分テーブルと #216 を記録
+
+## [2026-06-04 21:52] filing-back | OSS Weekly Reporter 移管状況の調査結果を反映
+
+- 問い: 「OSS Weekly Reporter のパイプラインは結局 nishio 個人で動いているのか、dd2030 で動いているのか／移管はされたのか」
+- 調査範囲: `nishio/oss_weekly_reporter` の main / data ブランチ、`digitaldemocracy2030/website` Issue #170、`digitaldemocracy2030/slack-logs` リポ、oss_weekly_reporter data ブランチ上の 2025-09 〜 2026-06 の週次 Slack 要約
+- 結論: **未移管**。Slack取得・AI要約は今も nishio 個人リポで自動実行中。website への反映だけが2025-09に部分移管され、Issue #170 は9ヶ月OPEN放置。2026-05以降は「Slack→Discord 移行」「過去ログ CC-BY 公開」という別フレームに連結された
+- 更新: entities/oss-weekly-reporter.md に「## 運用状況（2026-06-04時点）」セクションを追加
+  - 移管の経緯（〜2025-08、2025-09-03、2025-09-10、2026-06-04現在）
+  - 部品別の移管状況テーブル（Slack取得 / AI要約 / dd2030.org/history 反映）
+  - 2026-05 のスコープ拡張（Discord 移行案、`digitaldemocracy2030/slack-logs` の5/19作成、CC-BY化提案）
+  - 未解決の宿題リスト
+- 一次出典:
+  - oss_weekly_reporter `data/2026-05-06_to_2026-05-13/markdown/slack/all_summary.md` — nishio による CC-BY 化提案
+  - oss_weekly_reporter `data/2026-05-20_to_2026-05-27/markdown/slack/all_summary.md` — Slack→Discord 移行案アナウンス
+  - GitHub Issue digitaldemocracy2030/website#170 本文（kuboon・Shingo OHKI・nishio のスレッド引用込み）
+
 ## [2026-06-03] explainer | コミュニティと法人の関係 解説ページ作成
 
-- 元情報: raw/a.txt（OSS財団事例のリサーチと、コミュニティ／法人の並走関係についての対話）
+- 元情報: raw/documents/2026-06-03_oss-foundation-survey.md（OSS財団事例のリサーチと、コミュニティ／法人の並走関係についての対話）
 - 方針: 設計提案ではなく、「コミュニティと法人が並走する」状況の解説に絞る（元の対話で明示された要望）
 - 新規ページ: topics/community-and-legal-entity.md
   - 役割の違い（コミュニティ vs 法人）

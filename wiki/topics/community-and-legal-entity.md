@@ -3,7 +3,7 @@ title: コミュニティと法人の関係
 aliases: [コミュニティと法人の関係, コミュニティと法人, community-and-legal-entity]
 tags: [dd2030, organization, explainer]
 sources:
-  - raw/a.txt
+  - raw/documents/2026-06-03_oss-foundation-survey.md
   - raw/documents/2026-06-01_legal-entity-name-announcement.md
 created: 2026-06-03
 updated: 2026-06-03
