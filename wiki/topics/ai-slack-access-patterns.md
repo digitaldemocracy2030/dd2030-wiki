@@ -103,6 +103,25 @@ jobs:
 2. **直後（2026-06-09 着手）: 案2** — slack-logs に mirror ワークフローを追加。Python + slack_sdk で `mirror/slack/<channel_id>.jsonl.gz` を 6時間ごとに上書き、`mirror/sync.json` に最終同期時刻を残す。詳細は実装後に [[OSS Weekly Reporter]] 末尾に追記
 3. **将来: 案3** — wiki ingest を半自動化したくなったとき（ユーザーが Slack URL を貼ったら AI が API で fetch してスレッドを取り込む）に MCP/tool 形態を検討
 
+## 案2 実装結果（2026-06-09）
+
+- `digitaldemocracy2030/slack-logs` 3e62c7f (workflow) → da1f293 (cache: pip 削除)
+- 動作確認 run [27214269117](https://github.com/digitaldemocracy2030/slack-logs/actions/runs/27214269117) success: 57 channels, 556 messages, window 2026-05-26〜2026-06-09
+- AI が直近の Slack 状態を参照するには:
+
+```bash
+# 最新同期時刻と channel/message 数
+gh api repos/digitaldemocracy2030/slack-logs/contents/mirror/sync.json \
+  --jq '.content' | base64 -d | jq '. | del(.channels)'
+
+# 特定チャンネルの直近14日メッセージ
+gh api repos/digitaldemocracy2030/slack-logs/contents/mirror/slack/<channel_id>.jsonl.gz \
+  --jq '.download_url' | xargs curl -sL | zcat
+```
+
+- 履歴は `raw/` 側に蓄積されるので `mirror/` は常に上書きでOK
+- 月次 canonical (`raw/`) と rolling mirror (`mirror/`) の **二層構成** が完成
+
 ## 関連ページ
 
 - [[アーカイブパイプライン設計]] — slack-logs の保全層の設計判断

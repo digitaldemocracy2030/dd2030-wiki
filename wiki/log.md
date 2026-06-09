@@ -104,6 +104,18 @@ updated: 2026-06-09 (slack-logs 方針確定)
   - overview.md — プロジェクトの歩みに 2026-06-01 を追加、組織・コミュニティ節に法人情報を追記
   - index.md — 「組織」セクションを新設し、法人ページへリンク
 
+## [2026-06-09] feature | slack-logs に mirror layer を追加（案2 実装）
+
+- 元情報: [[AI から Slack ログを参照するパターン]] の採用方針「案2: 現状ミラー workflow 追加」
+- 実装:
+  - `scripts/slack_mirror.py` — Python + slack_sdk、直近14日分の public ch メッセージ＋スレッドを取得
+  - `.github/workflows/slack-mirror.yml` — 6時間ごと cron、429 retry、push race 対策、失敗時 issue 起票
+  - 出力: `mirror/slack/<channel_id>.jsonl.gz` を毎回上書き、`mirror/sync.json` に最終同期メタ、`mirror/users.json`
+- 動作確認: run [27214269117](https://github.com/digitaldemocracy2030/slack-logs/actions/runs/27214269117) で success（57 channels, 556 messages, window 2026-05-26〜2026-06-09）
+- 初回 run は `cache: pip` が requirements.txt を要求して失敗 → da1f293 で削除して再試行成功（issue #3 を close）
+- これで slack-logs は raw/ (月次 canonical, 2ヶ月遅延) と mirror/ (rolling 14日 snapshot, 6時間ごと) の二層構成に
+- AI の現状クエリは `gh api repos/digitaldemocracy2030/slack-logs/contents/mirror/...` で参照可能
+
 ## [2026-06-09] explainer | AI から Slack ログを参照するパターンの整理
 
 - 元情報: nishio との対話「AIが最新のSlackログを読みたいシチュエーションに関して考えて」
