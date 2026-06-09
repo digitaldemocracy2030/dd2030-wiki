@@ -104,6 +104,18 @@ updated: 2026-06-09 (slack-logs 方針確定)
   - overview.md — プロジェクトの歩みに 2026-06-01 を追加、組織・コミュニティ節に法人情報を追記
   - index.md — 「組織」セクションを新設し、法人ページへリンク
 
+## [2026-06-09] bootstrap | digitaldemocracy2030/slack-logs を立ち上げ + 過去16ヶ月分埋め戻し完了
+
+- bootstrap commit: `digitaldemocracy2030/slack-logs` 33dfe5a（README + slack-backup.yml workflow + ディレクトリ枠）
+- SLACK_TOKEN: nishio が `nishio/oss_weekly_reporter` で使っている既存 bot token を流用（案C: ハイブリッドで「まず動かす」フェーズ）
+- 動作テスト (2026-04): run [27199100824](https://github.com/digitaldemocracy2030/slack-logs/actions/runs/27199100824) で成功。58 public ch、gzip後 ~250KB/月
+- 過去分埋め戻し: **2025-01〜2026-04 の 16ヶ月分すべて success**（2026-05 は cron が 7/1 に拾う）
+- repo サイズ: 773 KB（推奨 1GB に対し余裕）
+- 途中で発生した2つのバグを修正:
+  1. **`concurrency: cancel-in-progress: false` でも中間 pending は cancel される** → 並列 dispatch は不可。`/tmp/backfill-sequential.sh` で sequential 実行する形に変更
+  2. **`git push` race condition**: 連続実行で2つ目以降が `[rejected]` → workflow の commit step に `git pull --rebase` retry ループを追加（commit 39a299e）
+- 残課題: 案C の後半（脱-nishio token 化）、CC-BY ライセンス化決定、Discord 移行後の対応
+
 ## [2026-06-09] decision | slack-logs 保全パイプライン方針確定 + slack-logger-cli-action paper exercise
 
 - 元情報: nishio との対話（B. data repo の場所決定 + C. paper exercise 依頼）

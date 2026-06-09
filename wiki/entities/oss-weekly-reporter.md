@@ -252,6 +252,32 @@ Issue [#177](https://github.com/digitaldemocracy2030/website/issues/177) で kub
 
 詳細な paper exercise（何ができて何を足す必要があるか、fork 検討の発火条件）は [[アーカイブパイプライン設計]]「paper exercise」節を参照。
 
+## 実装完了 — 2026-06-09
+
+[`digitaldemocracy2030/slack-logs`](https://github.com/digitaldemocracy2030/slack-logs) を bootstrap し、過去16ヶ月分（2025-01〜2026-04）を埋め戻し完了。
+
+| 項目 | 値 |
+|---|---|
+| 対象 channel 数 | 58（public ch を autoJoin） |
+| 保存形式 | `raw/slack/<channel_id>/<YYYY>-<MM>.jsonl.gz` |
+| users snapshot | `state/users-<YYYY>-<MM>.json` |
+| 月次 cron | 毎月1日 09:11 JST（次回 2026-07-01 が 2026-05 分を取得） |
+| 失敗時 | Issue を自動起票（labels: `slack-backup` `failure`） |
+| SLACK_TOKEN | nishio が `oss_weekly_reporter` で使っている既存 bot token を流用（フェーズ1）|
+| 全 16ヶ月の run 結果 | すべて success |
+| repo サイズ | 773 KB（推奨 1GB に対し余裕）|
+
+途中で発見・修正したバグ:
+
+- GitHub Actions の `concurrency: cancel-in-progress: false` は **新しい pending が来ると古い pending を cancel** する仕様。15件並列 dispatch すると最初と最後だけ実行されて残りは cancel される。→ sequential dispatch（外部スクリプトで完了待ち）に変更。
+- `git push` の race condition: 連続 dispatch で2つ目以降が `[rejected]`。→ workflow の commit step に `git pull --rebase` retry ループを追加（commit [39a299e](https://github.com/digitaldemocracy2030/slack-logs/commit/39a299e)）。
+
+フェーズ2の残作業（脱-nishio-依存）:
+
+- dd2030 org として新規 Slack app を作成し、`SLACK_TOKEN` を差し替え
+- CC-BY ライセンスでの公開化（nishio 2026-05-13 提案の実行）
+- 過去ログ（nishio/oss_weekly_reporter の `data` ブランチ 67週分 117MB）の CC-BY 再公開経路
+
 ## 関連ページ
 
 - [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) — アーカイブの参照ガイド
