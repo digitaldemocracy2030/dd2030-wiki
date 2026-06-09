@@ -1,0 +1,231 @@
+---
+title: アーカイブパイプライン設計
+aliases: [アーカイブパイプライン設計, archive-pipeline-design, ログ蓄積アーキテクチャ]
+tags: [dd2030, tooling, explainer, archive]
+sources:
+  - raw/documents/2026-06-09_archive-pipeline-design-note.md
+  - raw/slack/2026-06-04_oss-weekly-reporter-handoff.md
+created: 2026-06-09
+updated: 2026-06-09
+---
+
+# アーカイブパイプライン設計 — Slack/Scrapbox ログを GitHub に溜めるときの選択
+
+> dd2030 で「Slack 卒業＋過去ログ CC-BY アーカイブ」「OSS Weekly Reporter の脱-nishio-依存」を進めるとき、**どのリポにworkflowを置き、どの粒度で何を保存するか**で後々の運用コストが大きく変わる。
+
+このページは、nishio が 2026-06 にまとめた設計メモ（[raw/documents/2026-06-09_archive-pipeline-design-note.md](https://github.com/nishio/dd2030-wiki/blob/main/raw/documents/2026-06-09_archive-pipeline-design-note.md)）を、dd2030 の文脈（[[OSS Weekly Reporter]] / Issue #170 / #173 / #177 / `digitaldemocracy2030/slack-logs`）に対応づけて整理したもの。具体的な未解決 Issue の状況は [[OSS Weekly Reporter]] を参照。
+
+## 結論（要約）
+
+**コード用 repo とデータ用 repo を分け、workflow はデータ用 repo 側に置く**のが基本。`main` に直接ログを commit する構成は手軽だがソース履歴にデータ更新 commit が混ざり、`data` branch 方式は最新コードと最新データを同時に扱うときに rebase/merge 運用が重くなる。
+
+## 推奨構成
+
+```text
+collector-code repo   (optional)
+  └─ collector scripts / tests / README
+
+data repo
+  ├─ .github/workflows/collect.yml
+  ├─ state/
+  │   ├─ slack.json
+  │   └─ scrapbox.json
+  ├─ raw/
+  │   ├─ slack/<workspace>/<channel>/<yyyy>/<mm>/<dd>.jsonl.gz
+  │   └─ scrapbox/<project>/snapshots/<yyyy-mm-dd>.json.gz
+  ├─ normalized/
+  │   ├─ slack/messages/<yyyy>/<mm>/<dd>.jsonl.gz
+  │   └─ scrapbox/pages/<project>/<page_id>.json
+  └─ derived/
+      └─ markdown / index / reports
+```
+
+ポイントは **raw をまず保存し、加工結果は後で作れるものとして分離する**こと。Slack も Scrapbox も API 仕様が変わりうるので、正規化済みデータだけ残すと変換ロジックを直したいときに元に戻れない。
+
+## なぜ workflow はデータ repo 側がよいか
+
+- GitHub の `GITHUB_TOKEN` は workflow が存在する repo に権限が限定される。別 repo へ push するなら GitHub App installation token または PAT を secret に入れる必要がある。
+- public repo の scheduled workflow は、その repo に **60日間 activity がないと自動無効化**される。collector code が安定して更新が止まると、code repo 側の workflow が止まる事故が起きうる（過去 `from_scrapbox` 側で `disabled_inactivity` 事例あり）。
+
+```text
+案A: data repo に workflow を置く
+  data repo 自身に定期 commit が入る
+  code と data が疎結合になる
+  GITHUB_TOKEN だけで同一 repo へ push できる
+
+案B: code repo に workflow を置き、data repo へ push する
+  collector code の管理は自然
+  ただし GitHub App token / PAT が必要
+  code repo 側の 60日 inactivity 対策が必要
+```
+
+長期運用なら **案A を基本**にし、collector code が育ってきたら別 repo に置いて data repo の workflow から checkout する構成にできる。
+
+## Slack 側の論点
+
+技術的には `conversations.history`（チャンネルメッセージ）と `conversations.replies`（スレッド）を組み合わせる。スレッドは `channel` と親 message の `ts` が必須。
+
+ただし以下の設計上の制約がある。
+
+- **rate limit**: method × workspace × 分単位。429 時は `Retry-After` ヘッダに従う。
+- **2025-05-29 以降の非 Marketplace アプリ制限**: Marketplace 外で商用配布される新規アプリでは `conversations.history` / `conversations.replies` が **1分1リクエスト・最大15件**。Marketplace app と internal customer-built app は Tier 3 扱い。dd2030 用途は「internal customer-built」に当たるので分けて考えられる。
+- **Slack Developer Policy**: Data の収集・保存・利用には適切な同意が必要。LLM training への利用は禁止。Data 保存には暗号化等の注意。
+
+技術より先に決めるべき意思決定:
+
+```text
+取る範囲:
+  public channel だけか
+  private channel も含むか
+  DM は取らないのか
+  bot が参加している channel だけか
+
+保存する粒度:
+  message 本文を保存するか
+  URL・ts・user_id・channel_id だけ保存するか
+  添付ファイル本文まで追うか
+
+利用目的:
+  個人の検索用
+  週次レポート生成
+  公開アーカイブ
+  LLM/RAG 用の検索 index
+```
+
+実装上は **Slack は差分取得・冪等保存が必須**。GitHub Actions の schedule は遅延・drop されうるので、`oldest = 前回成功 watermark - overlap` で少し重複取得し、`channel_id + ts` で重複排除する。
+
+## Scrapbox / Cosense 側の論点
+
+Cosense ヘルプの API ページは「あくまで内部 API」「予告なく変更される」と明記している。バックアップ用途なら Project Settings → Page Data → Export Pages（metadata 付きで行ごとの作成・編集日時を保存）が素直。コミュニティ記述では `/api/page-data/export/:projectname.json?metadata=true` が同等。
+
+2段階構成がよい:
+
+```text
+毎日:
+  project 全体の metadata 付き export を snapshot 保存
+
+数分〜数時間ごと:
+  /api/pages/:projectName?sort=updated で更新ページ候補を取り
+  changed page だけ個別取得
+```
+
+private project の場合の Cookie 認証は漏洩時の影響が大きい。public repo の Actions では特に避け、private repo＋最小権限＋secret 漏洩対策を前提に。
+
+## GitHub を保存先にする利点と限界
+
+利点: 履歴・差分・レビュー・Actions・Pages・検索・clone 可能性が一体化。
+
+限界:
+- file は **50MiB 超で警告、100MiB 超で block**。repo は理想 1GB 未満、強く推奨 5GB 未満。
+- **Actions artifact / log はデフォルト 90日で削除**（長期保存先ではなく一時成果物向け）。
+- 巨大バイナリは Release も選択肢（1 release あたり最大 1000 assets、各 2GiB 未満）だが、運用は Git commit より複雑。
+
+→ 「小〜中規模のテキストログを透明な履歴付きで蓄積する場所」としては有用。「Slack 全履歴の恒久アーカイブ」「添付込みの巨大バックアップ」「組織横断の検索基盤」まで行くと GitHub repo だけでは無理が出る。
+
+## 保存形式
+
+JSONL gzip / zstd を推奨。
+
+```text
+raw/slack/T123/C456/2026/06/09.jsonl.gz
+raw/slack/T123/C456/threads/1482960137.003543.json.gz
+raw/scrapbox/nishio/snapshots/2026-06-09.json.gz
+normalized/slack/messages/2026/06/09.jsonl.gz
+normalized/scrapbox/pages/<page_id>.json
+state/slack.json
+state/scrapbox.json
+```
+
+Slack message の保存キー:
+
+```json
+{
+  "source": "slack",
+  "workspace_id": "T...",
+  "channel_id": "C...",
+  "ts": "1717891234.000100",
+  "thread_ts": "1717891234.000100",
+  "user": "U...",
+  "text": "...",
+  "raw": { "...": "..." },
+  "fetched_at": "2026-06-09T06:00:00Z"
+}
+```
+
+`raw` を残す理由: 後から正規化ロジックの誤りに気づいたとき再処理できる。
+
+## commit 戦略
+
+毎回全ファイル書き換えだと Git 履歴が肥大化する。
+
+```text
+Slack:
+  日付別 append
+  1日1ファイル or channel ごと 1日1ファイル
+  同じ ts は追記前に除去
+
+Scrapbox:
+  snapshot は日次・週次
+  個別 page は上書き
+  大きな全量 export は圧縮して別ディレクトリ
+
+commit:
+  変更があるときだけ commit
+  message は機械可読
+  例: collect slack 2026-06-09T06:00Z channels=12 messages=183
+```
+
+Actions 側は `concurrency` で二重起動を回避:
+
+```yaml
+concurrency:
+  group: collect-logs
+  cancel-in-progress: false
+```
+
+## 失敗モードと対策
+
+1. **取得したつもりで watermark だけ進む** → 保存 commit が成功してから state を進める。失敗したら次回同じ範囲を再取得し `channel_id + ts` で重複排除。
+2. **Slack rate limit** → 429 は `Retry-After` に従う。大量過去ログの初回取得は通常の定期 workflow ではなく手動 `workflow_dispatch` で channel・期間を分割。rate limit は method/workspace 単位なので channel を増やしても無制限には速くならない。
+3. **secret 漏洩** → Slack token、Scrapbox Cookie、GitHub App key / PAT は Actions Secrets。public repo で PR 由来の workflow に secret を渡さない。data repo が public なら raw Slack 本文を置く設計は慎重に。
+
+## 段階的アプローチ
+
+```text
+1. data repo を private で作る
+2. workflow は data repo 側に置く
+3. Slack は対象 public channel を少数に限定
+4. Scrapbox は日次 export + 更新ページ差分
+5. raw jsonl.gz と state だけ commit
+6. derived markdown / report は別 workflow で生成
+7. 30日ほど運用して repo 増加量を見る
+8. 増え方が大きければ snapshot を Release か外部 object storage へ逃がす
+```
+
+この構成なら「main 汚染」「data branch 運用の重さ」「code/data 分離時の60日 inactivity」をかなり避けられる。
+
+## dd2030 文脈での当てはめ
+
+この設計を dd2030 の現状（[[OSS Weekly Reporter]] 参照）に当てると次のようになる。
+
+| 既存の状況 | この設計から導かれる読み |
+|---|---|
+| `nishio/oss_weekly_reporter` が code+data 同居（`main` にコード、`data` ブランチに週次データ） | 「data branch 方式は最新コードと最新データを同時に扱うとき重くなる」に該当。長期運用では code repo / data repo 分離が望ましい |
+| `digitaldemocracy2030/website` 側に weekly-summary.yml を置き、`nishio/oss_weekly_reporter` の data ブランチを checkout している | code repo に workflow がある「案B」。website 側の inactivity と PAT/token 管理が論点。draft PR の人手 ready→merge ボトルネック（PR #211 で5週滞留中）はこれとは別の人手プロセス問題 |
+| `digitaldemocracy2030/slack-logs` が空（kuboon の招待 expire のため） | この設計の data repo に該当する枠は確保されている。workflow をどこに置くか（slack-logs 側 = 案A／別 code repo = 案B）はまだ未決 |
+| kuboon が [`slack-logger-cli-action`](https://github.com/kuboon/slack-logger-cli-action) を実装基盤候補として提示 | collector code の側。data repo 側 workflow から `uses:` で呼ぶ案 A が自然 |
+| nishio が「dd2030-wiki に吸収」案を口にしている | dd2030-wiki を data repo として使う = 案A 寄り。ただし wiki の公開ビルド（Quartz → GitHub Pages）と raw JSONL の同居は、repo サイズと公開範囲の設計を要する |
+| Issue [#177](https://github.com/digitaldemocracy2030/website/issues/177) の kuboon プラン（GitHub は token 不要、Slack は gsheet-slack-logger 改造、OpenAI はプロンプト流用） | data repo を slack-logs にし workflow も slack-logs 側に置く案A の具体化。`slack-logger-cli-action` ベースに置き換えれば改造工数も減る |
+
+## 未決事項
+
+- **data repo はどれにするか**: `digitaldemocracy2030/slack-logs`（既存枠あり、空）／dd2030-wiki に吸収／新規 repo
+- **public か private か**: CC-BY 公開化（nishio 2026-05-13 提案）を前提にすると public 寄り。ただし raw Slack 本文の secret 漏洩リスクと添付の扱いを設計する必要
+- **collector code の置き場**: `slack-logger-cli-action` をそのまま `uses:` するか fork するか
+- **過去ログの移送**: nishio 個人 repo の `data` ブランチ 67週分（117MB）を CC-BY で再公開する経路
+
+## 関連ページ
+
+- [[OSS Weekly Reporter]] — 現状のパイプラインと滞留状況
+- [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) — 外部アーカイブ参照ガイド
+- [[コミュニティ運営]] — Discord 移行の文脈

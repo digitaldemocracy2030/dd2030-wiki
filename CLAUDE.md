@@ -37,6 +37,7 @@ dd2030-wiki/
 - ファイル名は `YYYY-MM-DD_概要.md` の形式を推奨。
 - Slackログは `raw/slack/チャンネル名/` 配下に置く。
 - 議事録は `raw/minutes/YYYY-MM-DD_会議名.md` の形式。
+- **仮の名前で置かれたファイル（`a.txt`, `b.txt`, `tmp.md` 等）は、内容を読んだら必ず `git mv` で `raw/{documents,slack,minutes,...}/YYYY-MM-DD_内容を表す概要.md` の形式に rename する。** 日付はファイルの内容から判定する（記載がなければ取り込み日）。rename したら wiki 側の参照（フロントマター `sources:` と本文中のリンク）も同時に更新する。
 
 ## Wikiページの規約
 

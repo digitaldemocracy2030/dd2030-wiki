@@ -104,6 +104,28 @@ updated: 2026-06-09
   - overview.md — プロジェクトの歩みに 2026-06-01 を追加、組織・コミュニティ節に法人情報を追記
   - index.md — 「組織」セクションを新設し、法人ページへリンク
 
+## [2026-06-09] promote | アーカイブパイプライン設計メモをトピックに昇格 + raw/b.txt を rename
+
+- 元情報: nishio が並行整理していたアーキ設計メモ（code repo / data repo 分離、Slack/Scrapbox API 制約、JSONL gz、commit 戦略、失敗モード）
+- 仮の名前 `raw/b.txt` を `raw/documents/2026-06-09_archive-pipeline-design-note.md` に rename
+- CLAUDE.md「rawディレクトリの規約」に「仮の名前で置かれたファイルは内容を読んだら `git mv` で `YYYY-MM-DD_概要.md` にrenameする」というルールを追加
+- 新規ページ: wiki/topics/archive-pipeline-design.md
+  - 設計メモ本体を整理・節立て直し
+  - 末尾に「dd2030 文脈での当てはめ」表を追加（nishio個人repo / website weekly-summary.yml / 空の slack-logs / kuboon の slack-logger-cli-action / dd2030-wiki 吸収案 を案A/案B のどちらに対応するか）
+  - 「未決事項」として data repo の所在、public/private、collector code 配置、過去ログ移送経路を列挙
+- 更新: wiki/index.md「テーマ」に新ページを追加
+- 更新: entities/oss-weekly-reporter.md「Slack上のやりとり」末尾から新ページへリンク
+
+## [2026-06-09] ingest | OSS Weekly Reporter 移管 Slack やりとり（2026-06-04）の取り込み
+
+- 元情報: ユーザー貼り付けの Slack 抜粋（nishio 23:43 + kuboon 13:01 返信 + nishio 6/4 23:46）
+- raw/slack/2026-06-04_oss-weekly-reporter-handoff.md として保存（raw/slack/ 初の保存物）
+- 新規に判明した3点を entities/oss-weekly-reporter.md「## Slack上のやりとり — 2026-06-04 nishio ↔ kuboon」セクションに追記:
+  1. `digitaldemocracy2030/slack-logs` が空のままなのは「kuboon が Moai からの招待を expire させた」ため
+  2. kuboon が `slack-logger-cli-action` を実装基盤候補として提示（Issue #177 の gsheet-slack-logger ベース案とは別系統）
+  3. nishio が「dd2030-wiki に吸収」という第三の選択肢に傾いている — Issue #170/#177 の前提が変わりうる
+- 関連: raw/documents/2026-06-09_archive-pipeline-design-note.md（nishio が並行整理中のデータ蓄積アーキ設計メモ。当時は仮名 `raw/b.txt`、後に rename）への参照を本文末に添えた
+
 ## [2026-06-09] filing-back | OSS Weekly Reporter 保全状況の再確認（変化なし）
 
 - 問い: 「6/4 の調査から5日経った今、何か動いたか」
