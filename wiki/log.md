@@ -104,6 +104,15 @@ updated: 2026-06-09 (slack-logs 方針確定)
   - overview.md — プロジェクトの歩みに 2026-06-01 を追加、組織・コミュニティ節に法人情報を追記
   - index.md — 「組織」セクションを新設し、法人ページへリンク
 
+## [2026-06-09] explainer | AI から Slack ログを参照するパターンの整理
+
+- 元情報: nishio との対話「AIが最新のSlackログを読みたいシチュエーションに関して考えて」
+- 整理結果: AI の Slack 参照は (A) 歴史的問い合わせ と (B) 現状クエリ の2タイプで、要求される鮮度・スレッド完全性が異なる。slack-logs の月次+2ヶ月遅延設計はタイプ A 専用
+- 解決策3案を提示: (1) 既存併用、(2) slack-logs に mirror ワークフロー追加、(3) AI が直接 Slack API を叩く tool
+- 採用方針: 案1 → 案2 → 案3 の順で積む。**今回は案2に着手**
+- 新規ページ: wiki/topics/ai-slack-access-patterns.md
+- 更新: wiki/index.md「テーマ」に追加
+
 ## [2026-06-09] bootstrap | digitaldemocracy2030/slack-logs を立ち上げ + 過去16ヶ月分埋め戻し完了
 
 - bootstrap commit: `digitaldemocracy2030/slack-logs` 33dfe5a（README + slack-backup.yml workflow + ディレクトリ枠）
