@@ -104,6 +104,15 @@ updated: 2026-06-09 (slack-logs 方針確定)
   - overview.md — プロジェクトの歩みに 2026-06-01 を追加、組織・コミュニティ節に法人情報を追記
   - index.md — 「組織」セクションを新設し、法人ページへリンク
 
+## [2026-06-10] decision | slack-logs リポのライセンス確定（データ CC BY 4.0 / コード MIT）
+
+- 元情報: nishio との対話「CC-BYは確定 / ログはCC-BY、コードはMIT」
+- 確定事項:
+  - **データ** (`raw/`, `mirror/`, `state/`) → CC BY 4.0
+  - **コード** (`scripts/`, `.github/workflows/`, ドキュメント) → MIT
+- 実装: slack-logs リポに `LICENSE` (MIT) と `LICENSE-DATA` (CC BY 4.0 公式 legalcode) を追加、README の「ライセンス」節を更新、移行ロードマップ表のフェーズ4 (ライセンス確定) を完了に
+- 関連: [[OSS Weekly Reporter]] のフェーズ2残作業から CC-BY 項目が消える（残りは脱-nishio token と過去ログ 67週分の再公開経路）
+
 ## [2026-06-09] feature | slack-logs に mirror layer を追加（案2 実装）
 
 - 元情報: [[AI から Slack ログを参照するパターン]] の採用方針「案2: 現状ミラー workflow 追加」

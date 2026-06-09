@@ -115,7 +115,7 @@ dd2030 Slack ──→ oss_weekly_reporter ──→ aiレポート/Markdown/生
 - Issue #170 の処理方針（クローズするか／本気で移管するか）
 - Slack API キーを dd2030 組織キーに置き換える経路（Slack 無料プランの「アプリ追加上限」が当時の障壁）
 - `digitaldemocracy2030/slack-logs` の中身（2026-06-04 時点で空、後述）
-- 2026-05-13 の nishio 提案「CC-BY化と公式サイトからのリンク貼り」の進捗
+- 2026-05-13 の nishio 提案「CC-BY化と公式サイトからのリンク貼り」の進捗（**slack-logs のライセンスは 2026-06-10 確定済**: データ CC BY 4.0 / コード MIT。公式サイトリンクは未）
 
 ## website 側の詰まりと slack-logs リポの実態（2026-06-04時点）
 
@@ -275,7 +275,7 @@ Issue [#177](https://github.com/digitaldemocracy2030/website/issues/177) で kub
 フェーズ2の残作業（脱-nishio-依存）:
 
 - dd2030 org として新規 Slack app を作成し、`SLACK_TOKEN` を差し替え
-- CC-BY ライセンスでの公開化（nishio 2026-05-13 提案の実行）
+- ~~CC-BY ライセンスでの公開化（nishio 2026-05-13 提案の実行）~~ → **2026-06-10 確定**（slack-logs リポにデュアルライセンス: データ CC BY 4.0 / コード MIT）
 - 過去ログ（nishio/oss_weekly_reporter の `data` ブランチ 67週分 117MB）の CC-BY 再公開経路
 
 ## 関連ページ

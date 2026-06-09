@@ -322,7 +322,7 @@ dd2030 で考えると:
 
 - [ ] dd2030 Slack bot が **internal customer-built** として登録されているかの確認（rate limit の前提）
 - [ ] `digitaldemocracy2030/slack-logs` への collaborator 権限（kuboon の expire 再発防止に、nishio も入る）
-- [ ] **public か private か**: CC-BY 公開化（nishio 2026-05-13 提案）を前提にすると public。ただし最初の運用で raw Slack 本文の漏洩リスクを評価してから判断するなら private で立ち上げ。
+- [x] ~~**public か private か**~~ → **2026-06-10 確定**: public + デュアルライセンス（データ CC BY 4.0 / コード MIT）
 - [ ] **過去ログの移送**: nishio 個人 repo の `data` ブランチ 67週分（117MB）の CC-BY 再公開経路。slack-logs が動き始めてから別作業。
 
 ## 関連ページ
