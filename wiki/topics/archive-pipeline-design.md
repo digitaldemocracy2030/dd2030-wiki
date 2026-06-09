@@ -6,7 +6,7 @@ sources:
   - raw/documents/2026-06-09_archive-pipeline-design-note.md
   - raw/slack/2026-06-04_oss-weekly-reporter-handoff.md
 created: 2026-06-09
-updated: 2026-06-09
+updated: 2026-06-09 (paper exercise 結果と方針確定を追記)
 ---
 
 # アーカイブパイプライン設計 — Slack/Scrapbox ログを GitHub に溜めるときの選択
@@ -217,12 +217,113 @@ concurrency:
 | nishio が「dd2030-wiki に吸収」案を口にしている | dd2030-wiki を data repo として使う = 案A 寄り。ただし wiki の公開ビルド（Quartz → GitHub Pages）と raw JSONL の同居は、repo サイズと公開範囲の設計を要する |
 | Issue [#177](https://github.com/digitaldemocracy2030/website/issues/177) の kuboon プラン（GitHub は token 不要、Slack は gsheet-slack-logger 改造、OpenAI はプロンプト流用） | data repo を slack-logs にし workflow も slack-logs 側に置く案A の具体化。`slack-logger-cli-action` ベースに置き換えれば改造工数も減る |
 
-## 未決事項
+## 方針確定（2026-06-09）
 
-- **data repo はどれにするか**: `digitaldemocracy2030/slack-logs`（既存枠あり、空）／dd2030-wiki に吸収／新規 repo
-- **public か private か**: CC-BY 公開化（nishio 2026-05-13 提案）を前提にすると public 寄り。ただし raw Slack 本文の secret 漏洩リスクと添付の扱いを設計する必要
-- **collector code の置き場**: `slack-logger-cli-action` をそのまま `uses:` するか fork するか
-- **過去ログの移送**: nishio 個人 repo の `data` ブランチ 67週分（117MB）を CC-BY で再公開する経路
+nishio との対話で次のように決めた。
+
+- **data repo = `digitaldemocracy2030/slack-logs` で確定**。
+  理由: dd2030-wiki は report システム（Quartz 公開ビルドが入る）なので、生 Slack ログの一次保管先には向かない。既に名前空間が確保されており、案A（data repo に workflow を置く）と整合する。
+- **collector code = `kuboon/slack-logger-cli-action` を `uses:` でそのまま導入**（fork なし）。
+- **保全（slack-logs）と週次レポート生成（`nishio/oss_weekly_reporter`）は分離して併走**。後者を slack-logs ベースに移し替えるのは保全が安定してからの第2フェーズ。
+
+## paper exercise — slack-logger-cli-action をそのまま入れたら何が起きるか
+
+`kuboon/slack-logger-cli-action` のソースを読んで動作を整理した結果。
+
+### 最小 workflow（slack-logs に置く案）
+
+```yaml
+# .github/workflows/slack-backup.yml
+name: slack-backup
+on:
+  schedule:
+    - cron: '11 0 1 * *'   # 毎月1日 09:11 JST
+  workflow_dispatch:
+    inputs:
+      year: { required: true }
+      month: { required: true }
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    permissions: { contents: write }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: kuboon/slack-logger-cli-action@main
+        id: slack
+        with:
+          slackToken: ${{ secrets.SLACK_TOKEN }}
+          timezone: 'Asia/Tokyo'
+          year: ${{ inputs.year }}
+          month: ${{ inputs.month }}
+      - name: commit jsonl
+        run: |
+          mkdir -p raw/slack
+          cp -r ${{ steps.slack.outputs.jsonl_dir }}/* raw/slack/
+          git config user.name dd2030-bot
+          git config user.email bot@dd2030.invalid
+          git add raw/slack
+          git diff --cached --quiet || git commit -m "slack backup $(date -u +%FT%TZ)"
+          git push
+```
+
+Secrets は `SLACK_TOKEN` のみ（Google Sheets 系の input は optional なので不要）。
+必要な Slack scope: `channels:history` `channels:read` `users:read` `channels:join`。
+
+### この構成でカバーできるもの
+
+| 設計メモの要件 | 充足 | 補足 |
+|---|---|---|
+| 案A（data repo に workflow） | ✅ | 完全一致 |
+| 60日 inactivity 対策 | ✅ | 毎月コミットが入る |
+| スレッド (`conversations.replies`) 取得 | ✅ | `fetchHistory` 内で reply_count>0 の親ごとに呼ぶ |
+| 全 public channel 自動カバー | ✅ | `autoJoin: true` で `conversations.join` 自動実行 |
+| 除外指定 | ✅ | `skipChannels` 入力（channel id を空白区切り） |
+| 過去分埋め戻し | ✅ | `workflow_dispatch` + `year`/`month` で月単位 |
+
+### 足りない / 設計メモの推奨と違う点
+
+| 項目 | slack-logger-cli-action | 推奨 | dd2030 でどうするか |
+|---|---|---|---|
+| ファイル粒度 | `<channel_id>.jsonl` を毎回 truncate して 1ヶ月分書き出し | 日付別 append | commit step で `raw/slack/<channel_id>/<YYYY>-<MM>.jsonl` に rename して保存 |
+| 圧縮 | なし | gzip / zstd | commit step に `gzip` を1行挟む |
+| state 管理 | なし（year/month 引数決め打ち） | `state/slack.json` で watermark | 月単位パスで一意に決まるので state 不要 |
+| rate limit 対応 | 429/Retry-After のリトライロジックが見えない | 必要 | bot を **internal customer-built** として登録すれば 2025-05-29 制限の対象外（要確認）。だめなら fork |
+| users.list snapshot | 実行時の解決にしか使わない（jsonl は raw user_id のまま） | 退会者解決のため snapshot 必要 | commit step に `users.list` を `state/users-<YYYY>-<MM>.json` として保存するロジックを足す |
+| private channel / DM | 非対応（`types: ["public_channel"]` 決め打ち） | — | CC-BY 公開化と整合的、これで OK |
+| 失敗通知 | なし | 必要 | 失敗時に Slack 通知 or Issue 自動起票を workflow に足す（`weekly-summary.yml` の PR#211 滞留パターンを再演しない） |
+
+### スレッド返信のラグ問題
+
+README が明示している重要な前提:
+
+> 「スレッド返信はその発言元の時刻でしか取得できない」
+> 例: 9/30 投稿に対し 10/2 にスレッド返信 → 9月分を 10/1 に取得すると 10/2 の返信はどこにも残らない
+> → デフォルト「実行日の2ヶ月前の1ヶ月分」を取る設計
+
+dd2030 で考えると:
+- **保全（slack-logs）**: 月次 + 2ヶ月遅延で問題なし。履歴消失防止が目的。
+- **週次 AI レポート（oss_weekly_reporter）**: 即時性が要るので、現状の週次バッチを併走させる。スレッド完全性は二次的に slack-logs の月次バックフィルで補完される。
+
+### 結論
+
+**fork は不要**。`uses:` でそのまま導入して、commit step を3つ足すだけで実用最小限が動く:
+
+1. `cp` でファイルを `raw/slack/<channel_id>/<YYYY>-<MM>.jsonl` に rename
+2. `gzip` で圧縮
+3. `users.list` を `state/users-<YYYY>-<MM>.json` として一緒に commit
+4. 失敗時に Issue 自動起票
+
+将来 fork を検討する条件:
+- 日付別 append + watermark に揃えたくなったとき
+- 429 / Retry-After 対応をまじめにやる必要が出たとき
+- private channel も取りたくなったとき
+
+## 残った宿題
+
+- [ ] dd2030 Slack bot が **internal customer-built** として登録されているかの確認（rate limit の前提）
+- [ ] `digitaldemocracy2030/slack-logs` への collaborator 権限（kuboon の expire 再発防止に、nishio も入る）
+- [ ] **public か private か**: CC-BY 公開化（nishio 2026-05-13 提案）を前提にすると public。ただし最初の運用で raw Slack 本文の漏洩リスクを評価してから判断するなら private で立ち上げ。
+- [ ] **過去ログの移送**: nishio 個人 repo の `data` ブランチ 67週分（117MB）の CC-BY 再公開経路。slack-logs が動き始めてから別作業。
 
 ## 関連ページ
 

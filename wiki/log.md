@@ -2,7 +2,7 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-06-09
+updated: 2026-06-09 (slack-logs 方針確定)
 ---
 
 # Wiki 作業ログ
@@ -103,6 +103,21 @@ updated: 2026-06-09
 - 更新:
   - overview.md — プロジェクトの歩みに 2026-06-01 を追加、組織・コミュニティ節に法人情報を追記
   - index.md — 「組織」セクションを新設し、法人ページへリンク
+
+## [2026-06-09] decision | slack-logs 保全パイプライン方針確定 + slack-logger-cli-action paper exercise
+
+- 元情報: nishio との対話（B. data repo の場所決定 + C. paper exercise 依頼）
+- 確定事項:
+  - **保全 data repo = `digitaldemocracy2030/slack-logs`**（dd2030-wiki は report システムなので生ログ保管先に向かない）
+  - **collector = `kuboon/slack-logger-cli-action` を fork なし `uses:` 導入**
+  - **保全（月次 slack-logs）と週次レポート生成（`nishio/oss_weekly_reporter`）は当面分離して併走**
+- paper exercise 結果（[[アーカイブパイプライン設計]] に追記）:
+  - そのまま `uses:` で動く部分（案A適合、autoJoin、スレッド取得、過去分埋め戻し、60日inactivity対策）
+  - workflow 側で足す部分（rename `<channel_id>/<YYYY>-<MM>.jsonl` + gzip + users.list snapshot + 失敗通知）
+  - 要確認: dd2030 Slack bot が internal customer-built として登録されているか（2025-05-29 rate limit の前提）
+- 更新:
+  - wiki/topics/archive-pipeline-design.md — 「方針確定」「paper exercise」「残った宿題」節を追加
+  - wiki/entities/oss-weekly-reporter.md — 「方針確定 — 2026-06-09 nishio との対話で」節を追加（dd2030-wiki吸収案の撤回を明記）
 
 ## [2026-06-09] promote | アーカイブパイプライン設計メモをトピックに昇格 + raw/b.txt を rename
 

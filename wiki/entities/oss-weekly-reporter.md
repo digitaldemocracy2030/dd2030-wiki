@@ -241,6 +241,17 @@ Issue [#177](https://github.com/digitaldemocracy2030/website/issues/177) で kub
 
 なお nishio はこのスレッドと並行して、データ蓄積構成（code repo / data repo 分離、workflow 配置、JSONL gz レイアウト、60日 inactivity 等）に関する設計メモを別途整理している（[raw/documents/2026-06-09_archive-pipeline-design-note.md](https://github.com/nishio/dd2030-wiki/blob/main/raw/documents/2026-06-09_archive-pipeline-design-note.md)）。この設計を dd2030 文脈で読み解いた整理は [[アーカイブパイプライン設計]] にある。
 
+## 方針確定 — 2026-06-09 nishio との対話で
+
+[[アーカイブパイプライン設計]] の paper exercise を経て、次の方針で固まった。
+
+- **保全用 data repo は `digitaldemocracy2030/slack-logs` で確定**。dd2030-wiki は report システム（Quartz 公開ビルド）なので生 Slack ログの一次保管先には向かない、という整理。「dd2030-wiki に吸収」案は撤回。
+- **collector は `kuboon/slack-logger-cli-action` を fork なしで `uses:` 導入**。commit step（rename + gzip + users snapshot + 失敗通知）を workflow 側で足す方針。
+- **保全（slack-logs 月次）と週次レポート生成（`nishio/oss_weekly_reporter` 週次）は当面分離して併走**。後者の脱-nishio-依存化はフェーズ2。
+- Issue [#170](https://github.com/digitaldemocracy2030/website/issues/170) / [#177](https://github.com/digitaldemocracy2030/website/issues/177) の前提が変わる: 「website 側に移管」ではなく「保全は slack-logs に分離・生成は当面 nishio 個人 repo 継続」。
+
+詳細な paper exercise（何ができて何を足す必要があるか、fork 検討の発火条件）は [[アーカイブパイプライン設計]]「paper exercise」節を参照。
+
 ## 関連ページ
 
 - [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) — アーカイブの参照ガイド
