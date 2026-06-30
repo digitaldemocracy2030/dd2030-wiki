@@ -29,7 +29,7 @@ dd2030-wiki/
 └── archive_index.md        # 外部アーカイブ（Slack/GitHub生ログ）の参照ガイド
 ```
 
-**外部アーカイブ**: 過去1年分の Slack 生ログ・GitHub Issues/PR 生データは `nishio/oss_weekly_reporter` (data ブランチ) に置かれている。dd2030-wiki にはコピーしない。詳細・参照手順は [archive_index.md](archive_index.md) と [scripts/search-archive.py](scripts/search-archive.py) を参照。
+**外部アーカイブ**: Slack のチャットログ本体は `digitaldemocracy2030/slack-logs` (main ブランチ) に置かれている。週次AIレポートと GitHub Issues/PR 生データは補助アーカイブとして `nishio/oss_weekly_reporter` (data ブランチ) を参照する。どちらも dd2030-wiki にはコピーしない。詳細・参照手順は [archive_index.md](archive_index.md) と [scripts/search-archive.py](scripts/search-archive.py) を参照。
 
 ## rawディレクトリの規約
 
@@ -159,25 +159,32 @@ cp -r /tmp/bl-book/column raw/broad-listening-book/
 | Polimoney | raw/minutes/polimoney.txt | `19Kn6ekK3twMVcVaSyUgptvmfzrXEJezA6GXTbPXjm9M` | 毎週 |
 | いどばた | raw/minutes/idobata-project.txt | `1cK5i3ATo1OXsy-oicllY6-YlI-q0AJVtqQW7a71V-AU` | 毎週 |
 | 週次レポート | raw/history/week*/ | GitHub digitaldemocracy2030/website | 毎週 |
-| Slack/GitHub 生ログアーカイブ | （外部）`/tmp/oss_weekly_reporter/data/` | GitHub nishio/oss_weekly_reporter `data` ブランチ | 毎週 |
+| Slack生ログ（canonical） | （外部）`/tmp/slack-logs/raw/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 毎月（保全、遅延あり） |
+| Slack現状ミラー | （外部）`/tmp/slack-logs/mirror/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 6時間ごと |
+| 週次AI/GitHub補助アーカイブ | （外部）`/tmp/oss_weekly_reporter/data/` | GitHub nishio/oss_weekly_reporter `data` ブランチ | 毎週 |
 
-#### 外部アーカイブ（Slack/GitHub生ログ）の参照
+#### 外部アーカイブ（Slackチャットログ / 週次AI・GitHub）の参照
 
 `raw/` には入れない。詳細は [archive_index.md](archive_index.md)。
 
 ```bash
-# 初回 clone（または更新）
+# Slackチャットログ本体
+gh repo clone digitaldemocracy2030/slack-logs /tmp/slack-logs -- --depth 1
+# 既に clone 済みなら: cd /tmp/slack-logs && git pull
+
+# 週次AIレポート / GitHub Issues・PR 補助アーカイブ
 gh repo clone nishio/oss_weekly_reporter /tmp/oss_weekly_reporter -- \
   --depth 1 --branch data --single-branch
 # 既に clone 済みなら: cd /tmp/oss_weekly_reporter && git pull
 ```
 
 読む順序:
-1. まず `ai_reports/slack.md`（週次サマリ、各5KB程度）でインデックス
-2. 次に `markdown/` を grep
-3. `raw/*.json` は最後の手段（`scripts/search-archive.py` 経由）
+1. 直近の Slack は `slack-logs/mirror/sync.json` で対象チャンネルと同期時刻を確認し、`mirror/slack/*.jsonl.gz` を検索する
+2. 過去月の Slack は `slack-logs/raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz` を検索する
+3. 週次の文脈把握や GitHub Issues/PR は `oss_weekly_reporter/data/<week>/ai_reports/` → `markdown/` → `raw/` の順に読む
+4. 検索は `scripts/search-archive.py` 経由で行う
 
-引用するときは出典に週ディレクトリ名を含める（例: `oss_weekly_reporter/data/2025-12-24_to_2025-12-31/ai_reports/slack.md`）。Slack の私的発言・雑談は wiki に持ち込まない。
+引用するときは出典にリポジトリ名とファイルパスを含める（例: `digitaldemocracy2030/slack-logs/raw/slack/C08F7JZPD63/2026-04.jsonl.gz`、または `oss_weekly_reporter/data/2025-12-24_to_2025-12-31/ai_reports/slack.md`）。Slack の私的発言・雑談は wiki に持ち込まない。
 
 ### Query（質問）
 

@@ -47,6 +47,7 @@
 
 ### 外部アーカイブ（Slack/GitHub 生ログ）の参照基盤を整備
 - 過去1年分の Slack 生ログと GitHub Issues/PR データが `nishio/oss_weekly_reporter` の `data` ブランチに保管されているとのこと
+- 追記（2026-06-30）: Slack チャットログ本体の正置き場は `digitaldemocracy2030/slack-logs` に移行。`nishio/oss_weekly_reporter` は週次AIレポートと GitHub Issues/PR の補助アーカイブとして扱う
 - 物量（67週分・117MB・チャンネル毎の Slack JSON 含む）と privacy リスクを考え、`raw/` には取り込まず外部アーカイブとして検索ベースで参照する方針にした
 - 追加・変更したファイル:
   - `archive_index.md`（新規） — アーカイブの場所・構造・読む順序のガイド

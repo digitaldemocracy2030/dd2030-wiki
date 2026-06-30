@@ -2,9 +2,14 @@
 title: dd2030 プロジェクト概要
 aliases: [overview, dd2030, デジタル民主主義2030, デジタル民主主義2030（dd2030）]
 tags: [dd2030, overview]
-sources: [raw/history/week1_20250319/slack.md, raw/history/week50_20260415/slack.md, raw/broad-listening-book/10_00_DD2030による広聴AIの開発活動.md]
+sources:
+  - raw/history/week1_20250319/slack.md
+  - raw/history/week50_20260415/slack.md
+  - raw/broad-listening-book/10_00_DD2030による広聴AIの開発活動.md
+  - raw/broad-listening-book/09_02_サイボウズ.md
+  - digitaldemocracy2030/slack-logs/mirror/slack/C0BACQUGQ5R.jsonl.gz
 created: 2026-04-18
-updated: 2026-04-18
+updated: 2026-06-30
 ---
 
 # デジタル民主主義2030（dd2030）プロジェクト概要
@@ -27,7 +32,7 @@ updated: 2026-04-18
 - **市民の声を可視化する**（[[広聴AI]]による[[ブロードリスニング]]）
 - **大規模な熟議を可能にする**（[[いどばた]]による意見集約・対話）
 - **政治の透明性を高める**（[[Polimoney]]による政治資金の可視化）
-- **市民が政策形成に参加できる仕組みをつくる**（[[コアループ]]による[[熟議民主主義]]プロセス設計）
+- **市民が政策形成に参加できる仕組みをつくる**（[[コアループ]]による[[熟議民主主義]]プロセス設計、[[AIディープサーベイ]]による声の集約）
 
 ## 3つの柱となるプロダクト
 
@@ -35,24 +40,33 @@ updated: 2026-04-18
 |---|---|---|
 | [[広聴AI]] | 大量の市民意見をAIで分析・可視化するツール | 安定期（v5.0へ移行中） |
 | [[いどばた]] | 市民が政策テーマについて対話できるプラットフォーム | 再設計・横展開期 |
-| [[Polimoney]] | 政治資金収支報告書を可視化するツール | Ledger機能完成、UI/UX調整中 |
+| [[Polimoney]] | 政治資金収支報告書を可視化するツール | 2026年4月時点でLedgerの骨格ができ、[[topics/political-funds-and-campaign-expenses|選挙運動費用収支報告書]]対応とUI/UX調整が継続 |
+| [[AIディープサーベイ]] | オンライン詐欺広告対策で、市民の声をAI対話で集めて政策検討・熟議設計へ渡す調査入口 | 2026年4月時点で[[コアループ]]のワークショップ準備と6月熟議に接続 |
 
 ## プロジェクトの歩み
 
 - **2025年1月**: DD2030設立（安野たかひろ＋鈴木健）
 - **2025年3月16日**: [[広聴AI]]・[[いどばた]]のGitHubリポジトリをOSS公開。Slack参加者250人超
-- **2025年4月**: 第1回ミートアップ。[[Polimoney]]公開
+- **2025年4月**: [[events/2025-04-12-1day-meetup|1Day Meetup]]。[[Polimoney]]公開
 - **2025年5月7日**: 安野たかひろがDD2030ボードメンバーを退任
 - **2025年5月8日**: チームみらい結党
-- **2025年5月16日**: 「しゃべれるマニフェスト」公開。[[いどばた]]政策で参院選で8,559件のPR、254件が政策に採用
+- **2025年5月16日**: [[events/2025-05-16-shabereru-manifesto|しゃべれるマニフェスト公開]]。[[いどばた]]政策で参院選で8,559件のPR、254件が政策に採用
+- **2025年5月17日**: [[events/2025-05-17-team-mirai-idobata-vision|チームみらい選挙ボランティア向けミートアップでのいどばたビジョン活用]]。外部イベントでいどばたビジョンを試用し、276件の課題と346件の解決策が提案された
+- **2025年5月25日**: [[events/2025-05-25-meetup-2|MEETUP #2]]。アンカンファレンス形式のオフラインミートアップ
 - **2025年5月**: [[広聴AI]] v3.0.0リリース。新ボードメンバー就任
-- **2025年夏**: 自治体（宇多津町・広島県等）での導入。広島県は2,953件の意見を約15分で分析
+- **2025年6月12日**: [[events/2025-06-12-kouchou-ai-reading-vol-1|広聴AI読書会vol.1]]。Plurality本の非同期読書会が始まる
+- **2025年6月21日**: [[events/2025-06-21-welcome-meet-2|ウェルカムミート#2]]。新規参加者向けのオンボーディングイベント
+- **2025年夏**: 自治体（宇多津町・広島県等）での導入。[[events/2025-08-hiroshima-kouchou-ai|広島県の事例]]では2,953件の意見を約15分で分析
+- **2025年8月**: [[events/2025-08-cybozu-idobata-workshop|サイボウズ社内AI利用推進ワークショップ]]。企業内で[[いどばた]]を使い、約50人の声を合意点・相違点・残る論点へ整理
 - **2025年秋**: [[ブロードリスニング本]]の執筆開始
-- **2025年冬**: Code for Japan Summit登壇。Polimoneyテレビ紹介
+- **2025年10月27日**: [[events/2025-11-28-welcome-meet-3|ウェルカムミート#3]]が11月28日開催として告知され、活動範囲が広がったコミュニティへの参加導線を再整理
+- **2025年11月29日**: [[events/2025-11-29-code-for-japan-summit|Code for Japan Summit 2025 登壇]]。[[広聴AI]]と[[ブロードリスニング]]を外部のシビックテック文脈へ共有
+- **2025年冬**: Polimoneyテレビ紹介
 - **2026年1月**: DD2030が2期目に移行。[[コアループ]]プロジェクト始動
-- **2026年3月19日**: 「ストップ詐欺広告」記者会見（15社参加）。クラウドファンディング開始
+- **2026年1月9日**: [[events/2026-01-09-burikaigi-polimoney|ぶり会議2026 Polimoney登壇]]。政治資金データを扱いやすくするシビックテックとしてPolimoneyを紹介
+- **2026年3月19日**: [[events/2026-03-19-stop-fraud-ads-press-conference|ストップ詐欺広告 記者会見]]（15社参加）。クラウドファンディング開始
 - **2026年6月1日**: 法人名称「[[デジタル民主主義推進機構]]（Digital Democracy Builders）」が決定（一般社団法人）
-- **2026年6月14日**: DP（討論型世論調査）実施予定
+- **2026年6月21日**: [[events/2026-06-21-coreloop-online-deliberation|コアループ オンライン熟議（2026-06-21）]]が Stanford Deliberate platform 上で運用されたことを Slack mirror で確認（6月14日は2026年4月時点の当初予定）
 
 詳細は [[時系列まとめ]] を参照。
 
@@ -76,6 +90,14 @@ updated: 2026-04-18
 
 ## もっと詳しく
 
+- [[topics/first-reader-guide|初めて読む人へ]] — 目的別にWikiを読む順序
+- [[sources/index|ソースカタログ]] — Wikiで参照している根拠ソースの入口
+- [[sources/weekly-general-meeting|週次全体定例 議事録]] — 全体定例のWiki内ソース要約
+- [[sources/polimoney-minutes|Polimoney 議事録]] — Polimoneyの開発定例・ロードマップのソース要約
+- [[sources/broad-listening-book-manuscript|ブロードリスニング本 原稿]] — dd2030の歴史・事例・技術解説を含む原稿コレクション
+- [[sources/broad-listening-book-kouchou-ai-development|ブロードリスニング本 DD2030による広聴AI開発活動章]] — DD2030の設立経緯と広聴AI開発史を確認する個別章ソース
+- [[sources/legal-entity-name-announcement|法人名称決定アナウンス]] — デジタル民主主義推進機構の名称決定ソース要約
+- [[sources/oss-foundation-survey|OSS財団事例サーベイ]] — コミュニティと法人格を考える比較ソース要約
 - [週次全体定例 議事録（Google Docs）](https://docs.google.com/document/d/1tBhaer67U9LbASfqPrg0rpmv0Tt4K7zFUTTzscKXj_I) — 毎週の全体定例の生の議事録
 - [プロジェクトの歴史（Webサイト）](https://dd2030.org/history/) — 週ごとの活動まとめ
 - [ブロードリスニング本 原稿（GitHub）](https://github.com/digitaldemocracy2030/broad-listening-book) — DD2030の歴史や事例を詳しく解説した書籍原稿
@@ -84,6 +106,28 @@ updated: 2026-04-18
 ## 関連ページ
 
 - [[index]] — Wiki目次
+- [[topics/first-reader-guide|初めて読む人へ]] — 初見者向けの読む順序ガイド
 - [[時系列まとめ]] — 週次・四半期の活動記録
+- [[初年度まとめ]] — 2025年3月〜2026年3月の詳細な活動記録
+- [[events/2025-04-12-1day-meetup|1Day Meetup（2025-04-12）]] — 初期コミュニティ拡大の節目
+- [[events/2025-05-16-shabereru-manifesto|しゃべれるマニフェスト公開]] — いどばた政策の大規模利用事例
+- [[events/2025-05-17-team-mirai-idobata-vision|チームみらい選挙ボランティア向けミートアップでのいどばたビジョン活用]] — いどばたビジョンの外部利用事例
+- [[events/2025-05-25-meetup-2|デジタル民主主義2030 MEETUP #2]] — 2025年5月のアンカンファレンス形式ミートアップ
+- [[events/2025-06-12-kouchou-ai-reading-vol-1|広聴AI読書会vol.1]] — Plurality本を読む非同期読書会
+- [[events/2025-06-21-welcome-meet-2|ウェルカムミート#2]] — 新規参加者向けのオンボーディングイベント
+- [[events/2025-08-hiroshima-kouchou-ai|広島県 広聴AI活用事例]] — 自治体でのブロードリスニング実践例
+- [[events/2025-08-cybozu-idobata-workshop|サイボウズ社内AI利用推進ワークショップ]] — 企業内でいどばたを使った事例
+- [[events/2025-11-28-welcome-meet-3|ウェルカムミート#3]] — 2025年11月のオンボーディングイベント
+- [[events/2025-11-29-code-for-japan-summit|Code for Japan Summit 2025 登壇]] — 広聴AI・ブロードリスニングの外部発表
+- [[events/2026-01-09-burikaigi-polimoney|ぶり会議2026 Polimoney登壇]] — Polimoneyの外部発表
+- [[events/2026-01-10-deliberation-workshop|熟議民主主義プロセス ワークショップ（2026-01-10）]] — コアループ前段の熟議実験
+- [[events/2026-03-19-stop-fraud-ads-press-conference|ストップ詐欺広告 記者会見]] — コアループの公開キャンペーン化
+- [[events/2026-06-21-coreloop-online-deliberation|コアループ オンライン熟議（2026-06-21）]] — オンライン熟議の当日運用
+- [[ストップ詐欺広告]] — コアループの市民通報プラットフォーム
+- [[AIディープサーベイ]] — オンライン詐欺広告対策で市民の声を集約した調査入口
+- [[倍速会議]] — コアループ前段の熟議実験や太田市の住民会議で使われたAIファシリテーション支援ツール
+- [[多元現実]] — 倍速会議などを通じて、ブロードリスニング技術を住民会議・企業内合意形成へ届ける企業
 - [[主要メンバー]] — プロジェクトの主要人物
 - [[コミュニティ運営]] — コミュニティの運営体制
+- [[コミュニティと法人の関係]] — コミュニティと法人の役割分担
+- [[OSS Weekly Reporter]] — 初年度まとめの基盤になった週次アーカイブ
