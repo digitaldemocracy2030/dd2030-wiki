@@ -6,7 +6,7 @@ sources:
   - oss_weekly_reporter/data/2025-10-22_to_2025-10-29/raw/slack/2_開発_cartographer.json
   - oss_weekly_reporter/data/2025-11-12_to_2025-11-19/raw/slack/2_開発_cartographer.json
 created: 2026-05-11
-updated: 2026-05-11
+updated: 2026-06-30
 ---
 
 # Cartographer

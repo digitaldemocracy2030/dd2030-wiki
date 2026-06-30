@@ -1,6 +1,6 @@
 # dd2030 Wiki
 
-[デジタル民主主義2030（dd2030）](https://dd2030.org)プロジェクトの活動を整理したWikiです。1年間のSlackログや議事録から情報を抽出し、プロジェクトに初めて来た人が理解しやすい形にまとめています。
+[デジタル民主主義2030（dd2030）](https://dd2030.org)プロジェクトの活動を整理したWikiです。Slackログ、議事録、週次レポート、資料から情報を抽出し、プロジェクトに初めて来た人が理解しやすい形にまとめています。
 
 **公開サイト**: https://nishio.github.io/dd2030-wiki/
 
@@ -84,9 +84,11 @@ dd2030-wiki/
 │   └── minutes/             # Google Docsからエクスポートした議事録
 ├── scripts/
 │   ├── check_pages_links.py # GitHub Pages上のリンク検査
-│   └── lint-wiki.py         # Wiki整合性チェック
+│   ├── lint-wiki.py         # Wiki整合性チェック
+│   └── search-archive.py    # 外部アーカイブ検索ヘルパー
 ├── quartz/                  # Quartzフレームワーク
 ├── quartz.config.ts         # Quartz設定
+├── archive_index.md         # 外部アーカイブ参照ガイド
 ├── CLAUDE.md                # LLM向けスキーマ（ページ規約・操作フロー）
 └── .github/workflows/       # GitHub Actions（自動デプロイ）
 ```
@@ -120,6 +122,34 @@ gh repo clone digitaldemocracy2030/website /tmp/dd2030-website -- --depth 1
 cp -r /tmp/dd2030-website/src/history/ raw/history/
 ```
 
+### 外部アーカイブの参照
+
+Slack のチャットログ本体は dd2030-wiki にはコピーせず、外部リポジトリ [`digitaldemocracy2030/slack-logs`](https://github.com/digitaldemocracy2030/slack-logs) を検索して参照する。
+
+```bash
+gh repo clone digitaldemocracy2030/slack-logs /tmp/slack-logs -- --depth 1
+
+# 直近 mirror を検索
+python3 scripts/search-archive.py "キーワード"
+
+# チャンネル名で絞って検索（IDでも可）
+python3 scripts/search-archive.py --channel コアループ "提言"
+
+# 月次 canonical を検索
+python3 scripts/search-archive.py --layer raw --month 2026-04 "キーワード"
+```
+
+週次AIレポートと GitHub Issues/PR の補助アーカイブは `nishio/oss_weekly_reporter` の `data` ブランチを使う。
+
+```bash
+gh repo clone nishio/oss_weekly_reporter /tmp/oss_weekly_reporter -- \
+  --depth 1 --branch data --single-branch
+
+python3 scripts/search-archive.py --source oss-weekly-reporter --layer ai_reports "キーワード"
+```
+
+詳細は [archive_index.md](archive_index.md) を参照。
+
 ### Wikiの更新
 
 ソースを再取得したら、LLMに差分を読ませてWikiを更新する。
@@ -130,6 +160,13 @@ cp -r /tmp/dd2030-website/src/history/ raw/history/
 ```
 
 ソースの一覧と Google Doc ID は [CLAUDE.md](CLAUDE.md) の「ソースの更新」セクションにまとめてある。
+
+更新後は次を確認する:
+
+```bash
+python3 scripts/lint-wiki.py
+pnpm build && pnpm check:pages-links
+```
 
 ## LLMと一緒に使う
 

@@ -4,7 +4,7 @@ aliases: [主要メンバー]
 tags: [dd2030, people]
 sources: [raw/minutes/weekly-general-meeting.txt, raw/minutes/project-coreloop.txt, raw/minutes/broad-listening-book-meeting.txt]
 created: 2026-04-18
-updated: 2026-04-18
+updated: 2026-06-30
 ---
 
 # 主要メンバー
@@ -36,7 +36,7 @@ dd2030プロジェクトに関わる主要な人物の一覧。
 | **川辺陵真（Ryoma）** | Tech Lead。Code for Japan所属。SODPツール開発 |
 | **小倉政貴** | Policy Lead。経産省→ビズリーチ→PoliPoli出身。省庁ヒアリング・専門家調整 |
 | **西田尚史** | Chief of Staff / Communication Lead。記者会見・クラファン担当 |
-| **赤澤直樹** | Reference Product Lead。ストップ詐欺広告の実装。BeaconLabs所属 |
+| **赤澤直樹** | Reference Product Lead。[[ストップ詐欺広告]]の実装。BeaconLabs所属 |
 
 ## [[いどばた]]
 
@@ -64,3 +64,6 @@ dd2030プロジェクトに関わる主要な人物の一覧。
 
 - [[overview]] — プロジェクト全体の概要
 - [[コミュニティ運営]] — コミュニティの運営体制
+- [[デジタル民主主義推進機構]] — ボードと法人名の整理
+- [[コミュニティと法人の関係]] — 個人・コミュニティ・法人の役割分担
+- [[sources/polimoney-minutes|Polimoney 議事録]] — Polimoney関係者の役割整理に使うソース要約

@@ -5,8 +5,9 @@ tags: [dd2030, tooling, explainer, archive]
 sources:
   - raw/documents/2026-06-09_archive-pipeline-design-note.md
   - raw/slack/2026-06-04_oss-weekly-reporter-handoff.md
+  - digitaldemocracy2030/slack-logs/raw/slack/
 created: 2026-06-09
-updated: 2026-06-09 (paper exercise 結果と方針確定を追記)
+updated: 2026-06-30 (slack-logs 実装後の現在状態を追記)
 ---
 
 # アーカイブパイプライン設計 — Slack/Scrapbox ログを GitHub に溜めるときの選択
@@ -18,6 +19,25 @@ updated: 2026-06-09 (paper exercise 結果と方針確定を追記)
 ## 結論（要約）
 
 **コード用 repo とデータ用 repo を分け、workflow はデータ用 repo 側に置く**のが基本。`main` に直接ログを commit する構成は手軽だがソース履歴にデータ更新 commit が混ざり、`data` branch 方式は最新コードと最新データを同時に扱うときに rebase/merge 運用が重くなる。
+
+dd2030 ではこの方針に沿って、Slack チャットログの data repo を [`digitaldemocracy2030/slack-logs`](https://github.com/digitaldemocracy2030/slack-logs) に確定した。2026-06-30 現在は `raw/`（月次 canonical）と `mirror/`（直近14日の rolling snapshot）の二層で動いている。
+
+## 現在の実装（2026-06-30）
+
+```text
+digitaldemocracy2030/slack-logs
+├── .github/workflows/
+│   ├── slack-backup.yml    # 月次 canonical。2ヶ月遅延で raw/ に保存
+│   └── slack-mirror.yml    # 6時間ごとの rolling mirror
+├── raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz
+├── mirror/slack/<channel_id>.jsonl.gz
+├── mirror/sync.json
+└── state/users-<YYYY-MM>.json
+```
+
+確認した `mirror/sync.json` は、`synced_at=2026-06-30T04:12:50Z`、58チャンネル、506メッセージ、14日 window を示している。これにより、保存用の canonical と AI の現状クエリ用 mirror が同じ data repo に集約された。
+
+運用上の注意として、2026-06-30時点では `raw/slack/*/2025-01.jsonl.gz` 〜 `2026-02.jsonl.gz` は各チャンネルのメタデータのみで本文0件だった。2026-03・2026-04には本文が入っているため、設計としての二層構成は成立しているが、初年度の古い本文を調べる時は [[OSS Weekly Reporter]] の週次raw/markdownを補助的に使う。
 
 ## 推奨構成
 
@@ -211,8 +231,8 @@ concurrency:
 | 既存の状況 | この設計から導かれる読み |
 |---|---|
 | `nishio/oss_weekly_reporter` が code+data 同居（`main` にコード、`data` ブランチに週次データ） | 「data branch 方式は最新コードと最新データを同時に扱うとき重くなる」に該当。長期運用では code repo / data repo 分離が望ましい |
-| `digitaldemocracy2030/website` 側に weekly-summary.yml を置き、`nishio/oss_weekly_reporter` の data ブランチを checkout している | code repo に workflow がある「案B」。website 側の inactivity と PAT/token 管理が論点。draft PR の人手 ready→merge ボトルネック（PR #211 で5週滞留中）はこれとは別の人手プロセス問題 |
-| `digitaldemocracy2030/slack-logs` が空（kuboon の招待 expire のため） | この設計の data repo に該当する枠は確保されている。workflow をどこに置くか（slack-logs 側 = 案A／別 code repo = 案B）はまだ未決 |
+| `digitaldemocracy2030/website` 側に weekly-summary.yml を置き、`nishio/oss_weekly_reporter` の data ブランチを checkout している | code repo に workflow がある「案B」。website 側の inactivity と PAT/token 管理が論点。自動生成PRの人手確認・mergeボトルネック（PR #211 は2026-06-30再確認時もOPEN）はこれとは別の人手プロセス問題 |
+| `digitaldemocracy2030/slack-logs` | この設計の data repo。2026-06-09 に workflow と過去分 backfill が入り、2026-06-30 現在は `raw/` と `mirror/` の二層で稼働 |
 | kuboon が [`slack-logger-cli-action`](https://github.com/kuboon/slack-logger-cli-action) を実装基盤候補として提示 | collector code の側。data repo 側 workflow から `uses:` で呼ぶ案 A が自然 |
 | nishio が「dd2030-wiki に吸収」案を口にしている | dd2030-wiki を data repo として使う = 案A 寄り。ただし wiki の公開ビルド（Quartz → GitHub Pages）と raw JSONL の同居は、repo サイズと公開範囲の設計を要する |
 | Issue [#177](https://github.com/digitaldemocracy2030/website/issues/177) の kuboon プラン（GitHub は token 不要、Slack は gsheet-slack-logger 改造、OpenAI はプロンプト流用） | data repo を slack-logs にし workflow も slack-logs 側に置く案A の具体化。`slack-logger-cli-action` ベースに置き換えれば改造工数も減る |
@@ -225,6 +245,8 @@ nishio との対話で次のように決めた。
   理由: dd2030-wiki は report システム（Quartz 公開ビルドが入る）なので、生 Slack ログの一次保管先には向かない。既に名前空間が確保されており、案A（data repo に workflow を置く）と整合する。
 - **collector code = `kuboon/slack-logger-cli-action` を `uses:` でそのまま導入**（fork なし）。
 - **保全（slack-logs）と週次レポート生成（`nishio/oss_weekly_reporter`）は分離して併走**。後者を slack-logs ベースに移し替えるのは保全が安定してからの第2フェーズ。
+
+この方針は実装済み。以後は「Slack 生ログをどこに置くか」ではなく、「週次AIレポート生成や website history 更新をどこまで `slack-logs` ベースに寄せるか」が次の論点になる。
 
 ## paper exercise — slack-logger-cli-action をそのまま入れたら何が起きるか
 
@@ -306,7 +328,7 @@ dd2030 で考えると:
 
 ### 結論
 
-**fork は不要**。`uses:` でそのまま導入して、commit step を3つ足すだけで実用最小限が動く:
+**fork は不要**。`uses:` でそのまま導入して、commit step を足すだけで実用最小限が動く:
 
 1. `cp` でファイルを `raw/slack/<channel_id>/<YYYY>-<MM>.jsonl` に rename
 2. `gzip` で圧縮
@@ -320,13 +342,20 @@ dd2030 で考えると:
 
 ## 残った宿題
 
-- [ ] dd2030 Slack bot が **internal customer-built** として登録されているかの確認（rate limit の前提）
-- [ ] `digitaldemocracy2030/slack-logs` への collaborator 権限（kuboon の expire 再発防止に、nishio も入る）
+- [x] ~~`digitaldemocracy2030/slack-logs` の data repo 化~~ → 2026-06-09 実装済み
+- [x] ~~現状クエリ用 mirror 層~~ → 2026-06-09 実装済み、2026-06-30 時点でも同期継続を確認
 - [x] ~~**public か private か**~~ → **2026-06-10 確定**: public + デュアルライセンス（データ CC BY 4.0 / コード MIT）
+- [ ] dd2030 Slack bot が **internal customer-built** として登録されているかの確認（rate limit の前提）
 - [ ] **過去ログの移送**: nishio 個人 repo の `data` ブランチ 67週分（117MB）の CC-BY 再公開経路。slack-logs が動き始めてから別作業。
+- [ ] 週次AIレポート生成・website history 更新を `slack-logs` ベースに寄せるかどうかの判断。2026-06-30時点で website PR #211 と Issue #170/#173/#177 はOPENのまま
 
 ## 関連ページ
 
+- [[topics/first-reader-guide|初めて読む人へ]] — Wiki全体とアーカイブ関連ページへの入り方
+- [[Slackログアーカイブ]] — 現在の `slack-logs` の読み方
+- [[AI から Slack ログを参照するパターン]] — 保全用途と現状クエリ用途の使い分け
 - [[OSS Weekly Reporter]] — 現状のパイプラインと滞留状況
+- [[sources/archive-pipeline-design-note|アーカイブパイプライン設計メモ]] — このページの主要ソース要約
+- [[sources/oss-weekly-reporter-handoff|OSS Weekly Reporter 移管Slackメモ]] — 移管経緯のSlackメモ要約
 - [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) — 外部アーカイブ参照ガイド
 - [[コミュニティ運営]] — Discord 移行の文脈

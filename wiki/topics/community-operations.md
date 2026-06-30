@@ -4,7 +4,7 @@ aliases: [コミュニティ運営]
 tags: [dd2030, community]
 sources: [raw/minutes/community-operations.txt, raw/minutes/weekly-general-meeting.txt]
 created: 2026-04-18
-updated: 2026-04-18
+updated: 2026-06-30
 ---
 
 # コミュニティ運営
@@ -32,10 +32,10 @@ dd2030のSlackコミュニティの運営に関する活動。コミュニティ
 ## 主要イニシアチブ
 
 ### MEETUP（オフラインイベント）
-ブース出展形式＋アンカンファレンスを組み合わせた形式。過去にMEETUP #1（4/12）、#2（5月末）、#3（7/18）を開催。2026年は日程調整が続いており2026年4月時点で未実施。
+ブース出展形式＋アンカンファレンスを組み合わせた形式。過去に[[events/2025-04-12-1day-meetup|MEETUP #1（4/12）]]、[[events/2025-05-25-meetup-2|MEETUP #2（5/25）]]、[[events/2025-07-18-meetup-3|MEETUP #3（7/18）]]を開催。2026年は日程調整が続いており2026年4月時点で未実施。
 
 ### ウェルカムミート
-新規参加者向けのオンボーディングイベント。ガイドブック・Historyページの紹介の場。効果測定（非アクティブ→アクティブ率）も検討中。
+新規参加者向けのオンボーディングイベント。[[events/2025-06-21-welcome-meet-2|ウェルカムミート#2（2025-06-21）]]では、参加直後の人や普段発言しづらい人に向けて、dd2030の全体像と各プロジェクトへの関わり方を紹介した。[[events/2025-11-28-welcome-meet-3|ウェルカムミート#3（2025-11-28）]]では、「理解・つながる」入口から「貢献する」導線へ進む設計がより明示され、具体的なタスクリスト、定例参加、GitHub Issue、Slack bot DM などが検討された。ガイドブック・Historyページの紹介、効果測定（非アクティブ→アクティブ率）も検討中。
 
 ### ガイドブック
 メンバーへの活動説明・参加ハウツーを提供するドキュメント。Endoさん（元記者）が作成を担当。まずGoogleドキュメントに整理し後にmd化する方針。
@@ -86,6 +86,8 @@ dd2030のSlackコミュニティの運営に関する活動。コミュニティ
 
 ## もっと詳しく
 
+- [[sources/community-operations-minutes|コミュニティ運営 議事録]] — コミュニティ運営定例のWiki内ソース要約
+- [[sources/weekly-general-meeting|週次全体定例 議事録]] — 全体定例側のWiki内ソース要約
 - [コミュニティ運営議事録（Google Docs）](https://docs.google.com/document/d/1dn9R9WLaGNMDO-t1w7m8-2gZRSrgZI4glDvSIr101J4) — 毎週の運営定例の議事録
 - [週次全体定例 議事録（Google Docs）](https://docs.google.com/document/d/1tBhaer67U9LbASfqPrg0rpmv0Tt4K7zFUTTzscKXj_I) — 全体定例の議事録
 - [プロジェクトの歴史（Webサイト）](https://dd2030.org/history/) — 週ごとの活動まとめ
@@ -93,4 +95,14 @@ dd2030のSlackコミュニティの運営に関する活動。コミュニティ
 ## 関連ページ
 
 - [[overview]] — プロジェクト全体の概要
+- [[topics/first-reader-guide|初めて読む人へ]] — 初見者向けの読む順序ガイド
+- [[events/2025-04-12-1day-meetup|1Day Meetup（2025-04-12）]] — 初期コミュニティ拡大の節目
+- [[events/2025-05-25-meetup-2|デジタル民主主義2030 MEETUP #2]] — 2025年5月のアンカンファレンス形式ミートアップ
+- [[events/2025-06-21-welcome-meet-2|ウェルカムミート#2]] — 新規参加者向けのオンボーディングイベント
+- [[events/2025-07-18-meetup-3|デジタル民主主義2030 MEETUP #3]] — 2025年7月のコミュニティイベント
+- [[events/2025-11-28-welcome-meet-3|ウェルカムミート#3]] — 2025年11月の参加導線再整理
 - [[主要メンバー]] — プロジェクトの主要な人物
+- [[デジタル民主主義推進機構]] — 法人化後の責任主体
+- [[コミュニティと法人の関係]] — コミュニティ運営と法人の境界
+- [[OSS Weekly Reporter]] — Historyページや週次更新の背景
+- [[アーカイブパイプライン設計]] — Slackログ・週次更新の運用設計

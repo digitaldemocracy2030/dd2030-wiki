@@ -2,9 +2,13 @@
 title: Polimoney
 aliases: [Polimoney]
 tags: [dd2030, product, polimoney]
-sources: [raw/minutes/polimoney.txt, raw/minutes/weekly-general-meeting.txt]
+sources:
+  - raw/minutes/polimoney.txt
+  - raw/minutes/weekly-general-meeting.txt
+  - raw/history/week25_20250903/polimoney.md
+  - raw/history/week26_20250910/polimoney.md
 created: 2026-04-18
-updated: 2026-04-18
+updated: 2026-06-30
 ---
 
 # Polimoney
@@ -36,13 +40,14 @@ updated: 2026-04-18
 - 政治資金収支報告書（政治団体・年次）とは別に、個人単位の選挙ごとの報告書に対応
 - 2025年8月に和歌山県議・岩永さんとの接触で重要性が判明
 - Excel→JSON化を実施（和歌山・東京データ）
+- [[topics/political-funds-and-campaign-expenses|政治資金収支報告書と選挙運動費用収支報告書]] の違いが、データ構造・公開範囲・Ledger設計の前提になった
 
 ### Ledger（会計ソフト）
 - 政治家が自分で収支入力できる専用ソフト
 - 複式簿記の仕訳入力、年度締め、団体・選挙台帳
 - 仕訳承認時にHub（公開サイト）へ自動同期
 - SaaS方式: Supabase Cloud + Deno Deploy + Stripe
-- 2026年4月時点でざっくり機能完成、UI/UX調整フェーズ
+- 2026年3月末時点で仕訳承認時のHub自動同期や領収書ダウンロードなどの骨格ができ、2026年4月にはUI/UX、政治家・政治団体の承認画面、岩永さんの選挙運動費用データ公開準備が継続していた
 
 ## 技術スタック
 
@@ -91,10 +96,12 @@ updated: 2026-04-18
 
 - **出井亮輔（いでいさん、自民党）**: 最初の活用事例（2025年4月）
 - **岩永さん（和歌山県議）**: 選挙運動費用収支報告書のパイロットユーザー
-- **burikaigi**: shimizuが登壇しPolimoney紹介（2026年1月）
+- **[[events/2026-01-09-burikaigi-polimoney|ぶり会議2026]]**: haruki shimizu氏が登壇し、Polimoneyをエンジニア向けに紹介（2026年1月9日）
 
 ## もっと詳しく
 
+- [[sources/polimoney-minutes|Polimoney 議事録]] — 開発定例・ロードマップのWiki内ソース要約
+- [[sources/weekly-general-meeting|週次全体定例 議事録]] — 全体定例側の進捗共有
 - [Polimoney GitHubリポジトリ](https://github.com/digitaldemocracy2030/polimoney) — ソースコード
 - [Polimoney 公開サイト](https://polimoney.dd2030.org/) — 実際の政治資金可視化ページ
 - [Polimoney 議事録（Google Docs）](https://docs.google.com/document/d/19Kn6ekK3twMVcVaSyUgptvmfzrXEJezA6GXTbPXjm9M) — 定例会の議事録
@@ -102,5 +109,14 @@ updated: 2026-04-18
 ## 関連ページ
 
 - [[overview]] — プロジェクト全体の概要
+- [[topics/political-funds-and-campaign-expenses|政治資金収支報告書と選挙運動費用収支報告書]] — Polimoneyで扱う2種類の書類の違い
+- [[events/2025-04-12-1day-meetup|1Day Meetup（2025-04-12）]] — 初期にPolimoneyが共有されたイベント
+- [[events/2025-05-25-meetup-2|デジタル民主主義2030 MEETUP #2]] — Polimoneyの設計思想の着地点が扱われたイベント
+- [[events/2025-07-18-meetup-3|デジタル民主主義2030 MEETUP #3]] — 各プロダクト紹介の一部として接続するイベント
+- [[events/2026-01-09-burikaigi-polimoney|ぶり会議2026 Polimoney登壇]] — Polimoneyを外部のエンジニア向け文脈へ説明したイベント
+- [[sources/history-week43-20260114|週次History week43（2026-01-14）]] — Polimoneyの外向け発信強化を確認できる個別週ソース
+- [[sources/history-week50-20260415|週次History week50（2026-04-15）]] — データ整備完了とUI/UX改善論点を確認できる個別週ソース
 - [[時系列まとめ]] — 四半期ごとの活動記録
+- [[初年度まとめ]] — 立ち上がりから1年の詳細な時系列
 - [[主要メンバー]] — プロジェクトの主要な人物
+- [[コミュニティと法人の関係]] — OSSコミュニティと法人の役割分担
