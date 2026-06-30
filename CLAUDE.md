@@ -200,6 +200,13 @@ gh repo clone nishio/oss_weekly_reporter /tmp/oss_weekly_reporter -- \
 - 矛盾する記述の発見と解消
 - indexへの未登録ページの検出
 
+### コミット・PR化
+
+- 大きなWiki改善後は、次のソース取り込みに進む前にブランチ化し、検証して、コミットまたはPRへまとめる。
+- `.claude/settings.local.json` はローカル設定で token らしき値を含み得るため、stage しない。
+- `git add -A` ではなく、今回の作業で触ったパスだけを明示して stage する。
+- Slack、GitHub、archive、workflow まわりを編集した時は、staged diff に secret らしき文字列が入っていないか追加確認する。
+
 ## ビルドパイプライン
 
 `wiki/` → (Quartz) → `public/` → GitHub Pages
