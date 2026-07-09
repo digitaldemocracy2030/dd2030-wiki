@@ -75,7 +75,7 @@ updated: 2026-07-09
 プロジェクト全期間（2025年2月〜2026年2月）の実績:
 - 総コミット数: 2,756件
 - マージされたPR: 807本
-- Devinによるコミット: 210件（約7.6%、24人中5位）
+- [[Devin.ai]]によるコミット: 210件（約7.6%、24人中5位）
 - 2025年9月にはGitHubのissueをAIにアサインするだけでコードが自動生成される体制に
 
 ## 組織・コミュニティ
@@ -86,7 +86,7 @@ updated: 2026-07-09
 - 各プロダクトにPO（プロダクトオーナー）を配置
 - 毎週の全体定例、定期的なオフラインミートアップ
 - GitHub上でのオープンソース開発（`good first issue` で初心者歓迎）
-- DevinやClaude Codeなど、AI開発ツールを積極活用
+- [[Devin.ai]]やClaude Codeなど、AI開発ツールを積極活用
 
 ## もっと詳しく
 
@@ -99,6 +99,7 @@ updated: 2026-07-09
 - [[sources/broad-listening-book-kouchou-ai-development|ブロードリスニング本 DD2030による広聴AI開発活動章]] — DD2030の設立経緯と広聴AI開発史を確認する個別章ソース
 - [[sources/legal-entity-name-announcement|法人名称決定アナウンス]] — デジタル民主主義推進機構の名称決定ソース要約
 - [[sources/oss-foundation-survey|OSS財団事例サーベイ]] — コミュニティと法人格を考える比較ソース要約
+- [[Devin.ai]] — dd2030でのAI開発エージェント利用、課金・権限・用途整理
 - [週次全体定例 議事録（Google Docs）](https://docs.google.com/document/d/1tBhaer67U9LbASfqPrg0rpmv0Tt4K7zFUTTzscKXj_I) — 毎週の全体定例の生の議事録
 - [プロジェクトの歴史（Webサイト）](https://dd2030.org/history/) — 週ごとの活動まとめ
 - [ブロードリスニング本 原稿（GitHub）](https://github.com/digitaldemocracy2030/broad-listening-book) — DD2030の歴史や事例を詳しく解説した書籍原稿

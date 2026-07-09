@@ -9,6 +9,13 @@ updated: 2026-07-09
 
 取り込み・更新・メンテナンスの記録。
 
+## [2026-07-09] file back | Devin.aiの説明ページを追加
+
+- 新規ページ: [[Devin.ai]]
+- 元情報: ユーザー提供のSlack抜粋（課金・トークン・invite・用途の混乱）と、`digitaldemocracy2030/slack-logs/mirror/slack/C08PRQVQWSE.jsonl.gz` の `8_devinと人間たちの部屋` ログ
+- 保存した整理: DevinはSlack botではなくGitHub連携を中心に動くAI開発エージェントであり、dd2030では対象リポジトリ・用途・費用見込みを明示して使う。課金残量はSlack botではなくDevinダッシュボードで確認する
+- 更新: `wiki/index.md`, [[overview]], [[sources/broad-listening-book-kouchou-ai-development|ブロードリスニング本 DD2030による広聴AI開発活動章]], [[AI から Slack ログを参照するパターン]], [[dd2030-wiki の dd2030 org 移行]], [[Wiki保守運用]] から導線を追加
+
 ## [2026-07-09] file back | dd2030 Wikiとはページを追加
 
 - 新規ページ: [[dd2030 Wikiとは]]

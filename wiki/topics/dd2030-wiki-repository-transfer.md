@@ -29,7 +29,7 @@ GitHub の repository transfer は使わない。既存の公開URL `https://nis
 
 2026-07-03から2026-07-04にかけて、Slack の `2_コミュニティ運営` で、公開 Wiki（`nishio.github.io/dd2030-wiki`）を dd2030 のリポジトリと AI で運用したい、という相談があった。
 
-相談の目的は、[[OSS Weekly Reporter]] の代替的な活動把握先、また新規参加者向けガイドブックからのリンク先として、この Wiki を継続的に使える状態にすることだった。返信では、リポジトリを dd2030 側へ移せば Devin などの AI エージェントがメンテナンスしやすくなりそう、という見立てが共有され、来週半ばごろに作業する方向になった。
+相談の目的は、[[OSS Weekly Reporter]] の代替的な活動把握先、また新規参加者向けガイドブックからのリンク先として、この Wiki を継続的に使える状態にすることだった。返信では、リポジトリを dd2030 側へ移せば [[Devin.ai]] などの AI エージェントがメンテナンスしやすくなりそう、という見立てが共有され、来週半ばごろに作業する方向になった。
 
 出典は `digitaldemocracy2030/slack-logs/mirror/slack/C08N2NU6D0S.jsonl.gz`。`mirror/` は上書きされる現状ミラーなので、長期的な根拠として残す必要がある場合は、後日 `raw/slack/C08N2NU6D0S/2026-07.jsonl.gz` の月次 canonical でも確認する。
 
@@ -54,7 +54,7 @@ GitHub の repository transfer は使わない。既存の公開URL `https://nis
 - 旧URL `https://nishio.github.io/dd2030-wiki/` は消さず、移動告知ページとして残す。
 - 新リポジトリ側では `quartz.config.ts` の `baseUrl`、README、Wiki内の自己参照リンクを更新する必要がある。
 - ローカル clone の `origin` は、移行後に `https://github.com/digitaldemocracy2030/dd2030-wiki.git` へ更新する。旧リポジトリは `nishio` など別名 remote として残す。
-- Devin など、dd2030 org 側の AI エージェントがリポジトリを扱いやすくなる。
+- [[Devin.ai]] など、dd2030 org 側の AI エージェントがリポジトリを扱いやすくなる。
 
 この移行は Wiki 本体の正規運用場所を変える作業であり、[[Slackログアーカイブ]] の生ログ置き場を変える作業ではない。Slack チャットログ本体は引き続き `digitaldemocracy2030/slack-logs` を参照する。
 
@@ -137,6 +137,7 @@ pnpm build && pnpm check:pages-links
 ## 関連ページ
 
 - [[Wiki保守運用]] — Wiki更新時の検証と commit hygiene
+- [[Devin.ai]] — dd2030でのAI開発エージェント利用、課金・権限・用途整理
 - [[Slackログアーカイブ]] — Slackチャットログ本体の参照先
 - [[OSS Weekly Reporter]] — 活動把握・週次レポート生成の移行文脈
 - [[AI から Slack ログを参照するパターン]] — AI が Slack / Wiki を読む運用パターン

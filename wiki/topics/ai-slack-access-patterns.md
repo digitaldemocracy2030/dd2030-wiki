@@ -146,5 +146,6 @@ gh api repos/digitaldemocracy2030/slack-logs/contents/mirror/slack/<channel_id>.
 - [[アーカイブパイプライン設計]] — slack-logs の保全層の設計判断
 - [[sources/archive-pipeline-design-note|アーカイブパイプライン設計メモ]] — raw/mirror前提の設計ソース要約
 - [[OSS Weekly Reporter]] — 週次レポート生成側のパイプライン
+- [[Devin.ai]] — AIエージェント利用時の課金・権限・用途整理
 - [[dd2030-wiki の dd2030 org 移行]] — Wiki本体をdd2030 org側でAIメンテナンスしやすくしつつ、旧URLを残す作業メモ
 - [archive_index.md](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/archive_index.md) — 既存アーカイブの参照ガイド

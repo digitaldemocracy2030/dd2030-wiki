@@ -48,4 +48,5 @@ pnpm build && pnpm check:pages-links
 
 - [[index]] — Wiki全体の目次
 - [[dd2030 Wikiとは]] — 読者向けにこのWikiの目的と読み方を説明するページ
+- [[Devin.ai]] — dd2030でのAI開発エージェント利用、課金・権限・用途整理
 - [[dd2030-wiki の dd2030 org 移行]] — Wiki本体をorg側へ移す時に旧URLを守る作業メモ
