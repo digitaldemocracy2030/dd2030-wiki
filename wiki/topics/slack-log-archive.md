@@ -58,7 +58,7 @@ python3 scripts/search-archive.py --source oss-weekly-reporter --layer raw --sin
 python3 scripts/search-archive.py --list-channels
 ```
 
-詳細な運用手順は [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) を参照。
+詳細な運用手順は [archive_index.md](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/archive_index.md) を参照。
 
 ## wiki に使う時の注意
 

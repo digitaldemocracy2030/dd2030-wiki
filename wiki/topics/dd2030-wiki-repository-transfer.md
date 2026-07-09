@@ -12,7 +12,7 @@ updated: 2026-07-09
 
 # dd2030-wiki の dd2030 org 移行
 
-`nishio/dd2030-wiki` として運用してきたこの Wiki を、`digitaldemocracy2030` organization 配下の新しい正規リポジトリへ移す作業メモ。2026-07-09時点では、移行はまだ実行していない。
+`nishio/dd2030-wiki` として運用してきたこの Wiki を、`digitaldemocracy2030` organization 配下の新しい正規リポジトリへ移す作業メモ。2026-07-09に `digitaldemocracy2030/dd2030-wiki` を作成し、新サイト側の初期 push まで実行した。旧サイトの「移動しました」告知化は後続作業。
 
 ## 結論
 
@@ -39,12 +39,12 @@ GitHub の repository transfer は使わない。既存の公開URL `https://nis
 |---|---|
 | 現在のリポジトリ | `nishio/dd2030-wiki` |
 | 新しい正規リポジトリ候補 | `digitaldemocracy2030/dd2030-wiki` |
-| 新リポジトリ名 | 2026-07-09時点では未作成 |
+| 新リポジトリ名 | 2026-07-09に作成済み |
 | 現在の公開URL | `https://nishio.github.io/dd2030-wiki/` |
 | 新しい公開URL | `https://digitaldemocracy2030.github.io/dd2030-wiki/` |
 | 旧公開URLの扱い | 残して「移動しました」告知にする |
 | GitHub Pages | GitHub Actions workflow で `public/` を deploy |
-| Quartz設定 | `quartz.config.ts` の `baseUrl` が `nishio.github.io/dd2030-wiki` |
+| Quartz設定 | 新リポジトリ側では `quartz.config.ts` の `baseUrl` を `digitaldemocracy2030.github.io/dd2030-wiki` に更新済み |
 | 認証ユーザー | `nishio` が現リポジトリ admin かつ `digitaldemocracy2030` org admin |
 
 ## 移行で変わるもの
@@ -63,15 +63,15 @@ GitHub の repository transfer は使わない。既存の公開URL `https://nis
 - `main` が `origin/main` と一致し、作業ツリーが clean であることを確認する。
 - 未pushのブランチ、未mergeの PR、GitHub Actions の失敗がないか確認する。
 - `.claude/settings.local.json` のようなローカル設定や secret らしき値を stage しない。
-- `digitaldemocracy2030/dd2030-wiki` がまだ存在しないことを確認する。
+- `digitaldemocracy2030/dd2030-wiki` が既に存在する場合は、push 先 remote と default branch を確認する。
 - 旧URLから新URLへの案内方法を決める。最低限、旧トップページと `404.html` に移動告知を置く。
 - Devin / GitHub App / Actions secrets / Pages 設定が、新リポジトリでも必要な権限を持つか確認する。
 
 ## 推奨手順
 
 1. `main` を最新化し、必要なら直前の変更を commit / push する。
-2. `digitaldemocracy2030/dd2030-wiki` を新規作成する。repository transfer は使わない。
-3. 現在の `main` を新リポジトリへ push する。
+2. `digitaldemocracy2030/dd2030-wiki` を新規作成する。repository transfer は使わない。（2026-07-09実施済み）
+3. 現在の `main` を新リポジトリへ push する。（2026-07-09実施済み）
 
 ```bash
 gh repo create digitaldemocracy2030/dd2030-wiki --public
@@ -88,8 +88,8 @@ git remote rename dd2030 origin
 git fetch origin
 ```
 
-5. 新リポジトリ側で `quartz.config.ts` の `baseUrl` を `digitaldemocracy2030.github.io/dd2030-wiki` に変更する。
-6. README と Wiki 内の自己参照リンクを更新する。
+5. 新リポジトリ側で `quartz.config.ts` の `baseUrl` を `digitaldemocracy2030.github.io/dd2030-wiki` に変更する。（2026-07-09実施済み）
+6. README と Wiki 内の自己参照リンクを更新する。（2026-07-09実施済み）
 
 ```bash
 rg "nishio.github.io/dd2030-wiki|github.com/nishio/dd2030-wiki|nishio/dd2030-wiki"

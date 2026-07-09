@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from outline_mcp import call_tool, call_tool_multi  # noqa: E402
 
 WELCOME_COLLECTION_ID = "dd59eb70-cab2-4146-a16a-decb39af2388"
-GH_BLOB = "https://github.com/nishio/dd2030-wiki/blob/main"
+GH_BLOB = "https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main"
 SRC = Path(__file__).resolve().parent.parent / "docs" / "outline-mcp-evaluation.md"
 
 

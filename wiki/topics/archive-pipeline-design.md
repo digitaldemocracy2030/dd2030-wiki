@@ -14,7 +14,7 @@ updated: 2026-06-30 (slack-logs 実装後の現在状態を追記)
 
 > dd2030 で「Slack 卒業＋過去ログ CC-BY アーカイブ」「OSS Weekly Reporter の脱-nishio-依存」を進めるとき、**どのリポにworkflowを置き、どの粒度で何を保存するか**で後々の運用コストが大きく変わる。
 
-このページは、nishio が 2026-06 にまとめた設計メモ（[raw/documents/2026-06-09_archive-pipeline-design-note.md](https://github.com/nishio/dd2030-wiki/blob/main/raw/documents/2026-06-09_archive-pipeline-design-note.md)）を、dd2030 の文脈（[[OSS Weekly Reporter]] / Issue #170 / #173 / #177 / `digitaldemocracy2030/slack-logs`）に対応づけて整理したもの。具体的な未解決 Issue の状況は [[OSS Weekly Reporter]] を参照。
+このページは、nishio が 2026-06 にまとめた設計メモ（[raw/documents/2026-06-09_archive-pipeline-design-note.md](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/raw/documents/2026-06-09_archive-pipeline-design-note.md)）を、dd2030 の文脈（[[OSS Weekly Reporter]] / Issue #170 / #173 / #177 / `digitaldemocracy2030/slack-logs`）に対応づけて整理したもの。具体的な未解決 Issue の状況は [[OSS Weekly Reporter]] を参照。
 
 ## 結論（要約）
 
@@ -357,5 +357,5 @@ dd2030 で考えると:
 - [[OSS Weekly Reporter]] — 現状のパイプラインと滞留状況
 - [[sources/archive-pipeline-design-note|アーカイブパイプライン設計メモ]] — このページの主要ソース要約
 - [[sources/oss-weekly-reporter-handoff|OSS Weekly Reporter 移管Slackメモ]] — 移管経緯のSlackメモ要約
-- [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) — 外部アーカイブ参照ガイド
+- [archive_index.md](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/archive_index.md) — 外部アーカイブ参照ガイド
 - [[コミュニティ運営]] — Discord 移行の文脈

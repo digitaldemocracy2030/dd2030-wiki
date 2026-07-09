@@ -77,7 +77,7 @@ updated: 2026-07-09
 - タイプ A → slack-logs。月次canonicalに本文がない古い期間は `oss_weekly_reporter` も併用
 - タイプ B → [`nishio/oss_weekly_reporter`](https://github.com/nishio/oss_weekly_reporter) の data ブランチ（毎週水曜更新、最大遅延1週間、`ai_reports/slack.md` で要約済み）
 
-**メリット**: 何もしなくて済む。[`archive_index.md`](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) と [`scripts/search-archive.py`](https://github.com/nishio/dd2030-wiki/blob/main/scripts/search-archive.py) で既に動いている。  
+**メリット**: 何もしなくて済む。[`archive_index.md`](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/archive_index.md) と [`scripts/search-archive.py`](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/scripts/search-archive.py) で既に動いている。
 **デメリット**: 脱-nishio-依存になっていない。Slack→Discord 移行で oss_weekly_reporter 側が止まるリスク。
 
 → 2026-06-09 時点では暫定案。2026-06-30 現在は案2が実装済みなので、現状クエリの第一候補ではない。
@@ -147,4 +147,4 @@ gh api repos/digitaldemocracy2030/slack-logs/contents/mirror/slack/<channel_id>.
 - [[sources/archive-pipeline-design-note|アーカイブパイプライン設計メモ]] — raw/mirror前提の設計ソース要約
 - [[OSS Weekly Reporter]] — 週次レポート生成側のパイプライン
 - [[dd2030-wiki の dd2030 org 移行]] — Wiki本体をdd2030 org側でAIメンテナンスしやすくしつつ、旧URLを残す作業メモ
-- [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) — 既存アーカイブの参照ガイド
+- [archive_index.md](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/archive_index.md) — 既存アーカイブの参照ガイド

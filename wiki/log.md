@@ -9,6 +9,13 @@ updated: 2026-07-09
 
 取り込み・更新・メンテナンスの記録。
 
+## [2026-07-09] migration | dd2030-wiki 新orgリポジトリを作成
+
+- 作成: `digitaldemocracy2030/dd2030-wiki`
+- 初期push: 旧 `nishio/dd2030-wiki` の `main` に移行準備コミットをpushした後、同じ `main` を新リポジトリへpush
+- 新リポジトリ側の更新: `quartz.config.ts` の `baseUrl`、READMEの公開URL、Wiki内の自己参照GitHub URL、`scripts/upload_outline_eval.py` の GitHub blob URL を `digitaldemocracy2030/dd2030-wiki` へ切り替え
+- 残作業: 新GitHub Pagesの公開確認後、旧 `nishio/dd2030-wiki` を「移動しました」告知サイトに切り替える
+
 ## [2026-07-09] file back | dd2030-wiki org移行方針を二段階方式に修正
 
 - 元情報: repository transfer で旧 `nishio.github.io/dd2030-wiki` が消えると、既存リンクがリンク切れになる可能性があるという指摘

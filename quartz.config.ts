@@ -9,7 +9,7 @@ const config: QuartzConfig = {
     enablePopovers: true,
     analytics: null,
     locale: "ja-JP",
-    baseUrl: "nishio.github.io/dd2030-wiki",
+    baseUrl: "digitaldemocracy2030.github.io/dd2030-wiki",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
