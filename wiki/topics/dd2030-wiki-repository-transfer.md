@@ -12,7 +12,7 @@ updated: 2026-07-09
 
 # dd2030-wiki の dd2030 org 移行
 
-`nishio/dd2030-wiki` として運用してきたこの Wiki を、`digitaldemocracy2030` organization 配下の新しい正規リポジトリへ移す作業メモ。2026-07-09に `digitaldemocracy2030/dd2030-wiki` を作成し、新サイト側の初期 push まで実行した。旧サイトの「移動しました」告知化は後続作業。
+`nishio/dd2030-wiki` として運用してきたこの Wiki を、`digitaldemocracy2030` organization 配下の新しい正規リポジトリへ移した作業メモ。2026-07-09に `digitaldemocracy2030/dd2030-wiki` を作成し、新サイトを公開した。旧サイト `https://nishio.github.io/dd2030-wiki/` は削除せず、既存ページごとの「移動しました」告知ページに切り替えた。
 
 ## 結論
 
@@ -23,7 +23,7 @@ GitHub の repository transfer は使わない。既存の公開URL `https://nis
 1. `digitaldemocracy2030/dd2030-wiki` を新規作成し、現在の Wiki をコピーして新サイト `https://digitaldemocracy2030.github.io/dd2030-wiki/` を公開する。
 2. 新サイトの動作確認後、旧 `nishio/dd2030-wiki` は残したまま、旧サイトを「移動しました」アナウンス付きの案内ページにする。
 
-深いページへの旧リンクも考慮するなら、旧サイトにはトップページだけでなく `404.html` も置き、同じパスの新URLへ案内または自動転送できるようにする。より丁寧にする場合は、しばらく旧コンテンツを読み取り専用で残し、全ページに移動告知を出す。
+2026-07-09の実施では、旧サイトにトップページと `404.html` だけでなく、既存HTML 428ページ分と同じパスの告知ページを生成した。これにより、既存の深いリンクはHTTP 200の告知ページを返し、8秒後に同じパスの新URLへ移動する。
 
 ## 背景
 
@@ -42,7 +42,7 @@ GitHub の repository transfer は使わない。既存の公開URL `https://nis
 | 新リポジトリ名 | 2026-07-09に作成済み |
 | 現在の公開URL | `https://nishio.github.io/dd2030-wiki/` |
 | 新しい公開URL | `https://digitaldemocracy2030.github.io/dd2030-wiki/` |
-| 旧公開URLの扱い | 残して「移動しました」告知にする |
+| 旧公開URLの扱い | `nishio/dd2030-wiki` を残し、既存ページごとの「移動しました」告知サイトに切り替え済み |
 | GitHub Pages | GitHub Actions workflow で `public/` を deploy |
 | Quartz設定 | 新リポジトリ側では `quartz.config.ts` の `baseUrl` を `digitaldemocracy2030.github.io/dd2030-wiki` に更新済み |
 | 認証ユーザー | `nishio` が現リポジトリ admin かつ `digitaldemocracy2030` org admin |
@@ -105,18 +105,19 @@ pnpm build && pnpm check:pages-links
 ```
 
 9. `https://digitaldemocracy2030.github.io/dd2030-wiki/` で公開確認する。
-10. 旧 `nishio/dd2030-wiki` を、移動告知サイトに変更する。
+10. 旧 `nishio/dd2030-wiki` を、移動告知サイトに変更する。（2026-07-09実施済み）
 11. 必要なら Slack の元スレッドへ、新URL・旧URLの案内・編集方法を共有する。
 
 ## 旧サイトの告知仕様
 
-旧サイトは削除せず、少なくとも次を満たす。
+旧サイトは削除せず、次の形で告知サイトに切り替えた。
 
 - トップページに「移動しました」と新URLを明示する。
 - `404.html` にも同じ告知を置き、古い深いURLへ来た人を新サイトへ案内する。
-- 自動転送する場合でも、数秒待ってから移動するか、明示リンクを必ず置く。
-- 既存の深いリンクをできるだけ守るなら、旧サイトの各ページを同じパスの新URLへ転送する redirect page に置き換える。
-- より安全な暫定策として、旧サイトの既存コンテンツをしばらく残し、全ページ上部に移動告知を出す方法もある。
+- 既存HTML 428ページ分を、同じパスの新URLへ案内する告知ページに置き換える。
+- 各告知ページは明示リンクを表示し、8秒後に自動で新URLへ移動する。
+- 未知の旧URLは `404.html` で、同じパスの新URLまたは新トップページへ案内する。
+- 旧repoのGitHub ActionsはQuartzビルドではなく、`old-site/` をGitHub Pages artifactとしてdeployする。
 
 ## 新リポジトリ側で更新するページ
 
@@ -129,11 +130,9 @@ pnpm build && pnpm check:pages-links
 
 ## 未決事項
 
-- 旧サイトを「告知だけ」にするか、「旧コンテンツを残してバナーを出す」期間を置くか。
-- 深いページへの旧リンクを、`404.html` だけで案内するか、全ページ redirect を生成するか。
-- GitHub Pages の新リポジトリ初回デプロイで、Pages 設定の再有効化が必要か。
 - Devin に渡す標準作業手順を、[[Wiki保守運用]] に統合するか、このページを移行作業専用ページとして残すか。
 - 新規参加者向けガイドブックからリンクする正式URLをいつ切り替えるか。
+- 必要なら Slack の元スレッドへ、新URLと旧URLの扱いを共有するか。
 
 ## 関連ページ
 

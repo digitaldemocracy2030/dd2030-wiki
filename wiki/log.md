@@ -14,7 +14,9 @@ updated: 2026-07-09
 - 作成: `digitaldemocracy2030/dd2030-wiki`
 - 初期push: 旧 `nishio/dd2030-wiki` の `main` に移行準備コミットをpushした後、同じ `main` を新リポジトリへpush
 - 新リポジトリ側の更新: `quartz.config.ts` の `baseUrl`、READMEの公開URL、Wiki内の自己参照GitHub URL、`scripts/upload_outline_eval.py` の GitHub blob URL を `digitaldemocracy2030/dd2030-wiki` へ切り替え
-- 残作業: 新GitHub Pagesの公開確認後、旧 `nishio/dd2030-wiki` を「移動しました」告知サイトに切り替える
+- 公開確認: `https://digitaldemocracy2030.github.io/dd2030-wiki/` がHTTP 200で公開済み
+- 旧サイト対応: 旧 `nishio/dd2030-wiki` は `old-site/` 配信に切り替え、既存HTML 428ページ分を同じパスの新URLへ案内する「移動しました」告知ページに置換済み
+- local remote: `origin` を `digitaldemocracy2030/dd2030-wiki`、旧repoを `nishio` remote に整理済み
 
 ## [2026-07-09] file back | dd2030-wiki org移行方針を二段階方式に修正
 
