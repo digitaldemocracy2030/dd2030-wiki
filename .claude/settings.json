@@ -3,7 +3,6 @@
     "allow": [
       "Bash(gh api:*)",
       "Bash(gh repo:*)",
-      "Bash(ls -d /Users/nishio/dd2030-wiki/raw/history/week*)",
       "Bash(curl -sL \"https://docs.google.com/document/d/1tBhaer67U9LbASfqPrg0rpmv0Tt4K7zFUTTzscKXj_I/export?format=txt\" -o /Users/nishio/dd2030-wiki/raw/minutes/weekly-general-meeting.txt)",
       "Bash(curl -sL \"https://docs.google.com/document/d/1dn9R9WLaGNMDO-t1w7m8-2gZRSrgZI4glDvSIr101J4/export?format=txt\" -o /Users/nishio/dd2030-wiki/raw/minutes/community-operations.txt)",
       "Bash(curl -sL \"https://docs.google.com/document/d/1plggszRTxEEYUcZuCLiHkPrBsMtxr3RQpctKtZe5y4M/export?format=txt\" -o /Users/nishio/dd2030-wiki/raw/minutes/broad-listening-book-meeting.txt)"

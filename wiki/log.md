@@ -630,3 +630,13 @@ updated: 2026-06-30 (website history更新の滞留を再確認)
   - コミュニティ、法人、アーカイブ設計、AIによるSlack参照の関心別入口
 - 更新: `wiki/index.md`, `wiki/overview.md`, `wiki/sources/index.md`, `wiki/timeline/quarterly-summary.md`, `wiki/timeline/first-year.md` などから新ガイドへリンク
 - `digitaldemocracy2030/slack-logs` をSlackチャットログ本体の正置き場として読む注意も、新ガイドに明記
+
+## [2026-06-30] file back | Wiki保守運用のチェックポイントを追加
+
+- 元情報: 「全体を見てやるべきこと」の優先1として、広いWiki改善差分を先に安定化し、`codex/stabilize-wiki-improvements` で検証・commit・draft PR化した作業
+- 新規ページ: [[Wiki保守運用]]
+- 保存した知見:
+  - 大きなWiki改善後は、次の取り込みに進む前にブランチ化、検証、コミットまたはPR化して差分を安定させる
+  - `.claude/settings.local.json` はローカル設定で token らしき値を含み得るため staging しない
+  - `git add -A` ではなく、今回触ったパスだけを明示して stage する
+- 更新: `wiki/index.md`, `AGENTS.md`, `CLAUDE.md`
