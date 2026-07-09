@@ -70,6 +70,7 @@ python3 scripts/search-archive.py --list-channels
 
 ## 関連ページ
 
+- [[dd2030 Wikiとは]] — このWikiがSlackログをどう要約・参照するかの前提
 - [[topics/first-reader-guide|初めて読む人へ]] — Wiki全体と根拠ソースへの入り方
 - [[sources/index|ソースカタログ]] — Wikiで参照している根拠ソースの入口
 - [[sources/weekly-history-reports|週次Historyレポート]] — dd2030.org History 用に加工された週次レポート群

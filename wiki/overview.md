@@ -9,7 +9,7 @@ sources:
   - raw/broad-listening-book/09_02_サイボウズ.md
   - digitaldemocracy2030/slack-logs/mirror/slack/C0BACQUGQ5R.jsonl.gz
 created: 2026-04-18
-updated: 2026-06-30
+updated: 2026-07-09
 ---
 
 # デジタル民主主義2030（dd2030）プロジェクト概要
@@ -90,6 +90,7 @@ updated: 2026-06-30
 
 ## もっと詳しく
 
+- [[dd2030 Wikiとは]] — このWikiの目的、載っているもの、根拠の読み方
 - [[topics/first-reader-guide|初めて読む人へ]] — 目的別にWikiを読む順序
 - [[sources/index|ソースカタログ]] — Wikiで参照している根拠ソースの入口
 - [[sources/weekly-general-meeting|週次全体定例 議事録]] — 全体定例のWiki内ソース要約
@@ -106,6 +107,7 @@ updated: 2026-06-30
 ## 関連ページ
 
 - [[index]] — Wiki目次
+- [[dd2030 Wikiとは]] — このWikiの目的、載っているもの、根拠の読み方
 - [[topics/first-reader-guide|初めて読む人へ]] — 初見者向けの読む順序ガイド
 - [[時系列まとめ]] — 週次・四半期の活動記録
 - [[初年度まとめ]] — 2025年3月〜2026年3月の詳細な活動記録
