@@ -2,12 +2,35 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-06-30 (website history更新の滞留を再確認)
+updated: 2026-07-09
 ---
 
 # Wiki 作業ログ
 
 取り込み・更新・メンテナンスの記録。
+
+## [2026-07-09] file back | dd2030-wiki org移行方針を二段階方式に修正
+
+- 元情報: repository transfer で旧 `nishio.github.io/dd2030-wiki` が消えると、既存リンクがリンク切れになる可能性があるという指摘
+- 方針修正: GitHub の repository transfer は使わず、`digitaldemocracy2030/dd2030-wiki` を新規作成して新サイトを公開し、旧 `nishio/dd2030-wiki` は残して「移動しました」告知サイトにする
+- 更新: [[dd2030-wiki の dd2030 org 移行]], `wiki/index.md`, [[Wiki保守運用]], [[Slackログアーカイブ]], [[AI から Slack ログを参照するパターン]], [[OSS Weekly Reporter]]
+
+## [2026-07-09] file back | dd2030-wiki org移行の作業ページを追加
+
+- 元情報: 2026-07-03〜2026-07-04の Slack `2_コミュニティ運営` で、`nishio.github.io/dd2030-wiki` を dd2030 のリポジトリと AI で運用したいという相談があり、来週半ばごろに移管作業する方向になった
+- 確認: 2026-07-09時点で `nishio/dd2030-wiki` は存在し、`digitaldemocracy2030/dd2030-wiki` は未作成。`nishio` は現リポジトリ admin かつ `digitaldemocracy2030` org admin
+- 新規ページ: [[dd2030-wiki の dd2030 org 移行]]
+- 保存した知見:
+  - 初回整理では repository transfer を想定したが、旧URLのリンク切れリスクを踏まえて、後続の方針修正で二段階移行に更新した
+  - 新リポジトリ側では `quartz.config.ts` の `baseUrl`、README、Wiki内の自己参照URL、GitHub Pages設定を確認する
+  - `nishio/oss_weekly_reporter` は補助アーカイブとして意図的に残す参照なので、単純置換しない
+- 更新: `wiki/index.md`, [[Wiki保守運用]], [[Slackログアーカイブ]], [[AI から Slack ログを参照するパターン]], [[OSS Weekly Reporter]]
+
+## [2026-07-09] maintenance | 外部アーカイブcheckout先をworkに統一
+
+- 目的: `slack-logs` などの外部リポジトリを `/tmp` に clone すると、予期せず消えた時に検索結果0件の原因を判別しにくいため、checkout 先をリポジトリ直下の `work/` に統一する
+- 更新: `AGENTS.md`、`CLAUDE.md`、`README.md`、`archive_index.md`、[[Slackログアーカイブ]]、`scripts/search-archive.py`、`.gitignore`
+- 方針: `work/` は git 管理外にし、`scripts/search-archive.py` の既定検索先も `work/slack-logs` と `work/oss_weekly_reporter/data` に変更した
 
 ## [2026-06-30] maintenance | website history更新の滞留を再確認
 
@@ -18,7 +41,7 @@ updated: 2026-06-30 (website history更新の滞留を再確認)
 ## [2026-06-30] maintenance | Slack過去月canonicalの注意を導線へ反映
 
 - 目的: `digitaldemocracy2030/slack-logs` の `raw/` が正規置き場である一方、2025-01〜2026-02の月次canonicalには本文が入っていない制約を、初見者向け導線とAI向け参照パターンにも反映する
-- 確認: `/tmp/slack-logs/raw/slack/*/*.jsonl.gz` の行数を月別集計し、2025-01〜2026-02は本文0件、2026-03は1,255件、2026-04は868件の本文メッセージがあることを確認
+- 確認: `slack-logs/raw/slack/*/*.jsonl.gz` の行数を月別集計し、2025-01〜2026-02は本文0件、2026-03は1,255件、2026-04は868件の本文メッセージがあることを確認
 - 更新: [[topics/first-reader-guide|初めて読む人へ]]、[[AI から Slack ログを参照するパターン]]、[[OSS Weekly Reporter]]、[[アーカイブパイプライン設計]] に、古いSlack本文確認では `oss_weekly_reporter` の週次raw/markdownを補助根拠として併用する注意を追記
 
 ## [2026-06-30] events | ウェルカムミート#3の日付と根拠を補正

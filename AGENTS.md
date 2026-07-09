@@ -11,6 +11,7 @@ dd2030-wiki/
 │   ├── minutes/            # 議事録
 │   ├── documents/          # その他資料
 │   └── assets/             # 画像等
+├── work/                   # 外部リポジトリのローカルclone（git管理外）
 ├── wiki/                   # LLMが生成・維持するWikiページ群
 │   ├── index.md            # Wikiの目次・カタログ
 │   ├── log.md              # 作業ログ（時系列）
@@ -29,7 +30,7 @@ dd2030-wiki/
 └── archive_index.md        # 外部アーカイブ（Slack/GitHub生ログ）の参照ガイド
 ```
 
-**外部アーカイブ**: Slack のチャットログ本体は `digitaldemocracy2030/slack-logs` (main ブランチ) に置かれている。週次AIレポートと GitHub Issues/PR 生データは補助アーカイブとして `nishio/oss_weekly_reporter` (data ブランチ) を参照する。どちらも dd2030-wiki にはコピーしない。詳細・参照手順は [archive_index.md](archive_index.md) と [scripts/search-archive.py](scripts/search-archive.py) を参照。
+**外部アーカイブ**: Slack のチャットログ本体は `digitaldemocracy2030/slack-logs` (main ブランチ) に置かれている。週次AIレポートと GitHub Issues/PR 生データは補助アーカイブとして `nishio/oss_weekly_reporter` (data ブランチ) を参照する。どちらも dd2030-wiki にはコピーしない。ローカルで検索するための checkout は `/tmp` ではなく、必ずリポジトリ直下の `./work/`（git管理外）に置く。詳細・参照手順は [archive_index.md](archive_index.md) と [scripts/search-archive.py](scripts/search-archive.py) を参照。
 
 ## rawディレクトリの規約
 
@@ -137,17 +138,19 @@ websiteリポジトリに新しいweekが追加されたら取り込む。
 
 ```bash
 # 最新のhistoryデータを取得
-gh repo clone digitaldemocracy2030/website /tmp/dd2030-website -- --depth 1
-cp -r /tmp/dd2030-website/src/history/ raw/history/
+mkdir -p work
+gh repo clone digitaldemocracy2030/website work/dd2030-website -- --depth 1
+cp -r work/dd2030-website/src/history/ raw/history/
 ```
 
 #### ブロードリスニング本（GitHub）の再取り込み
 
 ```bash
-gh repo clone digitaldemocracy2030/broad-listening-book /tmp/bl-book -- --depth 1
+mkdir -p work
+gh repo clone digitaldemocracy2030/broad-listening-book work/bl-book -- --depth 1
 mkdir -p raw/broad-listening-book
-cp /tmp/bl-book/*.md raw/broad-listening-book/
-cp -r /tmp/bl-book/column raw/broad-listening-book/
+cp work/bl-book/*.md raw/broad-listening-book/
+cp -r work/bl-book/column raw/broad-listening-book/
 ```
 
 | ソース | 場所 | Google Doc ID | 更新頻度 |
@@ -159,9 +162,9 @@ cp -r /tmp/bl-book/column raw/broad-listening-book/
 | Polimoney | raw/minutes/polimoney.txt | `19Kn6ekK3twMVcVaSyUgptvmfzrXEJezA6GXTbPXjm9M` | 毎週 |
 | いどばた | raw/minutes/idobata-project.txt | `1cK5i3ATo1OXsy-oicllY6-YlI-q0AJVtqQW7a71V-AU` | 毎週 |
 | 週次レポート | raw/history/week*/ | GitHub digitaldemocracy2030/website | 毎週 |
-| Slack生ログ（canonical） | （外部）`/tmp/slack-logs/raw/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 毎月（保全、遅延あり） |
-| Slack現状ミラー | （外部）`/tmp/slack-logs/mirror/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 6時間ごと |
-| 週次AI/GitHub補助アーカイブ | （外部）`/tmp/oss_weekly_reporter/data/` | GitHub nishio/oss_weekly_reporter `data` ブランチ | 毎週 |
+| Slack生ログ（canonical） | （外部）`work/slack-logs/raw/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 毎月（保全、遅延あり） |
+| Slack現状ミラー | （外部）`work/slack-logs/mirror/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 6時間ごと |
+| 週次AI/GitHub補助アーカイブ | （外部）`work/oss_weekly_reporter/data/` | GitHub nishio/oss_weekly_reporter `data` ブランチ | 毎週 |
 
 #### 外部アーカイブ（Slackチャットログ / 週次AI・GitHub）の参照
 
@@ -169,13 +172,14 @@ cp -r /tmp/bl-book/column raw/broad-listening-book/
 
 ```bash
 # Slackチャットログ本体
-gh repo clone digitaldemocracy2030/slack-logs /tmp/slack-logs -- --depth 1
-# 既に clone 済みなら: cd /tmp/slack-logs && git pull
+mkdir -p work
+gh repo clone digitaldemocracy2030/slack-logs work/slack-logs -- --depth 1
+# 既に clone 済みなら: git -C work/slack-logs pull --ff-only
 
 # 週次AIレポート / GitHub Issues・PR 補助アーカイブ
-gh repo clone nishio/oss_weekly_reporter /tmp/oss_weekly_reporter -- \
+gh repo clone nishio/oss_weekly_reporter work/oss_weekly_reporter -- \
   --depth 1 --branch data --single-branch
-# 既に clone 済みなら: cd /tmp/oss_weekly_reporter && git pull
+# 既に clone 済みなら: git -C work/oss_weekly_reporter pull --ff-only
 ```
 
 読む順序:

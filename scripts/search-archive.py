@@ -3,11 +3,11 @@
 
 Default source:
   digitaldemocracy2030/slack-logs
-  local clone root: /tmp/slack-logs
+  local clone root: ./work/slack-logs
 
 Use --source oss-weekly-reporter for the legacy weekly AI/GitHub archive:
   nishio/oss_weekly_reporter data branch
-  local data root: /tmp/oss_weekly_reporter/data
+  local data root: ./work/oss_weekly_reporter/data
 
 Typical use:
   # Search recent Slack mirror logs
@@ -42,8 +42,10 @@ import sys
 from pathlib import Path
 from typing import Iterable
 
-DEFAULT_SLACK_LOGS_ROOT = Path("/tmp/slack-logs")
-DEFAULT_OSS_ROOT = Path("/tmp/oss_weekly_reporter/data")
+REPO_ROOT = Path(__file__).resolve().parents[1]
+WORK_DIR = REPO_ROOT / "work"
+DEFAULT_SLACK_LOGS_ROOT = WORK_DIR / "slack-logs"
+DEFAULT_OSS_ROOT = WORK_DIR / "oss_weekly_reporter" / "data"
 
 SOURCES = ("slack-logs", "oss-weekly-reporter")
 SLACK_LAYERS = ("mirror", "raw")
@@ -89,9 +91,13 @@ def resolve_root(source: str, root: Path | None) -> Path:
 
 def clone_hint(source: str) -> str:
     if source == "slack-logs":
-        return "gh repo clone digitaldemocracy2030/slack-logs /tmp/slack-logs -- --depth 1"
+        return (
+            f"mkdir -p {WORK_DIR} && "
+            f"gh repo clone digitaldemocracy2030/slack-logs {WORK_DIR / 'slack-logs'} -- --depth 1"
+        )
     return (
-        "gh repo clone nishio/oss_weekly_reporter /tmp/oss_weekly_reporter -- "
+        f"mkdir -p {WORK_DIR} && "
+        f"gh repo clone nishio/oss_weekly_reporter {WORK_DIR / 'oss_weekly_reporter'} -- "
         "--depth 1 --branch data --single-branch"
     )
 

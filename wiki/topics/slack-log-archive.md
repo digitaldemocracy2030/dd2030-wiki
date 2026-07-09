@@ -6,7 +6,7 @@ sources:
   - digitaldemocracy2030/slack-logs/README.md
   - digitaldemocracy2030/slack-logs/mirror/sync.json
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-07-09
 ---
 
 # Slackログアーカイブ
@@ -35,9 +35,12 @@ dd2030 の Slack public channel ログは、dd2030-wiki には直接取り込ま
 
 ## 検索例
 
+ローカル checkout は `/tmp` ではなく、このリポジトリ直下の `work/` に置く。`/tmp` は消える可能性があり、検索結果が空の時にデータ欠落と未checkoutを区別しにくくなる。
+
 ```bash
 # 初回だけ clone
-gh repo clone digitaldemocracy2030/slack-logs /tmp/slack-logs -- --depth 1
+mkdir -p work
+gh repo clone digitaldemocracy2030/slack-logs work/slack-logs -- --depth 1
 
 # 直近 mirror を検索
 python3 scripts/search-archive.py "キーワード"
@@ -81,3 +84,4 @@ python3 scripts/search-archive.py --list-channels
 - [[sources/archive-pipeline-design-note|アーカイブパイプライン設計メモ]] — raw/mirror構成の背景にある設計メモ要約
 - [[sources/oss-weekly-reporter-handoff|OSS Weekly Reporter 移管Slackメモ]] — slack-logs移管の経緯ソース要約
 - [[OSS Weekly Reporter]] — 週次AIレポートと GitHub Issues/PR 補助アーカイブ
+- [[dd2030-wiki の dd2030 org 移行]] — Slackで出たWiki本体のorg移行相談と、旧URLを残す作業チェックリスト

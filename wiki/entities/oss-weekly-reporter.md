@@ -14,7 +14,7 @@ sources:
   - https://github.com/digitaldemocracy2030/website/issues/173
   - https://github.com/digitaldemocracy2030/website/issues/177
 created: 2026-05-11
-updated: 2026-06-30
+updated: 2026-07-09
 ---
 
 # OSS Weekly Reporter
@@ -329,6 +329,7 @@ Issue [#177](https://github.com/digitaldemocracy2030/website/issues/177) で kub
 - [[Slackログアーカイブ]] — 現在の Slack チャットログ本体の読み方
 - [[AI から Slack ログを参照するパターン]] — AI がログを読む場面ごとの使い分け
 - [[sources/community-operations-minutes|コミュニティ運営 議事録]] — Historyページ導線とコミュニティ運営のソース要約
+- [[dd2030-wiki の dd2030 org 移行]] — Wiki本体をorg管理に移しつつ、週次活動把握とAIメンテナンスの受け皿にする作業メモ
 - [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) — アーカイブの参照ガイド
 - [[初年度まとめ]] — このアーカイブから構築した時系列まとめ
 - [[overview]] — プロジェクト全体の概要

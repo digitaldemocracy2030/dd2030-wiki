@@ -82,6 +82,7 @@ dd2030-wiki/
 ├── raw/                     # 元資料（不変）
 │   ├── history/             # websiteリポジトリの週次レポート（50週分）
 │   └── minutes/             # Google Docsからエクスポートした議事録
+├── work/                    # 外部リポジトリのローカルclone（git管理外）
 ├── scripts/
 │   ├── check_pages_links.py # GitHub Pages上のリンク検査
 │   ├── lint-wiki.py         # Wiki整合性チェック
@@ -118,16 +119,18 @@ curl -sL "https://docs.google.com/document/d/1cK5i3ATo1OXsy-oicllY6-YlI-q0AJVtqQ
 ### 週次レポートの再取得
 
 ```bash
-gh repo clone digitaldemocracy2030/website /tmp/dd2030-website -- --depth 1
-cp -r /tmp/dd2030-website/src/history/ raw/history/
+mkdir -p work
+gh repo clone digitaldemocracy2030/website work/dd2030-website -- --depth 1
+cp -r work/dd2030-website/src/history/ raw/history/
 ```
 
 ### 外部アーカイブの参照
 
-Slack のチャットログ本体は dd2030-wiki にはコピーせず、外部リポジトリ [`digitaldemocracy2030/slack-logs`](https://github.com/digitaldemocracy2030/slack-logs) を検索して参照する。
+Slack のチャットログ本体は dd2030-wiki にはコピーせず、外部リポジトリ [`digitaldemocracy2030/slack-logs`](https://github.com/digitaldemocracy2030/slack-logs) を検索して参照する。ローカル checkout は `/tmp` ではなく、リポジトリ直下の `work/` に置く。
 
 ```bash
-gh repo clone digitaldemocracy2030/slack-logs /tmp/slack-logs -- --depth 1
+mkdir -p work
+gh repo clone digitaldemocracy2030/slack-logs work/slack-logs -- --depth 1
 
 # 直近 mirror を検索
 python3 scripts/search-archive.py "キーワード"
@@ -142,7 +145,8 @@ python3 scripts/search-archive.py --layer raw --month 2026-04 "キーワード"
 週次AIレポートと GitHub Issues/PR の補助アーカイブは `nishio/oss_weekly_reporter` の `data` ブランチを使う。
 
 ```bash
-gh repo clone nishio/oss_weekly_reporter /tmp/oss_weekly_reporter -- \
+mkdir -p work
+gh repo clone nishio/oss_weekly_reporter work/oss_weekly_reporter -- \
   --depth 1 --branch data --single-branch
 
 python3 scripts/search-archive.py --source oss-weekly-reporter --layer ai_reports "キーワード"

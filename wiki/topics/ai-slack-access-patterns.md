@@ -8,7 +8,7 @@ sources:
   - digitaldemocracy2030/slack-logs/raw/slack/
   - oss_weekly_reporter/data/
 created: 2026-06-09
-updated: 2026-06-30
+updated: 2026-07-09
 ---
 
 # AI から Slack ログを参照するパターン
@@ -146,4 +146,5 @@ gh api repos/digitaldemocracy2030/slack-logs/contents/mirror/slack/<channel_id>.
 - [[アーカイブパイプライン設計]] — slack-logs の保全層の設計判断
 - [[sources/archive-pipeline-design-note|アーカイブパイプライン設計メモ]] — raw/mirror前提の設計ソース要約
 - [[OSS Weekly Reporter]] — 週次レポート生成側のパイプライン
+- [[dd2030-wiki の dd2030 org 移行]] — Wiki本体をdd2030 org側でAIメンテナンスしやすくしつつ、旧URLを残す作業メモ
 - [archive_index.md](https://github.com/nishio/dd2030-wiki/blob/main/archive_index.md) — 既存アーカイブの参照ガイド

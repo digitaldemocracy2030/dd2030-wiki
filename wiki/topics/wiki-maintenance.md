@@ -7,7 +7,7 @@ sources:
   - CLAUDE.md
   - PLAN.md
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-07-09
 ---
 
 # Wiki保守運用
@@ -47,3 +47,4 @@ pnpm build && pnpm check:pages-links
 ## 関連ページ
 
 - [[index]] — Wiki全体の目次
+- [[dd2030-wiki の dd2030 org 移行]] — Wiki本体をorg側へ移す時に旧URLを守る作業メモ
