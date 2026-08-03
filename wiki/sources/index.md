@@ -4,10 +4,14 @@ aliases: [ソースカタログ, sources, source catalog, 根拠ソース一覧]
 tags: [dd2030, source, index]
 sources: []
 created: 2026-06-30
-updated: 2026-07-09
+updated: 2026-08-03
 ---
 
 # ソースカタログ
+
+## イベント資料
+
+- [[sources/digital-democracy-summit-2026-materials|デジタル民主主義サミット2026 当日投影資料・登壇記録]] — 主会場・第2会場・第3会場の当日投影資料397ページ／スライドと、国会議員マップ登壇全文、オードリー・タン閉会記録の要約
 
 dd2030 Wikiで参照している主要ソースへの入口。初めて読む人は、まず「何を知りたいか」に近いカテゴリから入るとよい。
 
