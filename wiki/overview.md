@@ -9,7 +9,7 @@ sources:
   - raw/broad-listening-book/09_02_サイボウズ.md
   - digitaldemocracy2030/slack-logs/mirror/slack/C0BACQUGQ5R.jsonl.gz
 created: 2026-04-18
-updated: 2026-07-09
+updated: 2026-08-03
 ---
 
 # デジタル民主主義2030（dd2030）プロジェクト概要
@@ -67,6 +67,7 @@ updated: 2026-07-09
 - **2026年3月19日**: [[events/2026-03-19-stop-fraud-ads-press-conference|ストップ詐欺広告 記者会見]]（15社参加）。クラウドファンディング開始
 - **2026年6月1日**: 法人名称「[[デジタル民主主義推進機構]]（Digital Democracy Builders）」が決定（一般社団法人）
 - **2026年6月21日**: [[events/2026-06-21-coreloop-online-deliberation|コアループ オンライン熟議（2026-06-21）]]が Stanford Deliberate platform 上で運用されたことを Slack mirror で確認（6月14日は2026年4月時点の当初予定）
+- **2026年8月2日**: [[events/2026-08-02-digital-democracy-summit|デジタル民主主義サミット2026]]。慶應義塾大学三田キャンパスで、政治・自治体・研究・シビックテックの実践者がブロードリスニング、政治資金、熟議、行政AIなどを横断して扱う公開イベントを開催
 
 詳細は [[時系列まとめ]] を参照。
 
