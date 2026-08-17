@@ -86,6 +86,7 @@ dd2030プロジェクトの知識ベース。プロジェクトに初めて参�
 - [[アーカイブパイプライン設計]] — Slack/Scrapboxログを GitHub に溜めるときの設計選択（[[OSS Weekly Reporter]] の脱-nishio-依存の文脈）
 - [[Slackログアーカイブ]] — `digitaldemocracy2030/slack-logs` の `raw/` と `mirror/` の読み方
 - [[AI から Slack ログを参照するパターン]] — 歴史的問い合わせ vs 現状クエリの2タイプと slack-logs の応え方
+- [[topics/nl-data-collection-tools-collaboration|自然言語データ収集ツールの関係と「一本化しない」協働]] — 広聴AI・いどばた・倍速会議・farbrain/divconの目的共通性と、統合でなく協働を探る2026年8月の議論
 
 ## ソース要約
 
