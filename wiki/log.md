@@ -9,6 +9,24 @@ updated: 2026-08-03
 
 取り込み・更新・メンテナンスの記録。
 
+## [2026-08-18] ingest | Civic AI「6-Pack of Care」解説ブログ
+
+- 元情報: mutimoumai「"Civic AI — 6-Pack of Care" を理解する試み」（無知蒙昧なセンテンス、2026-08-16）https://mutimoumai.hatenablog.com/entry/2026/08/16/043931
+- 新規ページ: [[sources/civic-ai-6pack-of-care-blog|Civic AI「6-Pack of Care」解説ブログ]]（ソース要約）、[[Civic AI]]（概念）
+- 取り込んだ内容:
+  - Civic AI＝オードリー・タン＋キャロライン・エマーの研究。単一巨大AIでなくコミュニティごとのローカルAI「Kami」を運用する設計思想
+  - 6-Pack of Care（Attentiveness / Responsibility / Competence / Responsiveness / Solidarity / Symbiosis）。指標は「最大化でなく閾値超え」で足りる
+  - 背景思想はPluralityとジョーン・トロントのケアの倫理
+- 位置づけ: dd2030の一次資料ではなく、タンの海外研究を日本語で咀嚼した外部ブログ。記事内にdd2030/広聴AI/いどばた/Polimoneyへの直接言及はない
+- 更新: [[events/2026-08-02-digital-democracy-summit|サミット2026]]の「6-Pack of Care」記述から[[Civic AI]]へリンク、`wiki/index.md`・`wiki/sources/index.md` にエントリ追加
+
+## [2026-08-18] 新規エンティティ | オードリー・タン / グレン・ワイル
+
+- 動機: [[Civic AI]] 取り込みで赤リンクになっていた人物2名にエンティティページを作成
+- 新規ページ: [[オードリー・タン]]（[[entities/audrey-tang]]）、[[グレン・ワイル]]（[[entities/glen-weyl]]）
+- 内容: 既存Wiki内の言及（ブロードリスニング本推薦文、コアループ自民党PT、サミット2026閉会、Plurality読書会など）を集約し、[[Civic AI]]・[[ボイス効果]]・[[熟議民主主義]]と相互リンク
+- 更新: [[topics/key-people|主要メンバー]]（外部連携に2名をリンク化＋グレン・ワイル追加）、[[ブロードリスニング]]のvTaiwan記述をリンク化
+
 ## [2026-08-17] file back | 広聴AI×いどばた「一本化しない」協働の議論
 
 - 元情報: `#2_いどばたボット`(C09T4CVQA07) 2026-08-14〜08-17 の議論と、合同ミーティング事前まとめGoogle Doc
