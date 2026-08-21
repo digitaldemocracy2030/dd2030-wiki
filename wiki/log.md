@@ -9,6 +9,14 @@ updated: 2026-08-21
 
 取り込み・更新・メンテナンスの記録。
 
+## [2026-08-21] triage | slack-logs の OPEN issue を棚卸し＋push race を修正
+
+- 対象: `digitaldemocracy2030/slack-logs` の OPEN issue 3件を検討し処理
+- #2 `slack-backup failed: 2026-03` → **クローズ**。現 main の 2026-03 canonical は本文入り（1,255レコード）で復旧済み、失敗runは過去のもの
+- #1 `slack-backup failed: 2025-07` → **クローズ（#4 に統合）**。2025-07 は本文0のまま。原因は個別失敗ではなく **Slack 保持期限（無料90日と推定）**：本文が入り始める 2026-03 が、ブートストラップ 2026-06-09 の約90日前と一致。再 dispatch でも Slack から復旧不可。本文の出所は `oss_weekly_reporter` 週次のみ
+- #4 `canonical metadata-only for historical months` → **open 維持**。原因（保持期限）・将来は再発しない旨（月次backupはM-2で90日以内）・回避策（oss_weekly_reporter併用、wiki記載済み）をコメント追記。(B) 週次→月次canonicalへの本文backfillは将来タスクとして追跡（今はやらない、西尾判断）
+- 新規 #8 として push race を issue化 → **即修正・マージ済み**: push retry の `git pull --rebase` はバイナリ `.jsonl.gz` をマージできず並行run時に必ず失敗する。rebaseをやめ「最新mainの上に自分のスナップショットを載せ直す」（`git reset --soft FETCH_HEAD`＋再add＋commit、ours勝ち）方式に変更。mirror・backup両workflowに適用（[slack-logs PR #9](https://github.com/digitaldemocracy2030/slack-logs/pull/9)）。検証runがsuccessでhappy path無回帰を確認。#7（今回の失敗）も原因説明つきでclose済み
+
 ## [2026-08-21] fix | Slackアーカイブ二層の「盲点（blind gap）」を解消（backfill＋PR）
 
 - 発端: 上記の「7月〜8月頭が読めない」を掘ったら、二層アーカイブ（canonical=月次・約2ヶ月遅延／mirror=直近14日・上書き）の**構造的な盲点**が原因と判明。canonical 未到達かつ mirror 窓外の期間はどの層にも存在しない
