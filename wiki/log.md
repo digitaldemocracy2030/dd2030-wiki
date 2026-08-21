@@ -9,6 +9,12 @@ updated: 2026-08-21
 
 取り込み・更新・メンテナンスの記録。
 
+## [2026-08-21] file back | 歴史canonicalが本文0の原因＝Slack保持期限
+
+- 洞察: `raw/slack` の 2025-01〜2026-02 が本文0（メタのみ）なのは基盤不具合ではなく **Slackの保持期限（無料90日と推定）**。本文が入り始める 2026-03 が bootstrap(2026-06-09)の約90日前 ≈ 2026-03-11 と一致 → *バックフィル時点で古い本文は既に消失*。復旧はSlackからは不可、出所は [[OSS Weekly Reporter]] 週次のみ。今後の月は月次backup(M-2＝90日以内)が回る限り再発しない
+- 更新: [[Slackログアーカイブ]]（メタのみ期間の段落に根拠・cutoff・復旧タスクリンクを追記）、[[アーカイブパイプライン設計]]（本文0の原因を1文追記し Slackログアーカイブ へリンク）
+- これまで issue #4 コメントと log にしかなかった root cause を、読者向けの恒久ページへ distill。#4 (B)（週次→月次canonicalの本文backfill）着手の前提知識
+
 ## [2026-08-21] triage | slack-logs の OPEN issue を棚卸し＋push race を修正
 
 - 対象: `digitaldemocracy2030/slack-logs` の OPEN issue 3件を検討し処理
