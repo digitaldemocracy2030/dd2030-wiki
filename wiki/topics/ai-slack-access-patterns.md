@@ -8,7 +8,7 @@ sources:
   - digitaldemocracy2030/slack-logs/raw/slack/
   - oss_weekly_reporter/data/
 created: 2026-06-09
-updated: 2026-07-09
+updated: 2026-08-21
 ---
 
 # AI から Slack ログを参照するパターン
@@ -22,10 +22,10 @@ updated: 2026-07-09
 | 用途 | まず読む場所 | 補足 |
 |---|---|---|
 | 歴史的問い合わせ | `raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz` | 月次 canonical。まず本文件数を確認し、2025-01〜2026-02のように本文0件なら `oss_weekly_reporter` を併用 |
-| 現状クエリ | `mirror/slack/<channel_id>.jsonl.gz` | 直近14日程度を6時間ごとに上書き更新 |
+| 現状クエリ | `mirror/slack/<channel_id>.jsonl.gz` | 直近75日程度を6時間ごとに上書き更新 |
 | 週次の要約・GitHub横断 | `nishio/oss_weekly_reporter` data ブランチ | `ai_reports/` と GitHub Issues/PR の補助アーカイブ |
 
-2026-06-30 時点の `mirror/sync.json` は、58チャンネル・506メッセージ・window 14日（`2026-06-16T04:12:50Z` 〜 `2026-06-30T04:12:50Z`）を示している。
+2026-06-30 時点の `mirror/sync.json` は、58チャンネル・506メッセージ・window 14日（`2026-06-16T04:12:50Z` 〜 `2026-06-30T04:12:50Z`）を示していた。**2026-08-21 に window を 14日→75日 へ拡大**し、canonical（約2ヶ月遅延）と mirror の間の盲点を無くした（→ [[アーカイブパイプライン設計]]）。
 
 ## 2つのタイプ
 
@@ -91,13 +91,13 @@ on:
     - cron: '0 */6 * * *'   # 6時間ごと
 jobs:
   mirror:
-    # 過去 14 日ぶんだけ取得して mirror/ 配下に上書き保存
+    # 過去 75 日ぶんだけ取得して mirror/ 配下に上書き保存
     # 2ヶ月遅延の slack-backup.yml とは独立して走らせる
 ```
 
 - **monthly canonical** (`raw/slack/`) と **rolling mirror** (`mirror/slack/`) の二層化
 - mirror は毎回上書き。履歴を持たない（履歴は raw 側の責務）
-- thread のラグは数日で吸収（14日 window）
+- thread のラグは数日で吸収。window は canonical との盲点を無くすため14→75日に拡大（2026-08-21）
 - 上流の slack-logger-cli-action は month 単位の引数しか持たない → **Python + slack_sdk で別実装**（`oss_weekly_reporter` の `slack_to_json.py --last-days 14` と同じ仕組み）
 
 **メリット**: slack-logs に保全と現状の両方が集約、脱-nishio が完結。  
@@ -131,7 +131,7 @@ jobs:
 gh api repos/digitaldemocracy2030/slack-logs/contents/mirror/sync.json \
   --jq '.content' | base64 -d | jq '. | del(.channels)'
 
-# 特定チャンネルの直近14日メッセージ
+# 特定チャンネルの直近75日メッセージ
 gh api repos/digitaldemocracy2030/slack-logs/contents/mirror/slack/<channel_id>.jsonl.gz \
   --jq '.download_url' | xargs curl -sL | zcat
 ```

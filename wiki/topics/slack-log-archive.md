@@ -6,7 +6,7 @@ sources:
   - digitaldemocracy2030/slack-logs/README.md
   - digitaldemocracy2030/slack-logs/mirror/sync.json
 created: 2026-06-30
-updated: 2026-07-09
+updated: 2026-08-21
 ---
 
 # Slackログアーカイブ
@@ -18,18 +18,18 @@ dd2030 の Slack public channel ログは、dd2030-wiki には直接取り込ま
 | 層 | パス | 用途 |
 |---|---|---|
 | 月次 canonical | `raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz` | 過去の議論を確実に辿る。スレッド完全性を優先するため遅延あり |
-| rolling mirror | `mirror/slack/<channel_id>.jsonl.gz` | 直近14日程度の現状確認。6時間ごとに上書き更新 |
+| rolling mirror | `mirror/slack/<channel_id>.jsonl.gz` | 直近75日程度の現状確認。6時間ごとに上書き更新 |
 | 同期メタデータ | `mirror/sync.json` | 最終同期時刻、対象チャンネル、件数を見る |
 | ユーザー情報 | `mirror/users.json`, `state/users-<YYYY-MM>.json` | user_id を表示名に解決する |
 
-2026-06-30 時点で確認した mirror は、58チャンネル・506メッセージ・14日 window（`2026-06-16T04:12:50Z` 〜 `2026-06-30T04:12:50Z`）を持つ。
+2026-06-30 時点で確認した mirror は、58チャンネル・506メッセージ・14日 window（`2026-06-16T04:12:50Z` 〜 `2026-06-30T04:12:50Z`）を持っていた。その後 **2026-08-21 に window を 14日→75日 へ拡大**した（59チャンネル・約2,300メッセージ）。canonical の約2ヶ月遅延と mirror の窓の間に「どちらの層にも存在しない盲点」ができるのを防ぎ、両層を常時オーバーラップさせるため（→ [[アーカイブパイプライン設計]]）。
 
 同日時点で、`raw/slack/*/2025-01.jsonl.gz` から `2026-02.jsonl.gz` までの月次canonicalは各チャンネルのメタデータのみで、本文メッセージは入っていなかった。2026年3月・4月には本文メッセージが入っているため、過去月を調べるときは「月次ファイルが存在する」だけでなく、本文行があるかを確認する。本文がない期間のSlack根拠は、補助アーカイブの `oss_weekly_reporter/data/<week>/raw/slack/` や `markdown/slack/` を併用する。
 
 ## 読む順序
 
 1. 直近の状況を知りたい時は `mirror/sync.json` で同期時刻と対象チャンネルを確認する。
-2. 直近14日程度の発言は `mirror/slack/*.jsonl.gz` を検索する。
+2. 直近75日程度の発言は `mirror/slack/*.jsonl.gz` を検索する。
 3. 過去月の議論は `raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz` を検索する。
 4. 月次canonicalに本文がない期間、または週次の要約や GitHub Issues/PR との横断整理が必要な場合は、補助アーカイブとして [[OSS Weekly Reporter]] を読む。
 

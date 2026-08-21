@@ -14,8 +14,10 @@ updated: 2026-08-21
 - 発端: 上記の「7月〜8月頭が読めない」を掘ったら、二層アーカイブ（canonical=月次・約2ヶ月遅延／mirror=直近14日・上書き）の**構造的な盲点**が原因と判明。canonical 未到達かつ mirror 窓外の期間はどの層にも存在しない
 - 原因の正確な把握: `slack-backup.yml` が「実行月の2ヶ月前」を取得するのは **late thread reply を取りこぼさないための意図的仕様**（`kuboon/slack-logger-cli-action` の README で確認）。遅延を縮めると返信が欠落するので、canonical 側は縮めてはいけない
 - 対応1（データの穴埋め・完了）: `slack-backup.yml` を `workflow_dispatch` で 2026-07 / 2026-08 を手動 dispatch。両 run success、`slack backup 2026-07` / `2026-08` が main に反映。dd_prance_event2026 の7月は669件など本文入りで取得確認。`work/slack-logs` も main を pull 済み
-- 対応2（再発防止・PR）: 隙間は **mirror 側を広げて**埋める設計に。`WINDOW_DAYS` 既定 14→75日（canonicalの最大遅れ≈63日＋余裕）。canonical は無変更。README に盲点・サイズ根拠・月次run欠落時の注意を追記 → [digitaldemocracy2030/slack-logs PR #6](https://github.com/digitaldemocracy2030/slack-logs/pull/6)（**マージ待ち**）
-- 残タスク: PR #6 マージ後、[[アーカイブパイプライン設計]]・[[AI から Slack ログを参照するパターン]]・[[Slackログアーカイブ]] の「直近14日」記述を「直近75日」に更新する（マージ前は mirror が14日のままなので先行更新しない）。既存の OPEN issue `slack-backup failed: 2026-03` / `2025-07`（2026-06-09 起票）は別件で未対応
+- 対応2（再発防止・PR、**マージ済み**）: 隙間は **mirror 側を広げて**埋める設計に。`WINDOW_DAYS` 既定 14→75日（canonicalの最大遅れ≈63日＋余裕）。canonical は無変更。README に盲点・サイズ根拠・月次run欠落時の注意を追記 → [digitaldemocracy2030/slack-logs PR #6](https://github.com/digitaldemocracy2030/slack-logs/pull/6) を squash merge。mirror を即時再実行し **live 反映を確認**（`mirror/sync.json` window_days=75、oldest=2026-06-07、59ch・2,294件）。canonical(〜06-30＋7/8月backfill)と連続し盲点解消
+- 判明した既知の弱点（別対応）: mirror workflow の push retry が `git pull --rebase` を使うため、手動 dispatch と定期 run が重なるとバイナリ `.jsonl.gz` を rebase できず後発 run が失敗する。今回1件失敗→次の定期 run で自己修復・実害なし。auto起票された issue #7 は原因を添えて close 済み。手動実行は定期 run（`7 */6 * * *`）を避ける
+- ドキュメント反映（完了）: [[アーカイブパイプライン設計]]（「二層の間に盲点を作らない」節を新設）・[[AI から Slack ログを参照するパターン]]・[[Slackログアーカイブ]] の「直近14日」を「直近75日」に更新し、盲点と75日の根拠を追記
+- 未対応（別件）: OPEN issue `slack-backup failed: 2026-03` / `2025-07`（2026-06-09 起票）はブートストラップ時の失敗で今回の穴とは無関係
 
 ## [2026-08-21] investigate | 7月〜8月頭のSlack「面読み」ギャップは現状取得不能と確認
 

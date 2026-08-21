@@ -7,7 +7,7 @@ sources:
   - raw/slack/2026-06-04_oss-weekly-reporter-handoff.md
   - digitaldemocracy2030/slack-logs/raw/slack/
 created: 2026-06-09
-updated: 2026-06-30 (slack-logs 実装後の現在状態を追記)
+updated: 2026-08-21
 ---
 
 # アーカイブパイプライン設計 — Slack/Scrapbox ログを GitHub に溜めるときの選択
@@ -20,7 +20,7 @@ updated: 2026-06-30 (slack-logs 実装後の現在状態を追記)
 
 **コード用 repo とデータ用 repo を分け、workflow はデータ用 repo 側に置く**のが基本。`main` に直接ログを commit する構成は手軽だがソース履歴にデータ更新 commit が混ざり、`data` branch 方式は最新コードと最新データを同時に扱うときに rebase/merge 運用が重くなる。
 
-dd2030 ではこの方針に沿って、Slack チャットログの data repo を [`digitaldemocracy2030/slack-logs`](https://github.com/digitaldemocracy2030/slack-logs) に確定した。2026-06-30 現在は `raw/`（月次 canonical）と `mirror/`（直近14日の rolling snapshot）の二層で動いている。
+dd2030 ではこの方針に沿って、Slack チャットログの data repo を [`digitaldemocracy2030/slack-logs`](https://github.com/digitaldemocracy2030/slack-logs) に確定した。`raw/`（月次 canonical）と `mirror/`（rolling snapshot）の二層で動いている。mirror の window は当初14日だったが、下記「二層の間に盲点を作らない」の理由で **2026-08-21 に75日へ拡大**した。
 
 ## 現在の実装（2026-06-30）
 
@@ -38,6 +38,19 @@ digitaldemocracy2030/slack-logs
 確認した `mirror/sync.json` は、`synced_at=2026-06-30T04:12:50Z`、58チャンネル、506メッセージ、14日 window を示している。これにより、保存用の canonical と AI の現状クエリ用 mirror が同じ data repo に集約された。
 
 運用上の注意として、2026-06-30時点では `raw/slack/*/2025-01.jsonl.gz` 〜 `2026-02.jsonl.gz` は各チャンネルのメタデータのみで本文0件だった。2026-03・2026-04には本文が入っているため、設計としての二層構成は成立しているが、初年度の古い本文を調べる時は [[OSS Weekly Reporter]] の週次raw/markdownを補助的に使う。
+
+## 二層の間に盲点を作らない（mirror window の決め方）
+
+二層構成には、放置すると **どちらの層にも存在しない期間（blind gap）** ができる落とし穴がある。実際に 2026-08 の調査で `2026-07-01〜08-05` がこの穴に落ちて読めなくなっていた。
+
+- **canonical は約2ヶ月遅れる（意図的）**: `slack-backup.yml` は「実行月の2ヶ月前」を月次取得する。これは上流の `kuboon/slack-logger-cli-action` の仕様で、*スレッド返信は親メッセージの月でしか取得できない*ため、月末から1ヶ月のグレースを置いて遅れて付いた返信も取りこぼさないための設計。**遅延を縮めると thread completeness が壊れる**ので canonical 側は縮めてはいけない。
+- **mirror は上書き・履歴なし**: rolling window の外に出た期間は mirror からは消える。
+- したがって「canonical がまだ到達しておらず、かつ mirror の窓からも外れた」期間は、どの層にも無くなる。
+
+**対策は mirror の window を canonical の最大遅れより広げること。** canonical の最新は月内で最大「当月＋前月 ≈ 63日」後ろにいるため、window をそれ＋余裕の **75日** にすると、mirror の窓が常に最新の canonical 月へ食い込み、両層が途切れず連続する（隙間0）。2026-08-21 に `WINDOW_DAYS` を 14→75 に変更して適用済み（[slack-logs PR #6](https://github.com/digitaldemocracy2030/slack-logs/pull/6)）。
+
+- 前提: 月次 backup が毎月成功していること。1回丸ごと飛ぶと canonical がさらに1ヶ月遅れ、75日では届かなくなる（失敗時 Issue 起票で検知可、手動 dispatch で該当月を埋める）。
+- 既知の弱点: mirror workflow の push retry は `git pull --rebase` を使うため、手動 dispatch と定期 run が重なるとバイナリ `.jsonl.gz` を rebase できず後発 run が失敗する（次 run で自己修復・実害なし）。手動実行は定期 run（`7 */6 * * *`）の時刻を避けるのが無難。
 
 ## 推奨構成
 
