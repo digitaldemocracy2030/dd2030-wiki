@@ -9,6 +9,15 @@ updated: 2026-08-21
 
 取り込み・更新・メンテナンスの記録。
 
+## [2026-08-22] backfill+file back | 歴史月(2025-04〜2026-02)の本文をoss_weekly_reporterから復旧
+
+- 実施: 本文0だった歴史月を [[OSS Weekly Reporter]] 週次アーカイブから canonical へ埋め戻し（[slack-logs PR #10](https://github.com/digitaldemocracy2030/slack-logs/pull/10)、マージ待ち）。256 channel-month・現行54ch・**17,548メッセージ**（スレッド返信含む）
+- 手法: 週次(チャンネル名基準)→月次(ID基準) jsonl.gz へ変換。月境界 Asia/Tokyo、週窓の重なりは ts で dedup、meta行は不変。`scripts/backfill_from_oss_weekly.py` を同梱（再現可能）
+- 検証: `0_全体お知らせ` 2025-10＝#4記載の25件と一致、`7_雑談` 2025-04＝357件（旧`1_雑談`が合流）、全行valid JSON・ts昇順・重複0、secret走査クリア
+- 判明した恒久事実: 2025年4月末に workspace 全体の **prefix 整理（チャンネル改名）** があった（`1_雑談`→`7_雑談` 等、週の出現が重複0で入れ替わることで確認）。歴史ログを名前で探すときの注意
+- 残る欠落: (1) 2025-01〜03 は workspace が2025年3月開始で元々無い、(2) 現行IDの無いアーカイブ/削除20ch（~3,591件）は `conversations.list`(archived含む) が要る follow-up
+- file back: [[Slackログアーカイブ]] の本文0段落を精緻化（復旧実施＋残欠落＋改名の注意を追記）
+
 ## [2026-08-21] file back | 歴史canonicalが本文0の原因＝Slack保持期限
 
 - 洞察: `raw/slack` の 2025-01〜2026-02 が本文0（メタのみ）なのは基盤不具合ではなく **Slackの保持期限（無料90日と推定）**。本文が入り始める 2026-03 が bootstrap(2026-06-09)の約90日前 ≈ 2026-03-11 と一致 → *バックフィル時点で古い本文は既に消失*。復旧はSlackからは不可、出所は [[OSS Weekly Reporter]] 週次のみ。今後の月は月次backup(M-2＝90日以内)が回る限り再発しない
