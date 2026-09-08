@@ -854,3 +854,14 @@ updated: 2026-08-21
 - 更新: [[広聴AI]]（ブラウザ版/サーバーレス版の登場を開発の歩みに追加）、[[Cartographer]]（2026年8月時点のステータス補足）
 - 更新: `wiki/index.md`（議事録テーブル）、`wiki/sources/index.md`
 - メモ: 元Docは継続更新される共同編集文書。hal欄・ネクストアクション欄は取得時点で未記入のため、会議本体の結論はまだ未取り込み
+
+## [2026-09-08] lint | 既存赤リンク4件の解消（エンティティページ作成）
+
+- 対象: `check:pages-links` が検出していた [[宮坂学]]・[[Liquitous]]・[[西田尚史]]・[[Plurality Tokyo]]（サミットページと過去logエントリからの赤リンク6箇所）
+- 新規ページ:
+  - [[宮坂学]] — 東京都副知事。シン東京2050（GovTech東京理事長として）とサミット登壇（Learning City）
+  - [[Liquitous]] — Liqlid提供企業。いどばた議論での言及、コアループ栗本氏ヒアリング、サミット「過信と諦め」講演
+  - [[西田尚史]] — コアループ Chief of Staff / Communication Lead。記者会見・クラファン・サミットプログラム企画
+  - [[Plurality Tokyo]] — 2023年4月のイベントとなめら会議。ブロードリスニング概念の国内流入の起点（ブロードリスニング本4章由来）
+- 更新: `wiki/index.md`（組織セクションに Liquitous・Plurality Tokyo）、[[主要メンバー]]（西田尚史をリンク化）
+- 根拠はいずれも既存の raw/broad-listening-book・raw/minutes とサミットイベントページの記述から集約

@@ -35,7 +35,7 @@ dd2030プロジェクトに関わる主要な人物の一覧。
 | **縄田恵子** | Operation/Process Lead。NRI在籍・元財務省。DP設計・調査会社交渉 |
 | **川辺陵真（Ryoma）** | Tech Lead。Code for Japan所属。SODPツール開発 |
 | **小倉政貴** | Policy Lead。経産省→ビズリーチ→PoliPoli出身。省庁ヒアリング・専門家調整 |
-| **西田尚史** | Chief of Staff / Communication Lead。記者会見・クラファン担当 |
+| **[[西田尚史]]** | Chief of Staff / Communication Lead。記者会見・クラファン担当 |
 | **赤澤直樹** | Reference Product Lead。[[ストップ詐欺広告]]の実装。BeaconLabs所属 |
 
 ## [[いどばた]]
