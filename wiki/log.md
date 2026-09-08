@@ -865,3 +865,10 @@ updated: 2026-08-21
   - [[Plurality Tokyo]] — 2023年4月のイベントとなめら会議。ブロードリスニング概念の国内流入の起点（ブロードリスニング本4章由来）
 - 更新: `wiki/index.md`（組織セクションに Liquitous・Plurality Tokyo）、[[主要メンバー]]（西田尚史をリンク化）
 - 根拠はいずれも既存の raw/broad-listening-book・raw/minutes とサミットイベントページの記述から集約
+
+## [2026-09-08] action | 合同ミーティングの停滞解消をAI支援で開始
+
+- 状況: Slack `#2_いどばたボット` で9/5「その後どうしましょう？」が未応答のまま停滞（mirror C09T4CVQA07 で確認）。書き出しフェーズは8月末に実質完了、halは参加辞退済み
+- 実施: kouchou-ai [Issue #921](https://github.com/digitaldemocracy2030/kouchou-ai/issues/921) を作成（ブラウザ版本流化の議論の場。事前まとめでの tokoroten 提案・西尾同意を広聴AIチームの意思決定に接続）
+- 方針: 非同期クローズ（同期会議はオプトイン）。Slack返信文とDocネクストアクション欄の貼り付け用ドラフトを西尾に提供
+- 更新: [[topics/nl-data-collection-tools-collaboration|自然言語データ収集ツールの関係と「一本化しない」協働]] に「クローズに向けた動き（2026年9月）」を追記
