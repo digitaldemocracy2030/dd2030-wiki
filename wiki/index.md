@@ -120,6 +120,7 @@ dd2030プロジェクトの知識ベース。プロジェクトに初めて参�
 | `project-coreloop.txt` | [[sources/project-coreloop-minutes|Project Coreloop 議事録]] — 企画書、専門家ヒアリング、熟議準備 |
 | `polimoney.txt` | [[sources/polimoney-minutes|Polimoney 議事録]] — 政治資金可視化とLedger開発 |
 | `idobata-project.txt` | [[sources/idobata-project-minutes|いどばた プロジェクト議事録]] — いどばた政策・ビジョンの設計と利用事例 |
+| `2026-08-16_kouchou-idobata-joint-meeting-prep.txt` | [[sources/kouchou-idobata-joint-meeting-prep|広聴AI×いどばた 合同ミーティング 事前まとめ]] — 「一本化しない」協働に向けた各メンバーの世界観の書き出し |
 
 ### ブロードリスニング本（raw/broad-listening-book/）
 

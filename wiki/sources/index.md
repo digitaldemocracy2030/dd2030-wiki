@@ -4,7 +4,7 @@ aliases: [ソースカタログ, sources, source catalog, 根拠ソース一覧]
 tags: [dd2030, source, index]
 sources: []
 created: 2026-06-30
-updated: 2026-08-03
+updated: 2026-09-08
 ---
 
 # ソースカタログ
@@ -31,6 +31,7 @@ dd2030 Wikiで参照している主要ソースへの入口。初めて読む人
 - [[sources/idobata-project-minutes|いどばた プロジェクト議事録]] — いどばた政策・いどばたビジョンの設計と利用事例
 - [[sources/polimoney-minutes|Polimoney 議事録]] — 政治資金可視化、Ledger、ロードマップ
 - [[sources/broad-listening-book-meeting|ブロードリスニング本 執筆定例 議事録]] — 書籍化と広聴AI開発定例の流れ
+- [[sources/kouchou-idobata-joint-meeting-prep|広聴AI×いどばた 合同ミーティング 事前まとめ]] — 自然言語データ収集ツール群の「一本化しない」協働に向けた各メンバーの世界観の書き出し（2026年8月〜）
 
 ## 概念・事例の体系化
 

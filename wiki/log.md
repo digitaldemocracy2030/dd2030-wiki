@@ -844,3 +844,13 @@ updated: 2026-08-21
   - `.claude/settings.local.json` はローカル設定で token らしき値を含み得るため staging しない
   - `git add -A` ではなく、今回触ったパスだけを明示して stage する
 - 更新: `wiki/index.md`, `AGENTS.md`, `CLAUDE.md`
+
+## [2026-09-08] ingest | 広聴AI×いどばた 合同ミーティング 事前まとめ（Google Docs）
+
+- 元情報: https://docs.google.com/document/d/1Wl5xCUkv2U8MkhW8-wLWr5TuLcDIpY2SFAnneKYL6Rk/ を `raw/minutes/2026-08-16_kouchou-idobata-joint-meeting-prep.txt` に保存
+- 新規ページ: [[sources/kouchou-idobata-joint-meeting-prep|広聴AI×いどばた 合同ミーティング 事前まとめ]]
+- 更新: [[topics/nl-data-collection-tools-collaboration|自然言語データ収集ツールの関係と「一本化しない」協働]]
+  - 8/17時点の要約以降に追記された各メンバーの回答を反映（kuboonの「いどばたボットはもはや作る意義がない・自治体横断システムに価値」への認識更新、ぶるーもの多元現実社との関係と引き継ぎの現状認識、tokorotenの kouchou-ai-serverless と「ブラウザ版を本流に」提案、ohkiの「技術探索とユーザー価値探索の乖離」論点）
+- 更新: [[広聴AI]]（ブラウザ版/サーバーレス版の登場を開発の歩みに追加）、[[Cartographer]]（2026年8月時点のステータス補足）
+- 更新: `wiki/index.md`（議事録テーブル）、`wiki/sources/index.md`
+- メモ: 元Docは継続更新される共同編集文書。hal欄・ネクストアクション欄は取得時点で未記入のため、会議本体の結論はまだ未取り込み

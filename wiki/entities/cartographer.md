@@ -5,8 +5,9 @@ tags: [dd2030, product, prototype]
 sources:
   - oss_weekly_reporter/data/2025-10-22_to_2025-10-29/raw/slack/2_開発_cartographer.json
   - oss_weekly_reporter/data/2025-11-12_to_2025-11-19/raw/slack/2_開発_cartographer.json
+  - raw/minutes/2026-08-16_kouchou-idobata-joint-meeting-prep.txt
 created: 2026-05-11
-updated: 2026-06-30
+updated: 2026-09-08
 ---
 
 # Cartographer
@@ -60,6 +61,10 @@ updated: 2026-06-30
 ## ステータス（2026年5月時点）
 
 直近の `2_開発_cartographer` チャンネルは入チャンネルメッセージのみで、開発の主活動はそちらでは行われていない様子。実証は広聴AI / いどばたの定例での活用が中心。**ツールとしては依然プロトタイプ段階**。
+
+## ステータス補足（2026年8月時点）
+
+広聴AI×いどばた合同ミーティングの事前まとめ（[[sources/kouchou-idobata-joint-meeting-prep|事前まとめドキュメント]]）で、ぶるーも（Shutaro Aoyama）は「立場上も実態も[[多元現実]]社の実務にはほぼ関わっていない。倍速会議=Cartographer をプロダクトとして今後どう扱うかは高木に聞いてほしいが、最近の会話の感触ではプロダクトとして磨き込んでいくつもりはあまりなさそう」と記述している。
 
 ## 関連ページ
 

@@ -14,8 +14,9 @@ sources:
   - raw/broad-listening-book/10_00_DD2030による広聴AIの開発活動.md
   - raw/broad-listening-book/12_ブロードリスニング要素技術解説.md
   - raw/broad-listening-book/13_広聴AIの技術スタック解説.md
+  - raw/minutes/2026-08-16_kouchou-idobata-joint-meeting-prep.txt
 created: 2026-04-18
-updated: 2026-06-30
+updated: 2026-09-08
 ---
 
 # 広聴AI（kouchou-ai）
@@ -71,6 +72,11 @@ updated: 2026-06-30
 - **プラグイン方式**への転換（入力・分析・可視化を独立拡張可能に）
 - **PyPI（Pythonパッケージ）化**によるCLI提供を構想
 - Next.js 16.xへのアップデート（セキュリティ修正含む）
+
+### ブラウザ版（サーバーレス）の登場（2026年8月）
+- tokoroten（中山心太）が広聴AIをペライチのHTMLにした [kouchou-ai-serverless](https://tokoroten.github.io/kouchou-ai-serverless/) を公開。設定画面から OpenAI API Key を差し込むだけで動き、Chrome 内蔵の Gemini Nano を使えば無料で動作する
+- tokoroten は「これを広聴AIの本流とするのが良いのでは」と提案し、西尾も「ライトなユーザにはインストールのトラブルがなくなる」と同意（[[sources/kouchou-idobata-joint-meeting-prep|合同ミーティング事前まとめ]]）
+- 位置づけの議論は [[topics/nl-data-collection-tools-collaboration|自然言語データ収集ツールの関係と「一本化しない」協働]] を参照
 
 ## 自治体での導入事例
 
