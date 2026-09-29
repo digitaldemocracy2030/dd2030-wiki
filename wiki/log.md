@@ -897,3 +897,9 @@ updated: 2026-09-30
   - 経緯の教訓: 摩擦低減（ドラフト提供・Issue化）では進まず、停滞を顕示選好と読み替えたことでクローズに至った。ohkiの「開発者が現場当事者でないOSSでは『次に何を作るか』を集団で決める内発的な力が働きにくい」がこの現象の説明になっている
   - 冒頭要旨と「未解決・今後」も解消状況を反映
 - 更新: `wiki/index.md` の該当行（結論を追記）
+
+## [2026-09-30] 訂正 | Civic AI の共著者表記を civic.ai に合わせる
+
+- 元情報: https://civic.ai/ （6pack.care からリダイレクト）の著者表記「Audrey Tang and Caroline Emmer De Albuquerque Green」。2026-09-30 に取得。
+- 訂正: [[Civic AI]] と [[オードリー・タン]] の「キャロライン・エマー」を「キャロライン・グリーン（Caroline Emmer De Albuquerque Green）」に。出典の解説ブログの要約ページ（sources/civic-ai-6pack-of-care-blog）はブログの記述の記録なので変更していない。
+- 同時に確認: 6原則の名称（Attentiveness / Responsibility / Competence / Responsiveness / Solidarity / Symbiosis）は civic.ai の表記と一致。

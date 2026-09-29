@@ -31,12 +31,12 @@ updated: 2026-08-18
 
 - **「ループを、閉じる」（サミット2026閉会）**: 18会場のSlidoに残された266件の質問すべてに書面で回答し、未処理の会場・省略した質問はいずれも0件と明記した。声を集めるだけでなく、意思決定に接続し話し手へ結果を返す**循環（ループ）**を閉じることを重視する。「レースではなくミッション」「参加者へ答えを返す」という考え方を示した（[audreyt.org/dd](https://audreyt.org/dd)）。
 - **可視の応答責任**: 「AIの要約だけでは"うなづき"が見えない」という懸念に対し、応答が可視であること（[[ボイス効果]]）で補うと一貫して答えている。
-- **[[Civic AI]]（6-Pack of Care）**: キャロライン・エマーとの研究プロジェクト。単一の巨大AIでなく、コミュニティごとにローカルAI「Kami」を運用する設計思想と、ケアを関係の「あいだ」で測る6つの原則を提示している。
+- **[[Civic AI]]（6-Pack of Care）**: キャロライン・グリーン（Caroline Emmer De Albuquerque Green）との研究プロジェクト。単一の巨大AIでなく、コミュニティごとにローカルAI「Kami」を運用する設計思想と、ケアを関係の「あいだ」で測る6つの原則を提示している。
 - **Plurality（多元性）**: [[グレン・ワイル]]らと体系化した「社会的差異を超えた協力のための技術」。dd2030の[[events/2025-06-12-kouchou-ai-reading-vol-1|広聴AI読書会vol.1]]でも『Plurality』本が読まれた。
 
 ## 参照
 
 - [[topics/key-people|主要メンバー]]
-- [[Civic AI]] — タンとエマーの研究プロジェクト
+- [[Civic AI]] — タンとグリーンの研究プロジェクト
 - [オードリー・タン「ループを、閉じる」— 閉会全文と266件のSlido書面回答](https://audreyt.org/dd)
 - [オードリー・タン「Plurality & 6pack.care」（LessWrong）](https://www.lesswrong.com/posts/anoK4akwe8PKjtzkL/plurality-and-6pack-care)
