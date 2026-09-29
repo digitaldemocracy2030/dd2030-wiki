@@ -2,12 +2,20 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-08-21
+updated: 2026-09-29
 ---
 
 # Wiki 作業ログ
 
 取り込み・更新・メンテナンスの記録。
+
+## [2026-09-29] ingest | Code for Japan Summit 2025 西尾発表の事前動画
+
+- 対象: [YouTube qW3uzu4uU-A](https://www.youtube.com/watch?v=qW3uzu4uU-A)「デジタル民主主義の川の流れを見る(Code for Japan Summit 2025/事前動画)」（2025-11-27公開、34分）と、同じ内容のスライド。文字起こしは西尾さんがYouTube自動生成字幕を貼り付けたもの
+- 追加: [[sources/cfj-summit-2025-river-talk|「デジタル民主主義の川の流れを見る」事前動画要約]]
+- 更新: [[events/2025-11-29-code-for-japan-summit|Code for Japan Summit 2025 登壇]]（発表内容の節を追加し、「スライド・録画は未確認」の注意書きを当日録画だけに限定）、[[sources/index|ソースカタログ]]
+- ASRの補正: 西尾さんのCosense（イベントメモ・draft）と既存ページで突合。年号「2020年」→2024年（3か所）、ひまわり学生運動「24時間占拠」→約24日間、「AI金性」→AI賢王制、国会質問は国民民主党の事例、世論地図は書籍原稿上の JAPAN CHOICE 事例。字幕の「4000人以上から2000件以上」（vTaiwan AIアセンブリ）は未確認と明記
+- 当日のパネル全体の録画（議事録では2026年2月ごろ公開予定）は未確認
 
 ## [2026-08-22] backfill+file back | 歴史月(2025-04〜2026-02)の本文をoss_weekly_reporterから復旧
 

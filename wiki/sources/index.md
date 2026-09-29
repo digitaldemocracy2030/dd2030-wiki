@@ -4,7 +4,7 @@ aliases: [ソースカタログ, sources, source catalog, 根拠ソース一覧]
 tags: [dd2030, source, index]
 sources: []
 created: 2026-06-30
-updated: 2026-09-08
+updated: 2026-09-29
 ---
 
 # ソースカタログ
@@ -13,6 +13,7 @@ updated: 2026-09-08
 
 - [[sources/digital-democracy-summit-2026-materials|デジタル民主主義サミット2026 当日投影資料・登壇記録]] — 主会場・第2会場・第3会場の当日投影資料397ページ／スライドと、国会議員マップ登壇全文、オードリー・タン閉会記録の要約
 - [[sources/digital-democracy-summit-2026-recordings|デジタル民主主義サミット2026 録画アーカイブ要約]] — YouTubeで公開された7セッションの録画（日本語自動生成字幕をもとに要約）。政治資金・Generative Polis・オンオフ横断・国会議員マップ・コアループ・源内・分かり合えなさの先へ
+- [[sources/cfj-summit-2025-river-talk|「デジタル民主主義の川の流れを見る」事前動画要約]] — Code for Japan Summit 2025 での西尾さんの発表を34分で説明し直した事前動画（自動生成字幕をもとに要約）。アラブの春→Polis→vTaiwan→Talk to the City→広聴AI→新しい試作群の系譜
 - [[sources/civic-ai-6pack-of-care-blog|Civic AI「6-Pack of Care」解説ブログ]] — オードリー・タンらのCivic AI（Kami／ケアの6原則）を日本語で咀嚼したコミュニティメンバーの外部ブログ要約
 
 dd2030 Wikiで参照している主要ソースへの入口。初めて読む人は、まず「何を知りたいか」に近いカテゴリから入るとよい。

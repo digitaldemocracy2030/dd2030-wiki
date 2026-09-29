@@ -9,8 +9,9 @@ sources:
   - raw/history/week38_20251203/slack.md
   - raw/minutes/weekly-general-meeting.txt
   - raw/minutes/broad-listening-book-meeting.txt
+  - https://www.youtube.com/watch?v=qW3uzu4uU-A
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-09-29
 ---
 
 # Code for Japan Summit 2025 登壇（2025-11-29）
@@ -34,6 +35,10 @@ updated: 2026-06-30
 
 `raw/minutes/broad-listening-book-meeting.txt` には、11月29日のサミットに向けて、5分LT、提出締切、講演資料、実例の扱い、インサイトの説明などを検討していた記録が残っている。特に、平時から継続的に取られたデータをブロードリスニングにかけると有用な結果が得られる、という事例の扱いが議論されていた。
 
+## 西尾さんの発表「デジタル民主主義の川の流れを見る」
+
+西尾さんの発表部分は持ち時間約5分に対してスライドが多かったため、同じスライドで約34分かけて説明した事前動画が2025年11月27日にYouTubeで公開されている（[動画](https://www.youtube.com/watch?v=qW3uzu4uU-A)、[スライド](https://docs.google.com/presentation/d/17tgJ8fYFwqrICRxSNpkCM4k_OWR5p1DBGJXiZAdSwy0/edit)）。セッション名の「ブーム」に対し、民主主義という川にデジタル技術が流れ込んで流れが変わっている、という見方を示した。そのうえで、アラブの春→Polis→ひまわり学生運動→vTaiwan→Talk to the City→日本のブロードリスニングと[[広聴AI]]→Cartographer・farbrain・DivConへと、ツールが互いに影響し合って生まれてきた経緯をたどる内容。要約は[[sources/cfj-summit-2025-river-talk|事前動画要約]]にある。
+
 ## 実施後の反応
 
 `raw/history/week38_20251203/slack.md` では、CfJサミットの影響もあり、「広聴AIって実際にどう使うの？」という話が盛り上がったと整理されている。収集データや活用事例、ロングコンテキスト対応LLM、PolisやSenseMakerとの連携案、ドキュメント整備やデモ環境の話が続いた。
@@ -48,7 +53,7 @@ updated: 2026-06-30
 
 ## 注意点
 
-このページは、週次Historyと議事録から確認できる範囲で整理している。登壇スライドや録画そのものの内容は、このWikiでは直接確認していない。個別発言の詳細ではなく、dd2030側で確認できる準備・実施後の反応・位置づけに絞って記述する。
+このページは、週次History・議事録と、西尾さんの事前動画（自動生成字幕）から確認できる範囲で整理している。セッション当日の録画（パネルディスカッション全体）の内容は、このWikiでは直接確認していない。個別発言の詳細ではなく、dd2030側で確認できる準備・実施後の反応・位置づけに絞って記述する。
 
 ## 関連ページ
 
@@ -60,5 +65,6 @@ updated: 2026-06-30
 - [[sources/weekly-history-reports|週次Historyレポート]] — このイベントの主な出典
 - [[sources/weekly-general-meeting|週次全体定例 議事録]] — 登壇予定・発表内容の共有を確認できる出典
 - [[sources/broad-listening-book-meeting|ブロードリスニング本 執筆定例 議事録]] — 講演準備と書籍構成への接続を確認できる出典
+- [[sources/cfj-summit-2025-river-talk|「デジタル民主主義の川の流れを見る」事前動画要約]] — 西尾さんの発表部分の完全版説明
 - [[時系列まとめ]] — 四半期ごとの活動記録
 - [[初年度まとめ]] — 初年度の詳細な時系列
