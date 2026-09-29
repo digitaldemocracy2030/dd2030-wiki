@@ -2,12 +2,20 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-09-29
+updated: 2026-09-30
 ---
 
 # Wiki 作業ログ
 
 取り込み・更新・メンテナンスの記録。
+
+## [2026-09-30] ingest | Code for Japan Summit 2025 セッション当日の録画
+
+- 対象: [YouTube Laef392EX6g](https://www.youtube.com/watch?v=Laef392EX6g)「Code for Japan Summit 2025 デジタル民主主義ブームを振り返る」（Code for Japan 公式、2026-01-30公開、39分30秒）。日本語自動生成字幕で読んだ
+- 追加: [[sources/cfj-summit-2025-session-recording|「デジタル民主主義ブームを振り返る」録画要約]]
+- 更新: [[events/2025-11-29-code-for-japan-summit|Code for Japan Summit 2025 登壇]]（当日の様子の節を追加し、「当日録画は未確認」の注意書きを削除）、[[sources/cfj-summit-2025-river-talk|事前動画要約]]（関連ページ）、[[sources/index|ソースカタログ]]
+- 議事録には「録画は2月ごろ公開らしい」とあったが、実際は1月30日に公開されていた
+- 突合: 西尾さんの当日の発表は事前動画の5分版。締めは事前動画の「5年後」に対し当日は「30年後」。vTaiwan の人数は事前動画「4000人以上」、当日「400人」と聞こえ、どちらもASRのため未確認と明記。モデレーター以外の Code for Japan 理事は Cosense のメモどおり「山口さん」とし、フルネームは不確かと明記
 
 ## [2026-09-29] ingest | Code for Japan Summit 2025 西尾発表の事前動画
 

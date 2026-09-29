@@ -6,7 +6,7 @@ sources:
   - https://www.youtube.com/watch?v=qW3uzu4uU-A
   - https://docs.google.com/presentation/d/17tgJ8fYFwqrICRxSNpkCM4k_OWR5p1DBGJXiZAdSwy0/edit
 created: 2026-09-29
-updated: 2026-09-29
+updated: 2026-09-30
 ---
 
 # 「デジタル民主主義の川の流れを見る」事前動画要約（Code for Japan Summit 2025）
@@ -73,6 +73,7 @@ updated: 2026-09-29
 ## 関連ページ
 
 - [[events/2025-11-29-code-for-japan-summit|Code for Japan Summit 2025 登壇]] — この発表が行われたイベント
+- [[sources/cfj-summit-2025-session-recording|「デジタル民主主義ブームを振り返る」録画要約]] — 当日の5分版と、他の登壇者の発表・討論
 - [[ブロードリスニング]] — 発表の中心概念
 - [[広聴AI]] / [[いどばた]] / [[Cartographer]] / [[Polimoney]] — 発表で扱われたDD2030のプロダクト
 - [[オードリー・タン]] / [[グレン・ワイル]] / [[Plurality Tokyo]] — 海外の系譜と日本への接続
