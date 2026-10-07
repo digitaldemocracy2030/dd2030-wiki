@@ -7,15 +7,16 @@ sources:
   - https://www.lesswrong.com/posts/anoK4akwe8PKjtzkL/plurality-and-6pack-care
   - https://mutimoumai.hatenablog.com/entry/2026/08/16/043931
   - raw/minutes/project-coreloop.txt
+  - https://audreyt.org/
 created: 2026-08-18
-updated: 2026-08-18
+updated: 2026-10-08
 ---
 
 # オードリー・タン
 
 ## 概要
 
-台湾のデジタル民主主義を代表する人物。プログラマーから台湾初代デジタル大臣（デジタル発展部長）を務め、退任後はサイバー大使（Cyber Ambassador）として活動する。[[ブロードリスニング]]や[[熟議民主主義]]の思想的・実践的な源流の一人であり、dd2030の活動とも複数の接点を持つ。
+台湾のデジタル民主主義を代表する人物。プログラマーから2016年に台湾初のデジタル担当の政務委員（デジタル大臣）となり、2022年に数位発展部（デジタル発展部）が発足すると初代部長を務めた（2016年・2022年は『Plurality』2-1「玉山からの眺め」）。2024年に退任。現在の肩書きは台湾のサイバー大使（Cyber Ambassador）で、現職の大臣ではない（[audreyt.org](https://audreyt.org/) のプロフィール、2026-05 時点のスナップショットで確認）。[[ブロードリスニング]]や[[熟議民主主義]]の思想的・実践的な源流の一人であり、dd2030の活動とも複数の接点を持つ。
 
 ## dd2030・関連活動との接点
 
