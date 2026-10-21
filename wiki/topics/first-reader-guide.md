@@ -33,7 +33,7 @@ dd2030 Wikiを初めて読む人向けの入口。ページ数が増えてきた
 
 Wiki本文の根拠を辿りたい場合は [[sources/index|ソースカタログ]] から入る。議事録、週次History、ブロードリスニング本原稿、個別ドキュメントのどれを読むべきかを用途別に整理している。
 
-Slackのチャットログ本体を調べる場合は [[Slackログアーカイブ]] を読む。現在の正置き場は `digitaldemocracy2030/slack-logs` で、直近ログは `mirror/`、月次保全ログは `raw/` を検索して参照する。ただし、2026年6月30日時点では2025-01〜2026-02の月次canonicalに本文が入っていないため、その期間の本文確認には [[OSS Weekly Reporter]] の週次raw/markdownも併用する。
+Slackのチャットログ本体を調べる場合は [[Slackログアーカイブ]] を読む。現在の正置き場は `digitaldemocracy2030/slack-logs` で、直近ログは `mirror/`、月次保全ログは `raw/` を検索して参照する。2025-04〜2026-02 の本文は 2026-08-24 に [[OSS Weekly Reporter]] から埋め戻された。[[OSS Weekly Reporter]] は 2026-10-22 に更新を止め、2026-10-21 週までの週次要約と GitHub Issues/PR の過去分を読むための凍結アーカイブになっている。
 
 ## 関心別の入口
 

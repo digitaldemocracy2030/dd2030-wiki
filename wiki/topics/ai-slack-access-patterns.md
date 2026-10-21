@@ -23,7 +23,7 @@ updated: 2026-08-21
 |---|---|---|
 | 歴史的問い合わせ | `raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz` | 月次 canonical。まず本文件数を確認し、2025-01〜2026-02のように本文0件なら `oss_weekly_reporter` を併用 |
 | 現状クエリ | `mirror/slack/<channel_id>.jsonl.gz` | 直近75日程度を6時間ごとに上書き更新 |
-| 週次の要約・GitHub横断 | `nishio/oss_weekly_reporter` data ブランチ | `ai_reports/` と GitHub Issues/PR の補助アーカイブ |
+| 週次の要約・GitHub横断 | `nishio/oss_weekly_reporter` data ブランチ | `ai_reports/` と GitHub Issues/PR の補助アーカイブ。2026-10-22 に更新停止、2026-10-21 週までの過去分のみ |
 
 2026-06-30 時点の `mirror/sync.json` は、58チャンネル・506メッセージ・window 14日（`2026-06-16T04:12:50Z` 〜 `2026-06-30T04:12:50Z`）を示していた。**2026-08-21 に window を 14日→75日 へ拡大**し、canonical（約2ヶ月遅延）と mirror の間の盲点を無くした（→ [[アーカイブパイプライン設計]]）。
 
@@ -75,7 +75,7 @@ updated: 2026-08-21
 ### 案1. 既存の併用を明文化する（当面ゼロコスト）
 
 - タイプ A → slack-logs。月次canonicalに本文がない古い期間は `oss_weekly_reporter` も併用
-- タイプ B → [`nishio/oss_weekly_reporter`](https://github.com/nishio/oss_weekly_reporter) の data ブランチ（毎週水曜更新、最大遅延1週間、`ai_reports/slack.md` で要約済み）
+- タイプ B → [`nishio/oss_weekly_reporter`](https://github.com/nishio/oss_weekly_reporter) の data ブランチ（毎週水曜更新、最大遅延1週間、`ai_reports/slack.md` で要約済み）。※2026-10-22 に更新を停止したため、今は 2026-10-21 週までの過去分のみ
 
 **メリット**: 何もしなくて済む。[`archive_index.md`](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/archive_index.md) と [`scripts/search-archive.py`](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/scripts/search-archive.py) で既に動いている。
 **デメリット**: 脱-nishio-依存になっていない。Slack→Discord 移行で oss_weekly_reporter 側が止まるリスク。

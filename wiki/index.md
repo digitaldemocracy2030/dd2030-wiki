@@ -31,7 +31,7 @@ dd2030プロジェクトの知識ベース。プロジェクトに初めて参�
 
 - [[コアループ]] — 詐欺広告対策の市民熟議プロジェクト（2026年〜）
 - [[ブロードリスニング本]] — インプレスで出版決定し、2026年6月時点で校正対応が続いていた書籍化プロジェクト
-- [[OSS Weekly Reporter]] — dd2030のSlack/GitHub週次アーカイブを生成するツール
+- [[OSS Weekly Reporter]] — dd2030のSlack/GitHub週次アーカイブを生成していたツール（2026-10-22 更新停止）
 
 ## イベント
 
@@ -145,7 +145,7 @@ digitaldemocracy2030/broad-listening-book リポジトリから取得した書�
 
 Slack のチャットログ本体は、dd2030-wiki には取り込まず、別リポジトリ [`digitaldemocracy2030/slack-logs`](https://github.com/digitaldemocracy2030/slack-logs) に保管している。直近ログは `mirror/`、月次保全ログは `raw/` を検索ベースで参照する。
 
-週次AIレポートと GitHub Issues/PR の補助アーカイブは、引き続き `nishio/oss_weekly_reporter`（`data` ブランチ）を参照する。
+週次AIレポートと GitHub Issues/PR の過去分は `nishio/oss_weekly_reporter`（`data` ブランチ）を参照する（2026-10-22 に更新停止。2025-03〜2026-10-21 の週次分を凍結アーカイブとして残す）。
 
 - 概要・参照手順: [archive_index.md](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/archive_index.md)
 - wiki内の読み方: [[Slackログアーカイブ]]

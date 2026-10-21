@@ -30,6 +30,8 @@ dd2030 の Slack public channel ログは、dd2030-wiki には直接取り込ま
 
 **復旧の実施**（2026-08-22）: この歴史分を [[OSS Weekly Reporter]] から canonical へ埋め戻した（[slack-logs PR #10](https://github.com/digitaldemocracy2030/slack-logs/pull/10)、マージ後に有効）。範囲 2025-04〜2026-02・現行54ch・17,548メッセージ（スレッド返信含む）。週次(名基準)→月次(ID基準)へ変換し、月境界は Asia/Tokyo、週窓の重複は ts で dedup。残る欠落は2つ: (1) **2025-01〜03** は workspace が2025年3月開始のため元々存在しない、(2) **現行workspaceに無いアーカイブ/削除20ch（~3,591件）** は名→IDを解決できず未対応で、復旧には `conversations.list`（archived含む）でのID取得が要る（issue #4 の follow-up）。
 
+**訂正（2026-10-22）**: (1) は誤り。[[OSS Weekly Reporter]] の最初期の週（`data/2025-03-04_to_2025-04-03` など4ディレクトリ）は `raw/slack/` を持たない古い配置で、チャンネル別 JSON が週ディレクトリ直下にある。そこに 2025-03（JST）のメッセージが約2,091件（参加通知込み、15チャンネル）あり、PR #10 の埋め戻し対象から漏れていた。`slack-logs` の `2025-03.jsonl.gz` は本文0件のまま（2026-10-22 確認）。(2) の未解決チャンネルは、名前で突き合わせると13（`2_開発_デジ民ウェブサイト`、`2_いどばたp1_opt1_基本機能` ほか）。
+
 **チャンネル改名の注意**: 2025年4月末に workspace 全体の prefix 整理があり、多くのチャンネルが改名された（例: `1_雑談`→`7_雑談`、`自治体_meetup_運営`→`2_自治体_meetup_運営`、`8_開発_公聴ai_figma`→`8_開発_広聴ai_figma`、Devin系の複数名前→`8_devinと人間たちの部屋`）。歴史ログを**名前**で探すときは旧名も候補に入れる。canonical は ID 基準なので、同一チャンネルの過去は改名前後で同じ `<channel_id>/` に入る。
 
 ## 読む順序
@@ -37,7 +39,7 @@ dd2030 の Slack public channel ログは、dd2030-wiki には直接取り込ま
 1. 直近の状況を知りたい時は `mirror/sync.json` で同期時刻と対象チャンネルを確認する。
 2. 直近75日程度の発言は `mirror/slack/*.jsonl.gz` を検索する。
 3. 過去月の議論は `raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz` を検索する。
-4. 月次canonicalに本文がない期間、または週次の要約や GitHub Issues/PR との横断整理が必要な場合は、補助アーカイブとして [[OSS Weekly Reporter]] を読む。
+4. 月次canonicalに本文がない期間、または週次の要約や GitHub Issues/PR との横断整理が必要な場合は、補助アーカイブとして [[OSS Weekly Reporter]] を読む（2026-10-21 週で凍結、それ以降の週は無い）。
 
 ## 検索例
 
@@ -90,5 +92,5 @@ python3 scripts/search-archive.py --list-channels
 - [[events/2026-06-21-coreloop-online-deliberation|コアループ オンライン熟議（2026-06-21）]] — mirror から当日運用を確認した例
 - [[sources/archive-pipeline-design-note|アーカイブパイプライン設計メモ]] — raw/mirror構成の背景にある設計メモ要約
 - [[sources/oss-weekly-reporter-handoff|OSS Weekly Reporter 移管Slackメモ]] — slack-logs移管の経緯ソース要約
-- [[OSS Weekly Reporter]] — 週次AIレポートと GitHub Issues/PR 補助アーカイブ
+- [[OSS Weekly Reporter]] — 週次AIレポートと GitHub Issues/PR 補助アーカイブ（2026-10-22 更新停止）
 - [[dd2030-wiki の dd2030 org 移行]] — Slackで出たWiki本体のorg移行相談と、旧URLを残す作業チェックリスト

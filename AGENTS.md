@@ -30,7 +30,7 @@ dd2030-wiki/
 └── archive_index.md        # 外部アーカイブ（Slack/GitHub生ログ）の参照ガイド
 ```
 
-**外部アーカイブ**: Slack のチャットログ本体は `digitaldemocracy2030/slack-logs` (main ブランチ) に置かれている。週次AIレポートと GitHub Issues/PR 生データは補助アーカイブとして `nishio/oss_weekly_reporter` (data ブランチ) を参照する。どちらも dd2030-wiki にはコピーしない。ローカルで検索するための checkout は `/tmp` ではなく、必ずリポジトリ直下の `./work/`（git管理外）に置く。詳細・参照手順は [archive_index.md](archive_index.md) と [scripts/search-archive.py](scripts/search-archive.py) を参照。
+**外部アーカイブ**: Slack のチャットログ本体は `digitaldemocracy2030/slack-logs` (main ブランチ) に置かれている。週次AIレポートと GitHub Issues/PR 生データの過去分は補助アーカイブとして `nishio/oss_weekly_reporter` (data ブランチ) を参照する（2026-10-22 に更新停止。2025-03〜2026-10-21 の週次分を凍結アーカイブとして残す）。どちらも dd2030-wiki にはコピーしない。ローカルで検索するための checkout は `/tmp` ではなく、必ずリポジトリ直下の `./work/`（git管理外）に置く。詳細・参照手順は [archive_index.md](archive_index.md) と [scripts/search-archive.py](scripts/search-archive.py) を参照。
 
 ## rawディレクトリの規約
 
@@ -164,7 +164,7 @@ cp -r work/bl-book/column raw/broad-listening-book/
 | 週次レポート | raw/history/week*/ | GitHub digitaldemocracy2030/website | 毎週 |
 | Slack生ログ（canonical） | （外部）`work/slack-logs/raw/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 毎月（保全、遅延あり） |
 | Slack現状ミラー | （外部）`work/slack-logs/mirror/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 6時間ごと |
-| 週次AI/GitHub補助アーカイブ | （外部）`work/oss_weekly_reporter/data/` | GitHub nishio/oss_weekly_reporter `data` ブランチ | 毎週 |
+| 週次AI/GitHub補助アーカイブ | （外部）`work/oss_weekly_reporter/data/` | GitHub nishio/oss_weekly_reporter `data` ブランチ | 停止（2026-10-21 週が最終） |
 
 #### 外部アーカイブ（Slackチャットログ / 週次AI・GitHub）の参照
 
@@ -176,7 +176,7 @@ mkdir -p work
 gh repo clone digitaldemocracy2030/slack-logs work/slack-logs -- --depth 1
 # 既に clone 済みなら: git -C work/slack-logs pull --ff-only
 
-# 週次AIレポート / GitHub Issues・PR 補助アーカイブ
+# 週次AIレポート / GitHub Issues・PR 補助アーカイブ（2026-10-21 週で凍結）
 gh repo clone nishio/oss_weekly_reporter work/oss_weekly_reporter -- \
   --depth 1 --branch data --single-branch
 # 既に clone 済みなら: git -C work/oss_weekly_reporter pull --ff-only
@@ -185,7 +185,7 @@ gh repo clone nishio/oss_weekly_reporter work/oss_weekly_reporter -- \
 読む順序:
 1. 直近の Slack は `slack-logs/mirror/sync.json` で対象チャンネルと同期時刻を確認し、`mirror/slack/*.jsonl.gz` を検索する
 2. 過去月の Slack は `slack-logs/raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz` を検索する
-3. 週次の文脈把握や GitHub Issues/PR は `oss_weekly_reporter/data/<week>/ai_reports/` → `markdown/` → `raw/` の順に読む
+3. 2026-10-21 までの週次の文脈把握や GitHub Issues/PR は `oss_weekly_reporter/data/<week>/ai_reports/` → `markdown/` → `raw/` の順に読む
 4. 検索は `scripts/search-archive.py` 経由で行う
 
 引用するときは出典にリポジトリ名とファイルパスを含める（例: `digitaldemocracy2030/slack-logs/raw/slack/C08F7JZPD63/2026-04.jsonl.gz`、または `oss_weekly_reporter/data/2025-12-24_to_2025-12-31/ai_reports/slack.md`）。Slack の私的発言・雑談は wiki に持ち込まない。

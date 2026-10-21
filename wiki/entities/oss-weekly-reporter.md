@@ -13,8 +13,10 @@ sources:
   - https://github.com/digitaldemocracy2030/website/issues/170
   - https://github.com/digitaldemocracy2030/website/issues/173
   - https://github.com/digitaldemocracy2030/website/issues/177
+  - https://github.com/digitaldemocracy2030/slack-logs/pull/10
+  - nishio/oss_weekly_reporter の GitHub Actions 実行履歴（2026-10-22 確認）
 created: 2026-05-11
-updated: 2026-07-09
+updated: 2026-10-22
 ---
 
 # OSS Weekly Reporter
@@ -26,6 +28,17 @@ updated: 2026-07-09
 リポジトリ: [`nishio/oss_weekly_reporter`](https://github.com/nishio/oss_weekly_reporter)
 
 dd2030 wiki の初年度まとめ作成時には、これが**[[初年度まとめ|過去1年間のSlackログとGitHub活動データの一次アーカイブ]]**として機能した。現在の Slack チャットログ本体は [`digitaldemocracy2030/slack-logs`](https://github.com/digitaldemocracy2030/slack-logs) に移り、OSS Weekly Reporter は週次AIレポートと GitHub Issues/PR の補助アーカイブとして参照する。詳細な参照手順は [archive_index.md](https://github.com/digitaldemocracy2030/dd2030-wiki/blob/main/archive_index.md) を参照。
+
+## 更新停止（2026-10-22）
+
+2026-10-22 に、西尾の判断で GitHub Actions の3つの workflow（`Extract Slack Logs`、`Generate Weekly Report`、`Test GitHub Report`）を無効にした。data ブランチは消さず、2025-03〜2026-10-21 の週次分を凍結アーカイブとして残す。
+
+止めた時点の状況（2026-10-22 確認）:
+
+- `Extract Slack Logs`（extract-logs.yml）は記録に残る 59 回の実行が全部失敗で、一度も成功していなかった。Slack の取得は `Generate Weekly Report`（weekly-report.yml）が自分で行っていて、こちらは成功し続け、data ブランチは 2026-10-21 まで更新されていた
+- Slack のチャットログ本体は [[Slackログアーカイブ|digitaldemocracy2030/slack-logs]] が担っていて、2026-10-21 にも同期していた。2025-04〜2026-02 の本文も 2026-08-24 に本ツールの data から埋め戻し済み（[slack-logs PR #10](https://github.com/digitaldemocracy2030/slack-logs/pull/10)）
+- 週次AI要約と GitHub Issues/PR 週次スナップショットは本ツールにしか無かったが、今後は使わないと西尾が判断した
+- `digitaldemocracy2030/website` の `weekly-summary.yml` は本ツールの data ブランチの最新週を読んで History の PR を作る。ただし反映は Week50（2026-04-17 merge）で止まっていて、PR #211 は未 merge のまま bot が更新し続けている。本ツールを止めても、この workflow は 2026-10-21 週のデータを読み続ける。website 側の扱いは未定
 
 ## 現在の位置づけ（2026-06-30）
 

@@ -2,12 +2,16 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-09-30
+updated: 2026-10-22
 ---
 
 # Wiki 作業ログ
 
 取り込み・更新・メンテナンスの記録。
+
+## [2026-10-22] 運用 | OSS Weekly Reporter の更新停止
+- `nishio/oss_weekly_reporter` の workflow 3本を無効化（別 workflow の Slack 抽出は一度も成功していなかったが、週次レポート側は Slack 込みで動いていた。Slack本体は slack-logs に移行済み、週次要約・GitHub スナップショットは今後使わないと西尾が判断）。data ブランチは 2026-10-21 週までの凍結アーカイブとして残す
+- [[OSS Weekly Reporter]] に「更新停止」節を追加。CLAUDE.md / AGENTS.md / archive_index.md / README.md / PLAN.md / index / [[Slackログアーカイブ]] / [[AI から Slack ログを参照するパターン]] / [[初めて読む人へ]] の参照を「過去分のみ」に更新。2025-04〜2026-02 の本文が slack-logs に埋め戻し済み（PR #10）であることも案内に反映
 
 ## [2026-10-08] 訂正 | オードリー・タンの肩書きに出典を付ける
 

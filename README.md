@@ -142,7 +142,7 @@ python3 scripts/search-archive.py --channel コアループ "提言"
 python3 scripts/search-archive.py --layer raw --month 2026-04 "キーワード"
 ```
 
-週次AIレポートと GitHub Issues/PR の補助アーカイブは `nishio/oss_weekly_reporter` の `data` ブランチを使う。
+週次AIレポートと GitHub Issues/PR の過去分の補助アーカイブは `nishio/oss_weekly_reporter` の `data` ブランチを使う（2026-10-22 に更新停止。2025-03〜2026-10-21 の週次分を凍結アーカイブとして残す）。
 
 ```bash
 mkdir -p work

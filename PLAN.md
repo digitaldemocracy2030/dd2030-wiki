@@ -16,7 +16,7 @@
   - `raw/documents/` と `raw/slack/` の個別ソース4本はソース要約済み
 - 外部アーカイブ:
   - Slackチャットログ本体は `digitaldemocracy2030/slack-logs`
-  - 週次AIレポートとGitHub Issues/PR補助アーカイブは `nishio/oss_weekly_reporter`
+  - 週次AIレポートとGitHub Issues/PR補助アーカイブは `nishio/oss_weekly_reporter`（2026-10-22 更新停止、過去分のみ）
   - `scripts/search-archive.py` は `slack-logs` をデフォルト検索先として扱う
 
 ## 完了
@@ -59,7 +59,7 @@
 
 4. **外部アーカイブの現状反映**
    - `slack-logs` の monthly canonical と rolling mirror の同期状態を必要に応じて確認する。
-   - `oss_weekly_reporter` は補助アーカイブとして扱い、Slack本体の正は `slack-logs` とする。
+   - `oss_weekly_reporter` は 2026-10-21 週までの凍結した補助アーカイブとして扱い、Slack本体の正は `slack-logs` とする。
 
 5. **公開導線の改善**
    - [[topics/first-reader-guide|初めて読む人へ]] を追加し、`overview` / `index` / `timeline` / `sources` から辿れるようにした。

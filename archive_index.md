@@ -2,7 +2,7 @@
 
 dd2030-wiki は基本的に `raw/` の資料だけを ingest して `wiki/` を生成するが、それとは別に **大量の Slack/GitHub ログを持つ外部リポジトリ** を「検索ベースで部分的に読む」ためのアーカイブとして扱う。
 
-このファイルは、その外部アーカイブが何で、どこにあって、どう読めばいいかを書く。2026-06-30 現在、Slack のチャットログ本体は `digitaldemocracy2030/slack-logs` を正とし、`nishio/oss_weekly_reporter` は週次AIレポートと GitHub Issues/PR データを読むための補助アーカイブとして扱う。
+このファイルは、その外部アーカイブが何で、どこにあって、どう読めばいいかを書く。2026-06-30 現在、Slack のチャットログ本体は `digitaldemocracy2030/slack-logs` を正とし、`nishio/oss_weekly_reporter` は週次AIレポートと GitHub Issues/PR データの過去分を読むための補助アーカイブとして扱う（2026-10-22 に更新停止。2025-03〜2026-10-21 の週次分を凍結アーカイブとして残す）。
 
 ローカルで検索するための checkout は、必ずこのリポジトリ直下の `./work/` に置く。`/tmp` は OS や他プロセスに消される可能性があり、検索でヒットしない時に「データがない」のか「checkout が欠けている」のか切り分けにくくなるため使わない。
 
@@ -39,7 +39,7 @@ slack-logs/
 
 ## 補助アーカイブ（週次AIレポート / GitHub）
 
-Slack の「チャットログ置き場」は上記 `digitaldemocracy2030/slack-logs` だが、以下が必要な場合は引き続き `nishio/oss_weekly_reporter` の data ブランチを読む:
+Slack の「チャットログ置き場」は上記 `digitaldemocracy2030/slack-logs` だが、2026-10-21 までの期間について以下が必要な場合は `nishio/oss_weekly_reporter` の data ブランチを読む。2026-10-22 に週次の自動実行（Slack抽出・週次レポート生成）を止めたので、これより後の週は無い:
 
 - 週次単位の LLM 要約（`ai_reports/slack.md`）
 - チャンネル横断で整形された週次 Markdown（`markdown/slack/all_summary.md`）
@@ -57,7 +57,7 @@ gh repo clone nishio/oss_weekly_reporter work/oss_weekly_reporter -- \
 
 更新を取り込むときは `git -C work/oss_weekly_reporter pull --ff-only`。
 
-`work/oss_weekly_reporter/data/` 配下に **週次スナップショット**ディレクトリが並ぶ（2025-03 〜 2026-05、約14ヶ月、67ディレクトリ、合計 117MB）。
+`work/oss_weekly_reporter/data/` 配下に **週次スナップショット**ディレクトリが並ぶ（2025-03 〜 2026-10-21 で凍結。2026-05 時点の計測で67ディレクトリ・117MB）。
 
 ディレクトリ名は `YYYY-MM-DD_to_YYYY-MM-DD` 形式。一部 `*-2` のような重複ディレクトリがあるので注意（同期ジョブの再走で生成されたもの）。
 
@@ -113,7 +113,7 @@ LLM が context を爆発させずにこのアーカイブから情報を取る�
 2. **直近の発言検索は `mirror/slack/*.jsonl.gz`** — `scripts/search-archive.py --source slack-logs --layer mirror <keyword>` で検索する
 3. **チャンネルを絞る時は `--channel` を使う** — `--list-channels` で確認した channel id だけでなく、`--channel コアループ` のようにチャンネル名の一部でも絞れる
 4. **過去月の発言検索は `raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz`** — `scripts/search-archive.py --source slack-logs --layer raw --month YYYY-MM <keyword>` で検索する
-5. **月次ファイルがメタデータだけの期間は補助アーカイブへ戻る** — 2026-06-30時点では `slack-logs/raw/slack/*/2025-01.jsonl.gz` 〜 `2026-02.jsonl.gz` は各チャンネル1行のメタデータのみで、本文は入っていなかった。2026年3月・4月は本文あり。古い出来事の告知本文などを確認する場合は `oss_weekly_reporter/data/<week>/raw/slack/` や `markdown/slack/` を併用する
+5. **月次ファイルがメタデータだけの期間は補助アーカイブへ戻る** — 2026-06-30時点では `slack-logs/raw/slack/*/2025-01.jsonl.gz` 〜 `2026-02.jsonl.gz` は各チャンネル1行のメタデータのみで、本文は入っていなかった。2026年3月・4月は本文あり。その後 2026-08-24 に 2025-04〜2026-02 の本文が `oss_weekly_reporter` から canonical へ埋め戻された（[slack-logs PR #10](https://github.com/digitaldemocracy2030/slack-logs/pull/10)）。それでも本文が無い場合（現行 workspace に無いアーカイブ/削除チャンネルなど）は `oss_weekly_reporter/data/<week>/raw/slack/` や `markdown/slack/` を併用する
 6. **ユーザー名解決は `mirror/users.json` または `state/users-<YYYY-MM>.json`** — wiki へは個人の雑談・私的な発言を持ち込まない
 
 ### 週次AIレポート / GitHub
