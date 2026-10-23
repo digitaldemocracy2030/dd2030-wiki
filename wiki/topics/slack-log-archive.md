@@ -6,7 +6,7 @@ sources:
   - digitaldemocracy2030/slack-logs/README.md
   - digitaldemocracy2030/slack-logs/mirror/sync.json
 created: 2026-06-30
-updated: 2026-08-22
+updated: 2026-10-23
 ---
 
 # Slackログアーカイブ
@@ -31,6 +31,10 @@ dd2030 の Slack public channel ログは、dd2030-wiki には直接取り込ま
 **復旧の実施**（2026-08-22）: この歴史分を [[OSS Weekly Reporter]] から canonical へ埋め戻した（[slack-logs PR #10](https://github.com/digitaldemocracy2030/slack-logs/pull/10)、マージ後に有効）。範囲 2025-04〜2026-02・現行54ch・17,548メッセージ（スレッド返信含む）。週次(名基準)→月次(ID基準)へ変換し、月境界は Asia/Tokyo、週窓の重複は ts で dedup。残る欠落は2つ: (1) **2025-01〜03** は workspace が2025年3月開始のため元々存在しない、(2) **現行workspaceに無いアーカイブ/削除20ch（~3,591件）** は名→IDを解決できず未対応で、復旧には `conversations.list`（archived含む）でのID取得が要る（issue #4 の follow-up）。
 
 **訂正（2026-10-22）**: (1) は誤り。[[OSS Weekly Reporter]] の最初期の週（`data/2025-03-04_to_2025-04-03` など4ディレクトリ）は `raw/slack/` を持たない古い配置で、チャンネル別 JSON が週ディレクトリ直下にある。そこに 2025-03（JST）のメッセージが約2,091件（参加通知込み、15チャンネル）あり、PR #10 の埋め戻し対象から漏れていた。`slack-logs` の `2025-03.jsonl.gz` は本文0件のまま（2026-10-22 確認）。(2) の未解決チャンネルは、名前で突き合わせると13（`2_開発_デジ民ウェブサイト`、`2_いどばたp1_opt1_基本機能` ほか）。
+
+**残りの埋め戻し（2026-10-23）**: 上の (1)(2) と、ブートストラップ時に保持期限を過ぎていた 2026-03-01〜03-12 を [slack-logs PR #12](https://github.com/digitaldemocracy2030/slack-logs/pull/12) で埋め戻した（4,469件、2026-10-23 merge）。改名13名・アーカイブ4ch は現行IDへ寄せ、IDが取れない削除済み4ch は `raw/slack/deleted-<旧名>/` に置いた。これで [[OSS Weekly Reporter]] に残っていた Slack 本文は raw/ に移った。同じ目的で 2026-06-30 に出ていた PR #5 は未merge のまま残っていたので、月ごとの件数を突き合わせて（2025-03・2025-06〜2026-04 で一致）close した。
+
+**月ファイルを読むときの注意**（2026-10-23 実測）: スレッドの返信は親メッセージの月のファイルに入る（スレッドを1ファイルにそろえる設計）。月をまたぐ返信は 27,576件中272件（約1%、親からの遅れは最大65日）なので、ある月の発言を漏れなく見るときは前月のファイルも読む。また「チャンネルにも送信」した返信（thread_broadcast）は同じ行が2回入っている（341件）。件数を数えるときは ts で重複を除く。backup 側での重複除去と、古い月を取り直しても本文を減らさない検査は [slack-logs PR #13](https://github.com/digitaldemocracy2030/slack-logs/pull/13)（2026-10-23 時点で未merge）。
 
 **チャンネル改名の注意**: 2025年4月末に workspace 全体の prefix 整理があり、多くのチャンネルが改名された（例: `1_雑談`→`7_雑談`、`自治体_meetup_運営`→`2_自治体_meetup_運営`、`8_開発_公聴ai_figma`→`8_開発_広聴ai_figma`、Devin系の複数名前→`8_devinと人間たちの部屋`）。歴史ログを**名前**で探すときは旧名も候補に入れる。canonical は ID 基準なので、同一チャンネルの過去は改名前後で同じ `<channel_id>/` に入る。
 
@@ -74,7 +78,7 @@ python3 scripts/search-archive.py --list-channels
 - 個人の雑談や私的な内容は wiki に持ち込まない。
 - 出典には `digitaldemocracy2030/slack-logs/raw/slack/...` または `digitaldemocracy2030/slack-logs/mirror/slack/...` のように、リポジトリ名とファイルパスを残す。
 - `mirror/` は上書きされるため、長期的な根拠として残したい場合は `raw/` の月次 canonical を優先する。
-- 月次canonicalに本文がない過去期間は、`oss_weekly_reporter` の週次 raw/markdown を補助根拠として使い、ページ内でその出典を明記する。
+- 月次canonicalに本文がない過去期間は、`oss_weekly_reporter` の週次 raw/markdown を補助根拠として使い、ページ内でその出典を明記する（slack-logs PR #12 の merge 後、該当する期間は無い）。
 
 ## 関連ページ
 

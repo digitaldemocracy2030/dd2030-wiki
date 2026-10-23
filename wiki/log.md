@@ -2,12 +2,16 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-10-22
+updated: 2026-10-23
 ---
 
 # Wiki 作業ログ
 
 取り込み・更新・メンテナンスの記録。
+
+## [2026-10-23] 運用 | slack-logs の残りの埋め戻し（PR #12）と月ファイルの読み方
+- slack-logs PR #12（2025-03・改名/アーカイブ/削除ch・2026-03 前半、4,469件）が merge。未merge で残っていた同目的の PR #5 は件数を突き合わせて close、mirror の一時的な失敗の Issue #11 も close
+- [[Slackログアーカイブ]] に埋め戻しの完了と、返信は親の月のファイルに入ること・thread_broadcast の重複（341件）を追記。重複除去と取り直しの検査は PR #13（未merge）
 
 ## [2026-10-22] 運用 | OSS Weekly Reporter の更新停止
 - `nishio/oss_weekly_reporter` の workflow 3本を無効化（別 workflow の Slack 抽出は一度も成功していなかったが、週次レポート側は Slack 込みで動いていた。Slack本体は slack-logs に移行済み、週次要約・GitHub スナップショットは今後使わないと西尾が判断）。data ブランチは 2026-10-21 週までの凍結アーカイブとして残す
