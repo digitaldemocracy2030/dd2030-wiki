@@ -15,8 +15,12 @@ sources:
   - raw/broad-listening-book/12_ブロードリスニング要素技術解説.md
   - raw/broad-listening-book/13_広聴AIの技術スタック解説.md
   - raw/minutes/2026-08-16_kouchou-idobata-joint-meeting-prep.txt
+  - raw/minutes/weekly-general-meeting.txt
+  - "digitaldemocracy2030/slack-logs mirror/slack/C08F7JZPD63.jsonl.gz (#2_開発_広聴ai, 2026-10)"
+  - "GitHub digitaldemocracy2030/kouchou-ai releases v4.1.0 (2026-10-13), v4.2.0 (2026-10-26), security advisory GHSA-xr6j-6w48-xh62"
+  - "GitHub digitaldemocracy2030/website PR #224, #225, #227（韓国日報の事例ページ）"
 created: 2026-04-18
-updated: 2026-09-08
+updated: 2026-10-30
 ---
 
 # 広聴AI（kouchou-ai）
@@ -31,9 +35,12 @@ updated: 2026-09-08
 
 - フロントエンド: Next.js
 - バックエンド: Python
-- LLM: OpenAI / Azure OpenAI / OpenRouter / Gemini（マルチプロバイダ対応）
+- LLM: OpenAI / Azure OpenAI / OpenRouter / Gemini / ローカルLLM（Ollama 等。マルチプロバイダ対応）
 - 次元圧縮・クラスタリング: UMAP, K-means, Ward法（書籍原稿10章・13章時点）
-- デプロイ: Docker, Azure（GitHub Actionsで自動デプロイ）
+- 分析コア: `packages/analysis-core`。PyPI に `kouchou-ai-analysis-core` として公開され、Web UI なしで CLI（`kouchou-analyze`）から使える（2026年）
+- デプロイ: Docker, Azure（GitHub Actionsで自動デプロイ。2026年10月に認証を OIDC へ移行）
+- ドキュメント: MkDocs によるドキュメントサイト https://digitaldemocracy2030.github.io/kouchou-ai/ （2026年）
+- ライセンス: AGPL-3.0（基盤にした Talk to the City と同じ。analysis-core が誤って MIT 表記になっていたのを 2026年10月に訂正）
 
 ## 機能
 
@@ -67,16 +74,34 @@ updated: 2026-09-08
 - 4パターンの提供形態を整理（研究用Jupyter・CLIツール・WebUI・お試しホスティング）
 - AIツール利用時のコントリビュートルールを文書化
 
-### v5.0への移行（2026年1月〜）
-- 大規模リファクタリング開始
-- **プラグイン方式**への転換（入力・分析・可視化を独立拡張可能に）
-- **PyPI（Pythonパッケージ）化**によるCLI提供を構想
+### 大規模リファクタリング（2026年1月〜7月）
+- 年末年始から大規模リファクタリングを開始。安定運用したいコアと実験的な拡張を分離する設計変更
+- **プラグイン方式**への転換（入力・分析・可視化を独立拡張可能に）。5月末時点で「可視化部分と分析部分をプラグイン化して別々に改善できる形へ」と全体定例で共有
+- **PyPI（Pythonパッケージ）化**で CLI 提供（1/19 に analysis-core を切り出し）。pandas から polars へ移行
 - Next.js 16.xへのアップデート（セキュリティ修正含む）
+- 5/18、Claude Code に「このデータを広聴AIで分析して」と言うだけで散布図 HTML が出る CLI ワークフローを整備。5/20 に WebUI も analysis-core を使う形になり、5/24 に大リファクタリング完了（[[sources/broad-listening-book-meeting|執筆定例 議事録]]）。LLM グルーピング実験は「ラベル品質は改善、散布図の見え方は従来法が優位」で CLI 版にマージ
+- 6月、Azure デモ環境で散布図が出なくなる障害（デプロイ CI が旧 revision で成功判定、メモリ 1GiB で Next.js ビルドが OOM）を修正。開発者向け Wiki を作成。「ローカルLLMで動かせればセットアップが楽になる可能性」が共有された
+- 7月、横浜市のブロードリスニング事例が全体定例で共有された
+- この期間の成果は 2026年10月13日の **v4.1.0** としてまとめてリリースされた（当初「v5.0」と呼んでいた計画は、書籍刊行に合わせるメジャーリリースとして後ろに置かれた）
 
 ### ブラウザ版（サーバーレス）の登場（2026年8月）
 - tokoroten（中山心太）が広聴AIをペライチのHTMLにした [kouchou-ai-serverless](https://tokoroten.github.io/kouchou-ai-serverless/) を公開。設定画面から OpenAI API Key を差し込むだけで動き、Chrome 内蔵の Gemini Nano を使えば無料で動作する
 - tokoroten は「これを広聴AIの本流とするのが良いのでは」と提案し、西尾も「ライトなユーザにはインストールのトラブルがなくなる」と同意（[[sources/kouchou-idobata-joint-meeting-prep|合同ミーティング事前まとめ]]）
 - 位置づけの議論は [[topics/nl-data-collection-tools-collaboration|自然言語データ収集ツールの関係と「一本化しない」協働]] を参照
+
+### v4.1.0・v4.2.0 と棚卸し（2026年10月）
+
+10月は西尾泰和が AI コーディングエージェントを使って集中的に作業し、リリース2本と Issue/PR の棚卸しを行った。10月のコミットは185件。
+
+- **v4.1.0（10/13）**: 上記リファクタリングの成果をまとめたリリース。同日、Azure デプロイの認証情報（client secret）の期限切れでデプロイが止まり、OIDC 認証へ移行した
+- **ドキュメント改善スプリント（10/13）**: ドキュメントサイトに「始め方の選び方」ページ、レポートの責任の所在（免責の3レイヤー）、リンク切れ検知 CI、リダイレクト設定を追加。README の見出しへの外部直リンクに依存しない方針にした
+- **ライセンス訂正（10/12）**: analysis-core が最初から誤って MIT 表記だったことが分かり、AGPL に訂正。PyPI も差し替えた
+- **Issue 棚卸し（10/12、10/29）**: 古い Issue を AI で全件照合。10/29 は open 89件を複数エージェントで約3時間かけて確認し、38件を close または実装済みと判定。2025年から残っていた「元コメント本文を公開レポートに含める」（#56）も実装された
+- **v4.2.0（10/26）**: **セキュリティ修正を含む**。レポート作成画面の任意「APIキー」欄に入力したキーが結果ファイルと公開ページに平文で書き出されていた（勧告 [GHSA-xr6j-6w48-xh62](https://github.com/digitaldemocracy2030/kouchou-ai/security/advisories/GHSA-xr6j-6w48-xh62)、severity: medium）。サーバー側の `.env` に設定したキーは対象外。確認・除去スクリプトと[手順ページ](https://digitaldemocracy2030.github.io/kouchou-ai/self-hosting/security/user-api-key-leak-2026-10.html)を同梱。ほかに公開ビューアの日本語・英語・韓国語切替と翻訳 CLI、1万件規模のメモリ不足解消、10MB超 CSV 対応、Azure Blob で非公開化・削除が再起動で戻る問題の修正。PyPI の analysis-core は 0.2.0（10/29 に 0.3.0）
+- **外部からの貢献**: 小嶋（名古屋、新規参加）が Ollama のポート衝突修正と韓国語 README を提出。大木真吾が Windows 11 + WSL2 + Docker Engine での自治体向けセットアップ手順をまとめた（自治体では Docker Desktop が有料のため）。yasumorishima がドキュメント修正
+- **韓国日報との協働分析**: 韓国の新聞社・韓国日報の取材に合わせ、韓国の政治 YouTube チャットを広聴AIで分析。10/30 に dd2030.org に事例ページを日・英・韓の3言語で公開した
+- **次に向けて**: v4.2.0 はマイナーリリースと位置づけ、[[ブロードリスニング本]]の刊行に合わせてメジャーリリース（5.0）を打つ方針。意見ごとの賛否・新規性スコア、階層リストの詳細モード、API 利用料の目安表示などの PR がレビュー待ち。Amazon Bedrock による国内完結の分析（大木）、Anthropic API 対応（tokoroten）が Issue として提起された
+- **Slack での論点**: ローカル LLM は「動く」ことと「十分な精度が出る」ことは別で、モデルごとの誤読率が分かるとよい（西尾）。余った AI サブスクリプションのトークンを OSS に回す案は [[topics/token-donation|トークンドネーション]] を参照
 
 ## 自治体での導入事例
 
@@ -100,6 +125,9 @@ updated: 2026-09-08
 - [[sources/broad-listening-book-kouchou-ai-technical-stack|ブロードリスニング本 広聴AI技術スタック解説章]] — 抽出、埋め込み、UMAP、K-means、Ward法、ラベリング、要約の処理パイプライン
 - [[sources/broad-listening-book-meeting|ブロードリスニング本 執筆定例 議事録]] — 広聴AI開発定例と書籍化のソース要約
 - [広聴AI GitHubリポジトリ](https://github.com/digitaldemocracy2030/kouchou-ai) — ソースコード・Issue・PR
+- [広聴AI ドキュメントサイト](https://digitaldemocracy2030.github.io/kouchou-ai/) — 始め方の選び方、セルフホスティング、CLI、プラグインのガイド
+- [リリース一覧](https://github.com/digitaldemocracy2030/kouchou-ai/releases) — v4.1.0（2026-10-13）、v4.2.0（2026-10-26）の変更点
+- [韓国日報との協働分析の事例ページ](https://dd2030.org/) — 2026年10月30日公開。韓国の政治 YouTube チャットの分析結果（日・英・韓）
 - [ブロードリスニング本 10章「DD2030による広聴AIの開発活動」](https://github.com/digitaldemocracy2030/broad-listening-book/blob/main/10_00_DD2030%E3%81%AB%E3%82%88%E3%82%8B%E5%BA%83%E8%81%B4AI%E3%81%AE%E9%96%8B%E7%99%BA%E6%B4%BB%E5%8B%95.md) — 開発の歴史と技術的背景
 - [ブロードリスニング本 12章「要素技術解説」](https://github.com/digitaldemocracy2030/broad-listening-book/blob/main/12_%E3%83%96%E3%83%AD%E3%83%BC%E3%83%89%E3%83%AA%E3%82%B9%E3%83%8B%E3%83%B3%E3%82%B0%E8%A6%81%E7%B4%A0%E6%8A%80%E8%A1%93%E8%A7%A3%E8%AA%AC.md) — UMAP・クラスタリング等の技術解説
 - [広聴AI技術解説スライド](https://www.docswell.com/s/tokoroten/ZL1M88-2025-06-14-014546) — 2025年6月公開の解説資料

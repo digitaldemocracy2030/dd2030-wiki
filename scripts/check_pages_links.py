@@ -141,12 +141,18 @@ def main() -> int:
                 continue
             if resolved.netloc != parsed_base.netloc:
                 continue
-            checked += 1
             base_without_slash = base_path.rstrip("/")
-            if (
+            outside_base = (
                 not resolved.path.startswith(base_without_slash + "/")
                 and resolved.path != base_without_slash
-            ):
+            )
+            if outside_base and raw_url.startswith(("http://", "https://")):
+                # Absolute link to another project site on the same GitHub Pages
+                # host (e.g. digitaldemocracy2030.github.io/kouchou-ai/). Written
+                # by an author on purpose, not a Quartz path-resolution bug.
+                continue
+            checked += 1
+            if outside_base:
                 failures.append(
                     f"{rel_html}: {tag}[{attr}] {raw_url!r} escapes GitHub Pages base path -> {resolved.path}"
                 )

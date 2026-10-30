@@ -7,8 +7,9 @@ sources:
   - raw/minutes/weekly-general-meeting.txt
   - raw/history/week25_20250903/polimoney.md
   - raw/history/week26_20250910/polimoney.md
+  - digitaldemocracy2030/slack-logs/mirror/slack/C08FL5L6GSH.jsonl.gz
 created: 2026-04-18
-updated: 2026-06-30
+updated: 2026-10-30
 ---
 
 # Polimoney
@@ -48,6 +49,31 @@ updated: 2026-06-30
 - 仕訳承認時にHub（公開サイト）へ自動同期
 - SaaS方式: Supabase Cloud + Deno Deploy + Stripe
 - 2026年3月末時点で仕訳承認時のHub自動同期や領収書ダウンロードなどの骨格ができ、2026年4月にはUI/UX、政治家・政治団体の承認画面、岩永さんの選挙運動費用データ公開準備が継続していた
+- 2026年7月から LedgerのUIを抜本的に見直し中（8月2日の[[events/2026-08-02-digital-democracy-summit|デジタル民主主義サミット2026]]登壇に向けてスクリーンショットを優先）。あわせて中間テーブルを作れるようDBを正規化（「近しいデータをツリー状に」）した
+
+## 2026年4月下旬〜10月の進捗と決定
+
+2026年4月25日（第45回）から10月24日の戦略会議までの定例から、進捗と決定事項をまとめる（出典: [[sources/polimoney-minutes|Polimoney 議事録]]）。この時期は参加メンバーが少なく、進捗なしでスキップされた回もある（10月10日・17日は Slack `#2_開発_polimoney` で「進捗なし」としてスキップ）。
+
+### 進捗（時系列）
+
+- **4月25日〜5月2日**: ネクストアクションを整理。シェア機能のOGP変更（#134）、DB化（#32）、公認バッジの実装・デザイン、「なぜAzureか」をADRに記録、ロゴ・アイキャッチ作成、岩永さんと協力した選挙運動費用収支報告書の新テンプレ、ver1.0.0ロードマップ（ターゲット・ペイン・ソリューション）。UI/UXに協力する新メンバー（イシジマさん）が加わった
+- **5月9日**: 岩永さんの選挙運動費用収支報告書をハードコードで公開。tagusaがページ構造の見直しを完了し、中村さんの選挙運動ページを作成。Auth0の廃止は優先度低で保留
+- **5月23日**: APIのドメインを `api.polimoney.dd2030.org` に変更完了。Hub開発の手分けを提案
+- **6月**: API（政治家一覧、政治家個人ページ用の帳簿一覧）と、中間テーブルを作れるDB構造の見直しをTODO化。「知名度向上が何をするにも足を引っ張っている」との認識から、polimoney・Ledger・Hubの関係図を用意することに
+- **7月4日**: shimizuがAPIのPRをマージし、ドキュメントにあったエンドポイントが一通り揃った
+- **7月11日〜8月8日**: LedgerのUIを抜本的に見直し。DB正規化のPRをマージ待ちに。tagusaがMantine（UIライブラリ）でフロントエンドを改修
+- **9月5日〜12日**: Hubのテーブル説明に日本語名を追記。政治家一覧APIの実装が途中まで進む
+- **10月3日**: 政治家一覧APIが完了。ただしHubには岩永さんの選挙データしか入っておらず、政治家個人ページ用APIと他の政治家のデータ投入が残課題
+- **10月24日**: 鈴木健との戦略会議。詳細は[[events/2026-10-24-polimoney-strategy-meeting|Polimoney 戦略会議（2026-10-24）]]
+
+### 決定事項
+
+- 岩永さんインタビュー記事は DD公式記事ではなく **note で公開**する（5月2日）
+- APIのドメインは `api.polimoney.dd2030.org` とする（5月23日）
+- DBは中間テーブルを作れる構造に正規化し、API（政治家一覧・政治家個人ページ用）はそのPRマージ後に進める（7月）
+- 戦略会議を10月24日19:00にいつもの定例Meetで開催する（10月17日の記録、Slackでは10月7日に告知）
+- 戦略会議の結果、README書き換え会（翌週）、ユーザーインセンティブ会（翌週）、営業資料づくり会（翌々週）を開き、利用者・有識者へのヒアリングを行う。営業はリアルタイム公開ができない政治家を優先する（10月24日）
 
 ## 技術スタック
 
@@ -55,10 +81,10 @@ updated: 2026-06-30
 |------|------|
 | OCR | Google Gemini AI |
 | バックエンド | Python（FastAPI）※Go→Pythonに変更（2025年10月） |
-| フロントエンド | Deno Deploy |
+| フロントエンド | Deno Deploy（2026年7月から Mantine でUI改修） |
 | DB | Supabase Cloud（PostgreSQL + RLS） |
 | 認証 | Supabase Auth ※Auth0から変更（2026年1月） |
-| インフラ | Azure Container Apps |
+| インフラ | Azure Container Apps（API: `api.polimoney.dd2030.org`、2026年5月〜） |
 | 会計ソフト | Flutter（Windowsデスクトップアプリ） |
 | リポジトリ | `polimoney`（フロント）+ `polimoney_hub`（バックエンド統合）+ `polimoney_ledger`（会計） |
 
@@ -114,6 +140,8 @@ updated: 2026-06-30
 - [[events/2025-05-25-meetup-2|デジタル民主主義2030 MEETUP #2]] — Polimoneyの設計思想の着地点が扱われたイベント
 - [[events/2025-07-18-meetup-3|デジタル民主主義2030 MEETUP #3]] — 各プロダクト紹介の一部として接続するイベント
 - [[events/2026-01-09-burikaigi-polimoney|ぶり会議2026 Polimoney登壇]] — Polimoneyを外部のエンジニア向け文脈へ説明したイベント
+- [[events/2026-08-02-digital-democracy-summit|デジタル民主主義サミット2026]] — 「デジタル民主主義は政治資金をどう変えるか」セッションにモアイが登壇
+- [[events/2026-10-24-polimoney-strategy-meeting|Polimoney 戦略会議（2026-10-24）]] — 鈴木健との戦略会議。2027年統一地方選に向けた体制や課題を整理
 - [[sources/history-week43-20260114|週次History week43（2026-01-14）]] — Polimoneyの外向け発信強化を確認できる個別週ソース
 - [[sources/history-week50-20260415|週次History week50（2026-04-15）]] — データ整備完了とUI/UX改善論点を確認できる個別週ソース
 - [[時系列まとめ]] — 四半期ごとの活動記録

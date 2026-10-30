@@ -2,12 +2,34 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-10-23
+updated: 2026-10-30
 ---
 
 # Wiki 作業ログ
 
 取り込み・更新・メンテナンスの記録。
+
+## [2026-10-30] ingest | 2026年10月の広聴AI・Slack・GitHub の動きと、議事録6本の再取得
+
+- 元情報: `digitaldemocracy2030/slack-logs` mirror（2026-10-30 05:22 UTC 同期、window 75日）、kouchou-ai の GitHub（releases v4.1.0 / v4.2.0、security advisory、10/1 以降の Issue/PR）、website リポジトリ（ガイドブック、韓国日報事例）、Google Docs の議事録6本（CLAUDE.md の手順で `raw/minutes/*.txt` を上書き）
+- 新規ページ:
+  - [[topics/guidebook-activity-status-debate|ガイドブックの「動いているプロジェクト」表記と活発度の扱い]] — `#2_コミュニティ運営` 10/4〜10/5 の大木・小野の議論。活発度を宣言せず判断材料を置く方針
+  - [[topics/token-donation|トークンドネーション]] — `#2_開発_広聴ai` 10/16〜10/18。余ったトークンを OSS に回す構想と Issue クラファン案
+  - [[events/2026-10-28-idobata-strategy-meeting|いどばた戦略会議（2026-10-28）]] — kuboon のまとめ（いどばたボットのデモ実装、仕様設計書とコアループ提案書を「いどばたする」）
+  - [[events/2026-10-24-polimoney-strategy-meeting|Polimoney 戦略会議（2026-10-24）]] — 議事録ベース。README 書き換え会・ヒアリング・PV 改善（サブエージェント作成）
+- 更新:
+  - [[広聴AI]] — 「大規模リファクタリング（2026年1月〜7月）」に改題し、「v4.1.0・v4.2.0 と棚卸し（2026年10月）」を追加（セキュリティ勧告 GHSA-xr6j-6w48-xh62、ライセンス訂正、ドキュメントスプリント、OIDC 移行、Issue 棚卸し、外部貢献、韓国日報との協働分析、5.0 の方針）。技術スタックに analysis-core / ドキュメントサイト / ライセンスを追記
+  - [[いどばた]] — 「探索期・いどばたボットへ（2026年6月〜10月）」を追加
+  - [[sources/weekly-general-meeting|週次全体定例 議事録]] — 収録範囲を 2026-09-26 まで。4/18〜9/26 の要点（法人化、Slack ログ公開方針、Discord 移行議論、Wiki 公式化、ガイドブック、各プロダクト、コアループ週次、サミット、戦略会議）を追加
+  - [[Polimoney]]・[[sources/polimoney-minutes|Polimoney 議事録]] — 4月下旬〜10/24 の進捗（API ドメイン、DB 正規化、Ledger UI 見直し、政治家一覧 API）（サブエージェント）
+  - [[時系列まとめ]] — 2026年後半の節を8〜10月まで延長
+  - `wiki/index.md` — プロダクト行、イベント2件、テーマ2件を追加
+- 更新（サブエージェント分担）:
+  - [[sources/community-operations-minutes|コミュニティ運営 議事録]]・[[コミュニティ運営]] — 4/24〜10/23（いどばた意見募集、Discord 移行検討、6/19 の整理、ガイドブック公開、会計プロボノ募集）
+  - [[sources/broad-listening-book-meeting|ブロードリスニング本 執筆定例 議事録]]・[[ブロードリスニング本]] — 4/20〜7/27（原稿引き渡し、CC-BY-NC、タイトル『政治・自治体・企業に広がるブロードリスニング』、発売10〜11月目処）。10月の表紙・原稿提出は Slack から親セッションが追記
+  - [[sources/project-coreloop-minutes|Project Coreloop 議事録]]・[[コアループ]]・[[ストップ詐欺広告]] — 5〜10月（警察庁・金融庁との連携、6/21 市民熟議の結果、提言書と再現書、Coreloop 2.0 構想）。定量分析レポートと提言書本文の一部は未読
+- lint: 前回コミットの赤リンク [[Polis]]・[[vTaiwan]] を解消するため concepts ページを新規作成。`scripts/check_pages_links.py` が同一ホスト（digitaldemocracy2030.github.io）上の別プロジェクトサイトへの絶対リンクを「base path 逸脱」と誤検知していたので、絶対 URL の場合はスキップするよう修正
+- メモ: 全体定例の Google Doc は 10 月分が未記入（最新は 9/26）。`raw/minutes/idobata-project.txt` の差分はリアクション行のみで本文の追加なし。Slack の私的発言・雑談は取り込んでいない
 
 ## [2026-10-23] 運用 | slack-logs の残りの埋め戻し（PR #12）と月ファイルの読み方
 - slack-logs PR #12（2025-03・改名/アーカイブ/削除ch・2026-03 前半、4,469件）が merge。未merge で残っていた同目的の PR #5 は件数を突き合わせて close、mirror の一時的な失敗の Issue #11 も close
