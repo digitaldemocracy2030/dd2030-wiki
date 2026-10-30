@@ -9,6 +9,11 @@ updated: 2026-10-30
 
 取り込み・更新・メンテナンスの記録。
 
+## [2026-10-30] ingest | 10/30 午後の Slack 追記（韓国日報事例ページ・データセット公開・コアループ現況）
+- slack-logs mirror（synced 2026-10-30T12:36Z）を再確認。[[広聴AI]] に 10/30 の事例ページ URL、コーディングエージェント分析の事例、Hugging Face データセット、プロジェクトページ英訳方針を追記。[[コアループ]] に 10/30 の現況（提言書を近く公開予定、独立サイト）を追記。[[timeline/quarterly-summary|四半期サマリ]] に 10/28 の試験環境公開を追加
+- [[Slackログアーカイブ]] の slack-logs PR #13 を「merge 済み」に訂正（10/23 merge）。raw/ の本文は 2025-03〜2026-08 の各月に入っていることを実測で確認（2025-01・02 は本文なし）
+- 取り込まない判断: 12/5 の日本ミニ・パブリックス研究フォーラム案内（外部イベントの共有のみ）、新規参加者の自己紹介
+
 ## [2026-10-30] ingest | 2026年10月の広聴AI・Slack・GitHub の動きと、議事録6本の再取得
 
 - 元情報: `digitaldemocracy2030/slack-logs` mirror（2026-10-30 05:22 UTC 同期、window 75日）、kouchou-ai の GitHub（releases v4.1.0 / v4.2.0、security advisory、10/1 以降の Issue/PR）、website リポジトリ（ガイドブック、韓国日報事例）、Google Docs の議事録6本（CLAUDE.md の手順で `raw/minutes/*.txt` を上書き）
@@ -33,7 +38,7 @@ updated: 2026-10-30
 
 ## [2026-10-23] 運用 | slack-logs の残りの埋め戻し（PR #12）と月ファイルの読み方
 - slack-logs PR #12（2025-03・改名/アーカイブ/削除ch・2026-03 前半、4,469件）が merge。未merge で残っていた同目的の PR #5 は件数を突き合わせて close、mirror の一時的な失敗の Issue #11 も close
-- [[Slackログアーカイブ]] に埋め戻しの完了と、返信は親の月のファイルに入ること・thread_broadcast の重複（341件）を追記。重複除去と取り直しの検査は PR #13（未merge）
+- [[Slackログアーカイブ]] に埋め戻しの完了と、返信は親の月のファイルに入ること・thread_broadcast の重複（341件）を追記。重複除去と取り直しの検査は PR #13（同日 merge 済み）
 
 ## [2026-10-22] 運用 | OSS Weekly Reporter の更新停止
 - `nishio/oss_weekly_reporter` の workflow 3本を無効化（別 workflow の Slack 抽出は一度も成功していなかったが、週次レポート側は Slack 込みで動いていた。Slack本体は slack-logs に移行済み、週次要約・GitHub スナップショットは今後使わないと西尾が判断）。data ブランチは 2026-10-21 週までの凍結アーカイブとして残す

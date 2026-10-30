@@ -6,7 +6,7 @@ sources:
   - digitaldemocracy2030/slack-logs/README.md
   - digitaldemocracy2030/slack-logs/mirror/sync.json
 created: 2026-06-30
-updated: 2026-10-23
+updated: 2026-10-30
 ---
 
 # Slackログアーカイブ
@@ -34,7 +34,7 @@ dd2030 の Slack public channel ログは、dd2030-wiki には直接取り込ま
 
 **残りの埋め戻し（2026-10-23）**: 上の (1)(2) と、ブートストラップ時に保持期限を過ぎていた 2026-03-01〜03-12 を [slack-logs PR #12](https://github.com/digitaldemocracy2030/slack-logs/pull/12) で埋め戻した（4,469件、2026-10-23 merge）。改名13名・アーカイブ4ch は現行IDへ寄せ、IDが取れない削除済み4ch は `raw/slack/deleted-<旧名>/` に置いた。これで [[OSS Weekly Reporter]] に残っていた Slack 本文は raw/ に移った。同じ目的で 2026-06-30 に出ていた PR #5 は未merge のまま残っていたので、月ごとの件数を突き合わせて（2025-03・2025-06〜2026-04 で一致）close した。
 
-**月ファイルを読むときの注意**（2026-10-23 実測）: スレッドの返信は親メッセージの月のファイルに入る（スレッドを1ファイルにそろえる設計）。月をまたぐ返信は 27,576件中272件（約1%、親からの遅れは最大65日）なので、ある月の発言を漏れなく見るときは前月のファイルも読む。また「チャンネルにも送信」した返信（thread_broadcast）は同じ行が2回入っている（341件）。件数を数えるときは ts で重複を除く。backup 側での重複除去と、古い月を取り直しても本文を減らさない検査は [slack-logs PR #13](https://github.com/digitaldemocracy2030/slack-logs/pull/13)（2026-10-23 時点で未merge）。
+**月ファイルを読むときの注意**（2026-10-23 実測）: スレッドの返信は親メッセージの月のファイルに入る（スレッドを1ファイルにそろえる設計）。月をまたぐ返信は 27,576件中272件（約1%、親からの遅れは最大65日）なので、ある月の発言を漏れなく見るときは前月のファイルも読む。また「チャンネルにも送信」した返信（thread_broadcast）は同じ行が2回入っている（341件）。件数を数えるときは ts で重複を除く。backup 側での重複除去と、古い月を取り直しても本文を減らさない検査は [slack-logs PR #13](https://github.com/digitaldemocracy2030/slack-logs/pull/13)（2026-10-23 に merge 済み）。
 
 **チャンネル改名の注意**: 2025年4月末に workspace 全体の prefix 整理があり、多くのチャンネルが改名された（例: `1_雑談`→`7_雑談`、`自治体_meetup_運営`→`2_自治体_meetup_運営`、`8_開発_公聴ai_figma`→`8_開発_広聴ai_figma`、Devin系の複数名前→`8_devinと人間たちの部屋`）。歴史ログを**名前**で探すときは旧名も候補に入れる。canonical は ID 基準なので、同一チャンネルの過去は改名前後で同じ `<channel_id>/` に入る。
 
