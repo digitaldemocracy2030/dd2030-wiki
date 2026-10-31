@@ -102,6 +102,10 @@ updated: YYYY-MM-DD
 
 ### ソースの更新
 
+#### まとめて確認する（catch-up）
+
+「最近の動きを見て」「議事録に差分ある？」と言われたら、個別に curl や pull をする前に `catch-up` skill（`.claude/skills/catch-up/SKILL.md`）を使う。中身は `python3 scripts/catch-up.py`（`pnpm catch-up`）で、slack-logs の pull と直近メッセージの一覧、議事録6本の再取得と差分抜粋、主要リポジトリの GitHub 動向、Slack で共有された URL の wiki 既出チェックを一度に行い、`work/catch-up/<日付>/report.md` に書く。以下の個別手順は、その内訳。
+
 #### 議事録（Google Docs）の再取り込み
 
 議事録は継続的に更新されるため、定期的に再取得してWikiに反映する。
@@ -165,6 +169,8 @@ cp -r work/bl-book/column raw/broad-listening-book/
 | Slack生ログ（canonical） | （外部）`work/slack-logs/raw/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 毎月（保全、遅延あり） |
 | Slack現状ミラー | （外部）`work/slack-logs/mirror/slack/` | GitHub digitaldemocracy2030/slack-logs `main` ブランチ | 6時間ごと |
 | 週次AI/GitHub補助アーカイブ | （外部）`work/oss_weekly_reporter/data/` | GitHub nishio/oss_weekly_reporter `data` ブランチ | 停止（2026-10-21 週が最終） |
+
+上の全部を一括で確認するには `pnpm catch-up`（`scripts/catch-up.py`）。
 
 #### 外部アーカイブ（Slackチャットログ / 週次AI・GitHub）の参照
 

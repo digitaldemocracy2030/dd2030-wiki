@@ -2,12 +2,17 @@
 title: Wiki作業ログ
 tags: [dd2030, log]
 created: 2026-04-18
-updated: 2026-10-30
+updated: 2026-10-31
 ---
 
 # Wiki 作業ログ
 
 取り込み・更新・メンテナンスの記録。
+
+## [2026-10-31] 運用 | catch-up skill と scripts/catch-up.py を追加
+- 「最近の動きを見て」を一括で行う `scripts/catch-up.py`（`pnpm catch-up`）を追加。slack-logs の pull と直近メッセージ一覧、議事録6本の再取得とバイト比較・新規冒頭の抜粋、主要8リポジトリの GitHub 動向、Slack で共有された URL の wiki 既出チェックを `work/catch-up/<日付>/report.md` に出す
+- 判定基準と反映先・コミット手順を `.claude/skills/catch-up/SKILL.md` に書き、CLAUDE.md から参照
+- 同日の確認結果: 議事録6本とも差分なし（全体定例は 9/26、コミュニティ運営は 10/23 の回が最新。10/30 の回は未記入）
 
 ## [2026-10-30] ingest | 10/30 午後の Slack 追記（韓国日報事例ページ・データセット公開・コアループ現況）
 - slack-logs mirror（synced 2026-10-30T12:36Z）を再確認。[[広聴AI]] に 10/30 の事例ページ URL、コーディングエージェント分析の事例、Hugging Face データセット、プロジェクトページ英訳方針を追記。[[コアループ]] に 10/30 の現況（提言書を近く公開予定、独立サイト）を追記。[[timeline/quarterly-summary|四半期サマリ]] に 10/28 の試験環境公開を追加

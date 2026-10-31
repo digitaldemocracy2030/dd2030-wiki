@@ -17,6 +17,7 @@
     "build": "node ./quartz/bootstrap-cli.mjs build -d wiki",
     "serve": "node ./quartz/bootstrap-cli.mjs build --serve -d wiki",
     "check:pages-links": "python3 scripts/check_pages_links.py",
+    "catch-up": "python3 scripts/catch-up.py",
     "lint:wiki": "python3 scripts/lint-wiki.py",
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
