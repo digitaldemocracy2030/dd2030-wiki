@@ -4,7 +4,7 @@ aliases: [主要メンバー]
 tags: [dd2030, people]
 sources: [raw/minutes/weekly-general-meeting.txt, raw/minutes/project-coreloop.txt, raw/minutes/broad-listening-book-meeting.txt]
 created: 2026-04-18
-updated: 2026-06-30
+updated: 2026-09-08
 ---
 
 # 主要メンバー

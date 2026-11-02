@@ -8,7 +8,7 @@ sources:
   - raw/broad-listening-book/06_01_チームみらい.md
   - raw/broad-listening-book/09_02_サイボウズ.md
 created: 2026-04-18
-updated: 2026-06-30
+updated: 2026-10-30
 ---
 
 # いどばた

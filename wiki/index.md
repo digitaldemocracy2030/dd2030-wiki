@@ -2,7 +2,7 @@
 title: Index
 tags: [dd2030, index]
 created: 2026-04-18
-updated: 2026-07-09
+updated: 2026-11-03
 ---
 
 # dd2030 Wiki — 目次
@@ -30,7 +30,7 @@ dd2030プロジェクトの知識ベース。プロジェクトに初めて参�
 ## プロジェクト
 
 - [[コアループ]] — 詐欺広告対策の市民熟議プロジェクト（2026年〜）
-- [[ブロードリスニング本]] — インプレスから『政治・自治体・企業に広がるブロードリスニング』として刊行予定（2026年10〜11月目処）。2026年10月に表紙案の検討と原稿提出
+- [[ブロードリスニング本]] — インプレスから『政治・自治体・企業に広がるブロードリスニング』として刊行予定。2026年10月に表紙案の検討と原稿提出。7月時点の「10〜11月目処」は、2026-11-02 に中山が「原稿の直しが止まっていて未定」と述べている
 - [[OSS Weekly Reporter]] — dd2030のSlack/GitHub週次アーカイブを生成していたツール（2026-10-22 更新停止）
 
 ## イベント
@@ -77,6 +77,15 @@ dd2030プロジェクトの知識ベース。プロジェクトに初めて参�
 - [[多元現実]] — 倍速会議などでブロードリスニング技術を住民会議・企業内合意形成の現場へ届ける企業
 - [[Liquitous]] — 市民参加プラットフォーム「Liqlid」を提供する外部企業。ヒアリング先・サミット登壇者
 - [[Plurality Tokyo]] — dd2030前史にあたるコミュニティ（なめら会議）。ブロードリスニング概念の国内流入の起点
+
+## 人物
+
+主要メンバーの一覧は [[主要メンバー]]。個別ページがある人物:
+
+- [[オードリー・タン]] — 台湾の元デジタル担当政務委員・初代数位発展部長。ブロードリスニング本の推薦文、サミット2026閉会登壇
+- [[グレン・ワイル]] — 『Plurality』をオードリー・タンと体系化した経済学者。dd2030 の思想的背景の提唱者
+- [[宮坂学]] — 東京都副知事。シン東京2050 のブロードリスニング実践とサミット2026登壇
+- [[西田尚史]] — [[コアループ]]の Chief of Staff / Communication Lead。記者会見・クラファン・サミット2026のプログラム企画
 
 ## テーマ
 
@@ -146,6 +155,14 @@ digitaldemocracy2030/broad-listening-book リポジトリから取得した書�
 | `raw/documents/2026-06-03_oss-foundation-survey.md` | [[sources/oss-foundation-survey|OSS財団事例サーベイ]] — OSSコミュニティと法人格の比較 |
 | `raw/documents/2026-06-09_archive-pipeline-design-note.md` | [[sources/archive-pipeline-design-note|アーカイブパイプライン設計メモ]] — Slack/Scrapboxログ保全設計 |
 | `raw/slack/2026-06-04_oss-weekly-reporter-handoff.md` | [[sources/oss-weekly-reporter-handoff|OSS Weekly Reporter 移管Slackメモ]] — slack-logs移管の経緯 |
+
+### 外部の録画・資料・ブログ（Web）
+
+`raw/` に置かず、Web 上の録画・投影資料・ブログを要約したソースページ。一覧と説明は [[sources/index|ソースカタログ]]。
+
+- [[sources/digital-democracy-summit-2026-materials|デジタル民主主義サミット2026 当日投影資料・登壇記録]] / [[sources/digital-democracy-summit-2026-recordings|デジタル民主主義サミット2026 録画アーカイブ要約]]
+- [[sources/cfj-summit-2025-river-talk|「デジタル民主主義の川の流れを見る」事前動画要約]] / [[sources/cfj-summit-2025-session-recording|「デジタル民主主義ブームを振り返る」録画要約]]
+- [[sources/civic-ai-6pack-of-care-blog|Civic AI「6-Pack of Care」解説ブログ]]
 
 ### 外部アーカイブ（リポジトリ外）
 

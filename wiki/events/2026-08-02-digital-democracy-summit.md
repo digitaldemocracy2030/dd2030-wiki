@@ -17,7 +17,7 @@ sources:
   - https://note.com/tkgshn/n/ncdfb4ca25fa7
   - https://note.com/moai_ono/n/n210c9d507e75
 created: 2026-08-03
-updated: 2026-08-18
+updated: 2026-08-19
 ---
 
 # デジタル民主主義サミット2026（2026-08-02）

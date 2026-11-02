@@ -10,7 +10,7 @@ sources:
   - digitaldemocracy2030/slack-logs/README.md
   - digitaldemocracy2030/slack-logs/raw/slack/
 created: 2026-06-30
-updated: 2026-07-09
+updated: 2026-10-22
 ---
 
 # 初めて読む人へ

@@ -28,7 +28,7 @@ slack-logs/
 ├── raw/
 │   └── slack/<channel_id>/<YYYY-MM>.jsonl.gz   # 月次 canonical（保全用）
 ├── mirror/
-│   ├── slack/<channel_id>.jsonl.gz             # 直近14日程度の rolling snapshot
+│   ├── slack/<channel_id>.jsonl.gz             # 直近75日程度の rolling snapshot（2026-08-21 に14日から拡大）
 │   ├── sync.json                               # 最終同期時刻・対象チャンネル一覧
 │   └── users.json                              # 最新 users.list snapshot
 └── state/
@@ -113,7 +113,7 @@ LLM が context を爆発させずにこのアーカイブから情報を取る�
 2. **直近の発言検索は `mirror/slack/*.jsonl.gz`** — `scripts/search-archive.py --source slack-logs --layer mirror <keyword>` で検索する
 3. **チャンネルを絞る時は `--channel` を使う** — `--list-channels` で確認した channel id だけでなく、`--channel コアループ` のようにチャンネル名の一部でも絞れる
 4. **過去月の発言検索は `raw/slack/<channel_id>/<YYYY-MM>.jsonl.gz`** — `scripts/search-archive.py --source slack-logs --layer raw --month YYYY-MM <keyword>` で検索する
-5. **月次ファイルがメタデータだけの期間は補助アーカイブへ戻る** — 2026-06-30時点では `slack-logs/raw/slack/*/2025-01.jsonl.gz` 〜 `2026-02.jsonl.gz` は各チャンネル1行のメタデータのみで、本文は入っていなかった。2026年3月・4月は本文あり。その後 2026-08-24 に 2025-04〜2026-02 の本文が `oss_weekly_reporter` から canonical へ埋め戻された（[slack-logs PR #10](https://github.com/digitaldemocracy2030/slack-logs/pull/10)）。それでも本文が無い場合（現行 workspace に無いアーカイブ/削除チャンネルなど）は `oss_weekly_reporter/data/<week>/raw/slack/` や `markdown/slack/` を併用する
+5. **月次ファイルがメタデータだけの期間は補助アーカイブへ戻る** — 2026-06-30時点では `slack-logs/raw/slack/*/2025-01.jsonl.gz` 〜 `2026-02.jsonl.gz` は各チャンネル1行のメタデータのみで、本文は入っていなかった。2026年3月・4月は本文あり。その後 2026-08-22 に 2025-04〜2026-02 の本文が `oss_weekly_reporter` から canonical へ埋め戻され（[slack-logs PR #10](https://github.com/digitaldemocracy2030/slack-logs/pull/10)）、残っていた 2025-03・改名/アーカイブ済みチャンネル・2026-03 前半も 2026-10-23 に埋め戻された（[slack-logs PR #12](https://github.com/digitaldemocracy2030/slack-logs/pull/12)。ID の取れない削除済みチャンネルは `raw/slack/deleted-<旧名>/`）。これで `oss_weekly_reporter` に残っていた Slack 本文は canonical に移ったので、補助アーカイブは週次AI要約や GitHub スナップショットを見たいときに使う
 6. **ユーザー名解決は `mirror/users.json` または `state/users-<YYYY-MM>.json`** — wiki へは個人の雑談・私的な発言を持ち込まない
 
 ### 週次AIレポート / GitHub

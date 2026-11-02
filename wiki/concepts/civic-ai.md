@@ -7,7 +7,7 @@ sources:
   - https://www.lesswrong.com/posts/anoK4akwe8PKjtzkL/plurality-and-6pack-care
   - https://audreyt.org/dd
 created: 2026-08-18
-updated: 2026-08-18
+updated: 2026-09-30
 ---
 
 # Civic AI（6-Pack of Care）

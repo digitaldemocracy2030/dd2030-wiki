@@ -8,7 +8,7 @@ sources:
   - digitaldemocracy2030/slack-logs/raw/slack/
   - oss_weekly_reporter/data/
 created: 2026-06-09
-updated: 2026-08-21
+updated: 2026-10-22
 ---
 
 # AI から Slack ログを参照するパターン

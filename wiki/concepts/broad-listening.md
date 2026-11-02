@@ -39,7 +39,7 @@ sources:
   - raw/broad-listening-book/99_付録_公開事例一覧.md
   - digitaldemocracy2030/slack-logs/mirror/slack/C09J7A6HKRA.jsonl.gz
 created: 2026-04-18
-updated: 2026-06-30
+updated: 2026-08-18
 ---
 
 # ブロードリスニング
