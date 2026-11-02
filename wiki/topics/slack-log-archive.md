@@ -6,7 +6,7 @@ sources:
   - digitaldemocracy2030/slack-logs/README.md
   - digitaldemocracy2030/slack-logs/mirror/sync.json
 created: 2026-06-30
-updated: 2026-10-30
+updated: 2026-11-03
 ---
 
 # Slackログアーカイブ
@@ -28,7 +28,7 @@ dd2030 の Slack public channel ログは、dd2030-wiki には直接取り込ま
 
 **なぜ 2026-03 より前は本文が無いのか**（2026-08-21 に判明）: これはバックアップ基盤の不具合ではなく、**Slack 側の保持期限**（無料プランの90日と推定）によるもの。本文が入り始めるのが 2026-03 で、`slack-logs` のブートストラップ（過去分の一括バックフィル）を走らせた **2026-06-09 の約90日前 ≈ 2026-03-11** と cutoff が一致する。つまり *バックフィルを実行した時点で、それより古いメッセージは既に Slack から消えていた*。したがって 2025-04〜2026-02 の本文は **Slack からは原理的に再取得できず**、唯一の出所は同時期に取得済みの [[OSS Weekly Reporter]] 週次アーカイブ。逆に**今後の月がメタのみになることはない**（月次backupは実行月の2ヶ月前＝取得時に90日以内を取るため）。
 
-**復旧の実施**（2026-08-22）: この歴史分を [[OSS Weekly Reporter]] から canonical へ埋め戻した（[slack-logs PR #10](https://github.com/digitaldemocracy2030/slack-logs/pull/10)、マージ後に有効）。範囲 2025-04〜2026-02・現行54ch・17,548メッセージ（スレッド返信含む）。週次(名基準)→月次(ID基準)へ変換し、月境界は Asia/Tokyo、週窓の重複は ts で dedup。残る欠落は2つ: (1) **2025-01〜03** は workspace が2025年3月開始のため元々存在しない、(2) **現行workspaceに無いアーカイブ/削除20ch（~3,591件）** は名→IDを解決できず未対応で、復旧には `conversations.list`（archived含む）でのID取得が要る（issue #4 の follow-up）。
+**復旧の実施**（2026-08-22）: この歴史分を [[OSS Weekly Reporter]] から canonical へ埋め戻した（[slack-logs PR #10](https://github.com/digitaldemocracy2030/slack-logs/pull/10)。PR の作成が 2026-08-22（JST）、merge は 2026-08-24）。範囲 2025-04〜2026-02・現行54ch・17,548メッセージ（スレッド返信含む）。週次(名基準)→月次(ID基準)へ変換し、月境界は Asia/Tokyo、週窓の重複は ts で dedup。残る欠落は2つ: (1) **2025-01〜03** は workspace が2025年3月開始のため元々存在しない、(2) **現行workspaceに無いアーカイブ/削除20ch（~3,591件）** は名→IDを解決できず未対応で、復旧には `conversations.list`（archived含む）でのID取得が要る（issue #4 の follow-up）。
 
 **訂正（2026-10-22）**: (1) は誤り。[[OSS Weekly Reporter]] の最初期の週（`data/2025-03-04_to_2025-04-03` など4ディレクトリ）は `raw/slack/` を持たない古い配置で、チャンネル別 JSON が週ディレクトリ直下にある。そこに 2025-03（JST）のメッセージが約2,091件（参加通知込み、15チャンネル）あり、PR #10 の埋め戻し対象から漏れていた。`slack-logs` の `2025-03.jsonl.gz` は本文0件のまま（2026-10-22 確認）。(2) の未解決チャンネルは、名前で突き合わせると13（`2_開発_デジ民ウェブサイト`、`2_いどばたp1_opt1_基本機能` ほか）。
 

@@ -9,6 +9,11 @@ updated: 2026-11-03
 
 取り込み・更新・メンテナンスの記録。
 
+## [2026-11-03] lint | 査読指摘の反映（二周目）
+- [[Slackログアーカイブ]]: 「復旧の実施（2026-08-22）」の PR #10 を「マージ後に有効」のままにしていたので、PR の作成が 8/22（JST）、merge が 8/24 と書き足した（`gh pr view 10 -R digitaldemocracy2030/slack-logs` の mergedAt 2026-08-24T13:24Z）。[[OSS Weekly Reporter]]・`archive_index.md` の 8/24 とそろう
+- [[overview]]: 「3つの柱となるプロダクト」表のいどばた（「再設計・横展開期」）を、[[いどばた]]の「探索期・いどばたボットへ」と 10/28 の[[events/2026-10-28-idobata-strategy-meeting|いどばた戦略会議]]に合わせた。Polimoney と AIディープサーベイの「2026年4月時点」の記述は残し、その後（Polimoney: 10/3 政治家一覧API完了・10/24 戦略会議、コアループ: 6/21 市民熟議・8〜10月の提言書）を足した
+- [[overview]]: frontmatter の sources に kouchou-ai の releases・`raw/minutes/polimoney.txt`・`#2_いどばたボット` の mirror を追加
+
 ## [2026-11-03] lint | 現状との食い違いの点検と訂正
 - 元情報: `digitaldemocracy2030/slack-logs`（mirror synced 2026-11-02T15:26Z と raw/ の 2026-04・05・08 月ファイル）、GitHub（kouchou-ai の releases と Issue #921、slack-logs の PR 一覧）
 - [[ブロードリスニング本]]・`wiki/index.md`: 発売時期を「10〜11月目処」のままにしていたのを、11/2 に中山が `#2_開発_広聴ai` で「原稿の直しが止まっているので未定」と答えたことに合わせて「未定（11/2 時点）」に

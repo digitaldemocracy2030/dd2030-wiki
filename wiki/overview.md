@@ -8,6 +8,9 @@ sources:
   - raw/broad-listening-book/10_00_DD2030による広聴AIの開発活動.md
   - raw/broad-listening-book/09_02_サイボウズ.md
   - digitaldemocracy2030/slack-logs/mirror/slack/C0BACQUGQ5R.jsonl.gz
+  - "GitHub digitaldemocracy2030/kouchou-ai releases v4.1.0 (2026-10-13), v4.2.0 (2026-10-26)"
+  - raw/minutes/polimoney.txt
+  - "digitaldemocracy2030/slack-logs mirror/slack/C09T4CVQA07.jsonl.gz (#2_いどばたボット, 2026-10-28)"
 created: 2026-04-18
 updated: 2026-11-03
 ---
@@ -39,9 +42,9 @@ updated: 2026-11-03
 | プロダクト | 概要 | 状態 |
 |---|---|---|
 | [[広聴AI]] | 大量の市民意見をAIで分析・可視化するツール | 2026年10月に v4.1.0・v4.2.0（セキュリティ修正を含む）をリリース。メジャーリリース 5.0 は[[ブロードリスニング本]]の刊行に合わせる方針 |
-| [[いどばた]] | 市民が政策テーマについて対話できるプラットフォーム | 再設計・横展開期 |
-| [[Polimoney]] | 政治資金収支報告書を可視化するツール | 2026年4月時点でLedgerの骨格ができ、[[topics/political-funds-and-campaign-expenses|選挙運動費用収支報告書]]対応とUI/UX調整が継続 |
-| [[AIディープサーベイ]] | オンライン詐欺広告対策で、市民の声をAI対話で集めて政策検討・熟議設計へ渡す調査入口 | 2026年4月時点で[[コアループ]]のワークショップ準備と6月熟議に接続 |
+| [[いどばた]] | 市民が政策テーマについて対話できるプラットフォーム | 2026年6月〜10月は探索期。10月28日の[[events/2026-10-28-idobata-strategy-meeting|いどばた戦略会議]]で、いどばたボットのデモ実装を出し、既存利用者の要望をボットへ集約する方向を決めた |
+| [[Polimoney]] | 政治資金収支報告書を可視化するツール | 2026年4月時点でLedgerの骨格ができ、[[topics/political-funds-and-campaign-expenses|選挙運動費用収支報告書]]対応とUI/UX調整が継続。その後、10月3日に政治家一覧APIが完了し、10月24日の[[events/2026-10-24-polimoney-strategy-meeting|Polimoney 戦略会議]]でREADME書き換え・利用者や有識者へのヒアリング・営業資料づくりを進めることにした |
+| [[AIディープサーベイ]] | オンライン詐欺広告対策で、市民の声をAI対話で集めて政策検討・熟議設計へ渡す調査入口 | 2026年4月時点で[[コアループ]]のワークショップ準備と6月熟議に接続。その後コアループは6月21日に市民熟議（[[討論型世論調査]]）を実施し、8月〜10月に提言書をまとめた |
 
 ## プロジェクトの歩み
 
